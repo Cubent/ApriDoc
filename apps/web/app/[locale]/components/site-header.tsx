@@ -97,9 +97,6 @@ export const SiteHeader = () => (
         <Link href="/blog" className="hover:text-[#06005A] transition-colors">
           Blog
         </Link>
-        <Link href="/#faq" className="hover:text-[#06005A] transition-colors">
-          Resources
-        </Link>
         <Link href="/contact" className="hover:text-[#06005A] transition-colors">
           Contact
         </Link>

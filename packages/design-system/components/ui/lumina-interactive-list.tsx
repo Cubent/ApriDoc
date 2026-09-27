@@ -169,9 +169,6 @@ export function LuminaInteractiveList({
             <a href="/blog" className="hover:text-[#06005A] transition-colors">
               Blog
             </a>
-            <a href="#faq" className="hover:text-[#06005A] transition-colors">
-              Resources
-            </a>
             <a href="/contact" className="hover:text-[#06005A] transition-colors">
               Contact
             </a>
