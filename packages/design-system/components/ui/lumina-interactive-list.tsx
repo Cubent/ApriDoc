@@ -336,7 +336,7 @@ export function LuminaInteractiveList({
               <span className="h-4 w-px bg-white/20" aria-hidden="true" />
               <p className="text-sm text-white/90">
                 <span className="font-bold text-white">5.0 rating</span>{' '}
-                <span className="hidden text-white/60 sm:inline">&middot; MedPrep Institute students</span>
+                <span className="hidden text-white sm:inline">&middot; MedPrep Institute students</span>
               </p>
             </div>
           </div>
@@ -351,7 +351,7 @@ export function LuminaInteractiveList({
               </p>
               <div className="mt-4 flex items-center gap-3">
                 <img
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=72&h=72&fit=crop&crop=faces&auto=format"
+                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=72&h=72&fit=crop&crop=faces&auto=format"
                   alt="Maya R."
                   className="size-9 shrink-0 rounded-full object-cover"
                 />
@@ -371,7 +371,7 @@ export function LuminaInteractiveList({
               </p>
               <div className="mt-4 flex items-center gap-3">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=72&h=72&fit=crop&crop=faces&auto=format"
+                  src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=72&h=72&fit=crop&crop=faces&auto=format"
                   alt="Devon K."
                   className="size-9 shrink-0 rounded-full object-cover"
                 />
@@ -391,7 +391,7 @@ export function LuminaInteractiveList({
               </p>
               <div className="mt-4 flex items-center gap-3">
                 <img
-                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=72&h=72&fit=crop&crop=faces&auto=format"
+                  src="https://images.unsplash.com/photo-1548142813-c348350df52b?w=72&h=72&fit=crop&crop=faces&auto=format"
                   alt="Priya S."
                   className="size-9 shrink-0 rounded-full object-cover"
                 />
