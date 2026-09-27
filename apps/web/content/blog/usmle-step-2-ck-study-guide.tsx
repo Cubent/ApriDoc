@@ -315,7 +315,9 @@ const Body = () => (
     <h3>Should I take Step 2 CK before or after Step 3?</h3>
     <p>
       Step 2 CK comes before Step 3. Most students take it during medical school, after their core
-      clerkships, well before Step 3, which is usually taken during residency.
+      clerkships, well before Step 3, which is usually taken during residency. Our{' '}
+      <Link href="/blog/usmle-step-3-study-guide">USMLE Step 3 study guide</Link> covers that exam
+      when you get there.
     </p>
     <h3>How many questions should I do a day?</h3>
     <p>

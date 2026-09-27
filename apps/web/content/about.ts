@@ -39,9 +39,9 @@ export const partners: Partner[] = [
 // (.jpg, .jpeg, .png or .webp). It is picked up automatically, no code change needed.
 export const team: Person[] = [
   { name: 'Dr. Elena Marchetti', role: 'Chief of Medicine' },
-  { name: 'Dr. James Okafor', role: 'Cardiology' },
+  { name: 'Dr. James Alexis', role: 'Cardiology' },
   { name: 'Dr. Priya Raghunathan', role: 'Neurology' },
-  { name: 'Dr. Lukas Bergmann', role: 'Orthopedic Surgery' },
+  { name: 'Dr. Lukas Ling', role: 'Orthopedic Surgery' },
 ];
 
 /** Physicians who review the questions and explanations. */
