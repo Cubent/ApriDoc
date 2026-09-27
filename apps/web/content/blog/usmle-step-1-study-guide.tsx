@@ -294,7 +294,9 @@ const Body = () => (
     <h3>Is Step 1 still important if it is pass/fail?</h3>
     <p>
       Yes. You no longer need to chase a high score, but you do need to pass comfortably and
-      actually retain the material, since Step 2 CK and your clerkships build directly on it.
+      actually retain the material, since Step 2 CK and your clerkships build directly on it. Step
+      2 CK is still scored, and we cover preparing for it in our{' '}
+      <Link href="/blog/usmle-step-2-ck-study-guide">USMLE Step 2 CK study guide</Link>.
     </p>
     <h3>How many questions should I do a day?</h3>
     <p>
