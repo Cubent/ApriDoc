@@ -640,10 +640,10 @@ export function LuminaInteractiveList({
       <div className="mx-auto max-w-6xl px-6 pb-16 sm:pb-24">
         <div className="rounded-3xl px-8 py-16 text-center sm:py-20" style={{ backgroundColor: '#06005A' }}>
           <h2 className="font-[family-name:var(--font-display)] mx-auto max-w-xl text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Stop doing random USMLE questions.
+            Stop grinding through random USMLE questions.
           </h2>
           <p className="mx-auto mt-4 max-w-md text-balance text-lg text-white/70">
-            Start practicing right now. Try it for free for 7 days.
+            Start practicing with a plan. Try it free for 7 days.
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
