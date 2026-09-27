@@ -108,6 +108,14 @@ const TermsOfServicePage = () => (
           <li>use MedPrep Institute for unlawful, harmful, infringing, or fraudulent purposes.</li>
         </ul>
 
+        <h2>Illustrative and sample content</h2>
+        <p>
+          Sample questions, vignettes, screenshots, product mockups, and similar illustrative
+          material shown on our marketing pages are for demonstration purposes only. They do not
+          describe real patients or real exam questions. Any resemblance to an actual person,
+          patient, institution, exam question, or organization is coincidental and unintended.
+        </p>
+
         <h2>Intellectual property</h2>
         <p>
           MedPrep Institute, including its software, interfaces, questions, explanations,

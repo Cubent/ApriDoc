@@ -100,7 +100,7 @@ export function LuminaInteractiveList({
             <a href="#faq" className="hover:text-[#06005A] transition-colors">
               Resources
             </a>
-            <a href="mailto:support@medprepinstitute.com" className="hover:text-[#06005A] transition-colors">
+            <a href="/contact" className="hover:text-[#06005A] transition-colors">
               Contact
             </a>
           </nav>

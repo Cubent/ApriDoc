@@ -28,12 +28,9 @@ export const SiteHeader = () => (
         <Link href="/#faq" className="hover:text-[#06005A] transition-colors">
           Resources
         </Link>
-        <a
-          href="mailto:support@medprepinstitute.com"
-          className="hover:text-[#06005A] transition-colors"
-        >
+        <Link href="/contact" className="hover:text-[#06005A] transition-colors">
           Contact
-        </a>
+        </Link>
       </nav>
 
       <HeaderAuth />
