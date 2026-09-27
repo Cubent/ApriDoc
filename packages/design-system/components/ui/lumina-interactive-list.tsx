@@ -414,18 +414,18 @@ export function LuminaInteractiveList({
                 Adaptive Engine
               </p>
               <h2 className="font-[family-name:var(--font-display)] mt-3 text-balance text-3xl font-bold tracking-tight text-[#06005A] sm:text-4xl">
-                MedPrep Institute remembers your mistakes and trains you from first principles.
+                MedPrep Institute remembers your USMLE mistakes and trains you from first principles.
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-gray-600">
-                Miss a question, and the concept behind it gets flagged, not just that one
-                question. It comes back on a spaced schedule, from a new angle each time, so the
-                things you get wrong become the things you know best.
+                Miss a question in the Qbank, and the USMLE concept behind it gets flagged, not
+                just that one question. It comes back on a spaced schedule, from a new angle each
+                time, so the things you get wrong become the things you know best.
               </p>
               <ul className="mt-6 divide-y divide-gray-200 border-y border-gray-200">
                 {[
-                  { icon: Flag, text: 'Every miss is tracked by concept, not just by question.' },
+                  { icon: Flag, text: 'Every miss is tracked by USMLE concept, not just by question.' },
                   { icon: RotateCcw, text: 'Reviews come back on a spaced schedule, automatically.' },
-                  { icon: Target, text: 'Your weakest topics move to the front of your next set.' },
+                  { icon: Target, text: 'Your weakest Qbank topics move to the front of your next set.' },
                 ].map(({ icon: Icon, text }) => (
                   <li key={text} className="flex items-start gap-3 py-3.5 text-base text-gray-700">
                     <Icon className="mt-0.5 size-4 shrink-0 text-[#C46B10]" />
@@ -454,15 +454,16 @@ export function LuminaInteractiveList({
             />
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
-                Across every exam
+                Across every USMLE exam
               </p>
               <h2 className="font-[family-name:var(--font-display)] mt-4 text-balance text-3xl font-bold tracking-tight text-[#06005A] sm:text-4xl">
                 Jump from exam to exam like it&rsquo;s effortless.
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-gray-600">
-                The more you understand, the less MedPrep Institute needs to ask you about it.
-                Concepts you have not mastered carry forward automatically, so your next exam
-                starts by teaching you exactly what the last one showed you still needed to learn.
+                The more you understand, the less the USMLE Qbank needs to ask you about it.
+                Concepts you have not mastered in the Step 1 Qbank carry forward into Step 2 CK,
+                then Step 3, so each new Qbank starts by teaching you exactly what the last one
+                showed you still needed to learn.
               </p>
             </div>
           </div>
