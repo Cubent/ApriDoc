@@ -1,6 +1,6 @@
 import { PersonCard } from '@/components/about/person-card';
 import { Reveal } from '@/components/about/reveal';
-import { partners, reviewers, sampleReviewers, sampleTeam, team } from '@/content/about';
+import { reviewers, sampleReviewers, sampleTeam, team } from '@/content/about';
 import { findTeamPhoto } from '@/lib/team-photo';
 import { createMetadata } from '@repo/seo/metadata';
 import type { Metadata } from 'next';
@@ -329,47 +329,6 @@ const AboutPage = () => {
           </ul>
         </div>
       </section>
-
-      {/* Schools and programs */}
-      {partners.length > 0 && (
-        <section className="bg-[#F3F3F3] px-6 py-16 sm:py-24">
-          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:gap-20">
-            <Reveal>
-              <p className="text-base font-medium text-gray-500">Schools and programs</p>
-              <div className="mt-4">
-                <H2>Built with the people who train physicians</H2>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="divide-y divide-gray-300 border-y border-gray-300">
-                {partners.map((partner) => (
-                  <div key={partner.name} className="py-6">
-                    <p className="text-base text-gray-600">{partner.relationship}</p>
-                    <p className="font-[family-name:var(--font-display)] mt-2 text-3xl font-medium leading-tight text-[#151B17]">
-                      {partner.name}
-                    </p>
-                    {partner.detail && (
-                      <p className="mt-2 text-lg leading-relaxed text-gray-700">{partner.detail}</p>
-                    )}
-                    {partner.url && (
-                      <div className="mt-4">
-                        <a
-                          href={partner.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="border-b border-[#06005A] pb-0.5 text-base font-medium text-[#06005A]"
-                        >
-                          Visit website
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
 
       {/* Contact + CTA */}
       <section className="bg-white px-6 py-16 sm:py-24">
