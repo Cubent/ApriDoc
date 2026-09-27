@@ -1,7 +1,7 @@
 'use client';
 
 // Brand assets updated: header/footer logo, step images, hero social proof banner
-import { ChevronDown, Flag, RotateCcw, Target } from 'lucide-react';
+import { Award, ChevronDown, ClipboardCheck, Flag, Microscope, RotateCcw, Stethoscope, Target } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 
 type LuminaInteractiveListProps = {
@@ -539,23 +539,26 @@ export function LuminaInteractiveList({
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
             Exams we cover
           </p>
-          <h2 className="font-[family-name:var(--font-display)] mt-4 max-w-3xl text-balance text-3xl font-bold tracking-tight text-black sm:text-4xl">
+          <h2 className="font-[family-name:var(--font-display)] mt-4 max-w-3xl text-balance text-3xl font-bold tracking-tight text-[#06005A] sm:text-4xl">
             One platform from Step 1 to board certification.
           </h2>
           <ul className="mt-12 divide-y divide-gray-200 border-y border-gray-200">
             {[
-              { name: 'USMLE Step 1', href: '/usmle-step-1-question-bank', body: 'Foundational science and clinical knowledge.' },
-              { name: 'USMLE Step 2 CK', href: '/usmle-step-2-question-bank', body: 'Clinical management and patient-care vignettes.' },
-              { name: 'USMLE Step 3', href: '/usmle-step-3-question-bank', body: 'Managing patients from presentation to follow-up.' },
-              { name: 'ABIM Internal Medicine', href: '/abim-internal-medicine-question-bank', body: 'Board certification across internal medicine.' },
+              { name: 'USMLE Step 1', href: '/usmle-step-1-question-bank', body: 'Foundational science and clinical knowledge.', icon: Microscope },
+              { name: 'USMLE Step 2 CK', href: '/usmle-step-2-question-bank', body: 'Clinical management and patient-care vignettes.', icon: Stethoscope },
+              { name: 'USMLE Step 3', href: '/usmle-step-3-question-bank', body: 'Managing patients from presentation to follow-up.', icon: ClipboardCheck },
+              { name: 'ABIM Internal Medicine', href: '/abim-internal-medicine-question-bank', body: 'Board certification across internal medicine.', icon: Award },
             ].map((exam) => (
               <li key={exam.name}>
                 <a
                   href={exam.href}
                   className="group grid items-center gap-2 py-6 md:grid-cols-[1fr_1.4fr_auto] md:gap-8"
                 >
-                  <span className="font-[family-name:var(--font-display)] text-2xl font-medium text-black group-hover:underline group-hover:underline-offset-4">
-                    {exam.name}
+                  <span className="flex items-center gap-3">
+                    <exam.icon className="size-5 shrink-0 text-[#06005A]" />
+                    <span className="font-[family-name:var(--font-display)] text-2xl font-medium text-black group-hover:underline group-hover:underline-offset-4">
+                      {exam.name}
+                    </span>
                   </span>
                   <span className="text-base text-gray-600">{exam.body}</span>
                   <span
@@ -569,17 +572,6 @@ export function LuminaInteractiveList({
             ))}
           </ul>
         </div>
-      </div>
-
-      {/* Quote Section */}
-      <div className="mx-auto max-w-3xl px-6 pt-16 pb-10 text-center sm:pt-20 sm:pb-12">
-        <p className="font-[family-name:var(--font-display)] text-balance text-2xl leading-snug tracking-tight text-black sm:text-3xl">
-          These exams will shape your career. They deserve better than random practice.
-        </p>
-        <div className="mx-auto mt-8 h-px w-10 bg-black/40" />
-        <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
-          Built by the MedPrep Institute team
-        </p>
       </div>
 
       {/* Method FAQ Section */}
