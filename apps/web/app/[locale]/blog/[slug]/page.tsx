@@ -100,7 +100,10 @@ const BlogPostPage = async ({ params }: BlogPostPageProperties) => {
       <JsonLd code={breadcrumbs} />
       <SiteHeader />
       <main>
-        <article>
+        {/* overflow-x-clip (not hidden): ComparisonTable's full-bleed w-screen trick overflows
+            by a scrollbar's width on desktop; clip contains that without turning this into a
+            scroll container, which would break position:sticky on anything nested inside. */}
+        <article className="overflow-x-clip">
           <header className="relative isolate overflow-hidden bg-[#000C3F]">
             <Image
               src={post.heroImage ?? '/MedPrep (1).png'}
