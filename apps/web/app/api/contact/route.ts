@@ -1,7 +1,10 @@
 import { getResendClient } from '@repo/email';
 import { NextRequest, NextResponse } from 'next/server';
 
-const SUPPORT_INBOX = 'support@medprepinstitute.com';
+// .org, not .com: medprepinstitute.com's MX records only point to Namecheap's free
+// email-forwarding service, which bounced this. medprepinstitute.org has real mailbox
+// hosting (Zoho Mail), so that's the address that can actually receive this mail.
+const SUPPORT_INBOX = 'support@medprepinstitute.org';
 
 // Escapes user input before it goes into the HTML email body.
 const escapeHtml = (value: string) =>

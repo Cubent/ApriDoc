@@ -156,7 +156,7 @@ const PrivacyPolicyPage = () => (
           or object to certain processing of your personal information. You may also have rights
           related to data portability or withdrawing consent. To make a privacy request, contact
           us at{' '}
-          <a href="mailto:support@medprepinstitute.com">support@medprepinstitute.com</a>.
+          <a href="mailto:support@medprepinstitute.org">support@medprepinstitute.org</a>.
         </p>
 
         <h2>California and European privacy rights</h2>
@@ -190,7 +190,7 @@ const PrivacyPolicyPage = () => (
         <h2>Contact</h2>
         <p>
           For privacy or support questions, email{' '}
-          <a href="mailto:support@medprepinstitute.com">support@medprepinstitute.com</a>.
+          <a href="mailto:support@medprepinstitute.org">support@medprepinstitute.org</a>.
         </p>
       </div>
 

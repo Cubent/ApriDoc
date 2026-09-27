@@ -84,7 +84,7 @@ const TermsOfServicePage = () => (
         </p>
         <p>
           To request a refund, email{' '}
-          <a href="mailto:support@medprepinstitute.com">support@medprepinstitute.com</a> from the
+          <a href="mailto:support@medprepinstitute.org">support@medprepinstitute.org</a> from the
           email address associated with your account.
         </p>
 
@@ -140,7 +140,7 @@ const TermsOfServicePage = () => (
           We want MedPrep Institute to be usable by as many people as possible and plan to
           continue improving accessibility, including support for increased font size and dark
           mode. If you have trouble accessing MedPrep Institute or need assistance, contact{' '}
-          <a href="mailto:support@medprepinstitute.com">support@medprepinstitute.com</a> and
+          <a href="mailto:support@medprepinstitute.org">support@medprepinstitute.org</a> and
           describe the issue, the device/browser you use, and the page or feature involved.
         </p>
 
@@ -214,7 +214,7 @@ const TermsOfServicePage = () => (
         <h2>Contact</h2>
         <p>
           For support, billing, accessibility, or legal questions, email{' '}
-          <a href="mailto:support@medprepinstitute.com">support@medprepinstitute.com</a>. DMCA
+          <a href="mailto:support@medprepinstitute.org">support@medprepinstitute.org</a>. DMCA
           notices should be sent to{' '}
           <a href="mailto:dmca@medprepinstitute.com">dmca@medprepinstitute.com</a>. We handle
           requests by email and do not publish a fax or mailing address for this service.

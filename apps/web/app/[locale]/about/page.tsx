@@ -121,7 +121,7 @@ const AboutPage = () => {
               name: 'MedPrep Institute',
               url: 'https://www.medprepinstitute.org',
               logo: 'https://www.medprepinstitute.org/favicon.png',
-              email: 'support@medprepinstitute.com',
+              email: 'support@medprepinstitute.org',
               ...(team.length > 0 && {
                 member: teamList.map((person) => {
                   const prefix = person.name.match(/^(Dr|Prof)\.?(?=\s)/i)?.[0];
@@ -380,8 +380,8 @@ const AboutPage = () => {
           <Reveal delay={0.1}>
             <p className="text-lg leading-relaxed text-gray-700">
               Questions or feedback? Write to{' '}
-              <a href="mailto:support@medprepinstitute.com" className="text-[#06005A] underline underline-offset-4">
-                support@medprepinstitute.com
+              <a href="mailto:support@medprepinstitute.org" className="text-[#06005A] underline underline-offset-4">
+                support@medprepinstitute.org
               </a>
               .
             </p>

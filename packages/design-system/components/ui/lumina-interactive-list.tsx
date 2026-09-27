@@ -1,13 +1,81 @@
 'use client';
 
 // Brand assets updated: header/footer logo, step images, hero social proof banner
-import React, { useState } from 'react';
+import { ChevronDown, Flag, RotateCcw, Target } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
 
 type LuminaInteractiveListProps = {
   /** Renders in place of the default header "Sign in" link, e.g. real auth controls. */
   authSlot?: React.ReactNode;
   /** Overrides the hero headline, e.g. for ad landing page variants. */
   heroTitle?: string;
+};
+
+const USMLE_STEPS = [
+  { href: '/usmle-step-1-question-bank', label: 'USMLE Step 1', description: 'Foundational science and clinical knowledge.' },
+  { href: '/usmle-step-2-question-bank', label: 'USMLE Step 2 CK', description: 'Clinical knowledge for clerkship-level decisions.' },
+  { href: '/usmle-step-3-question-bank', label: 'USMLE Step 3', description: 'Independent practice: diagnosis, management, follow-up.' },
+];
+
+// Kept in sync with the identical dropdown in apps/web/app/[locale]/components/site-header.tsx.
+const UsmleDropdown = () => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (!ref.current?.contains(event.target as Node)) setOpen(false);
+    };
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        className="flex items-center gap-1 hover:text-[#06005A] transition-colors"
+      >
+        USMLE
+        <ChevronDown className={`size-3.5 transition-transform ${open ? 'rotate-180' : ''}`} />
+      </button>
+
+      {/* Always in the DOM (not conditionally mounted): visibility is CSS-only, so the
+          three exam links are present in the static HTML and crawlable even though the
+          panel is visually collapsed until a visitor opens it. */}
+      <div
+        role="menu"
+        className={`absolute left-1/2 top-full z-50 mt-3 w-72 -translate-x-1/2 rounded-xl border border-gray-200 bg-white p-2 text-left shadow-xl transition-all duration-150 ${
+          open ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-1 opacity-0'
+        }`}
+      >
+        {USMLE_STEPS.map(({ href, label, description }) => (
+          <a
+            key={href}
+            href={href}
+            role="menuitem"
+            tabIndex={open ? 0 : -1}
+            onClick={() => setOpen(false)}
+            className="block rounded-lg px-3 py-2.5 transition-colors hover:bg-gray-50"
+          >
+            <span className="block text-sm font-semibold text-black">{label}</span>
+            <span className="block text-xs leading-relaxed text-gray-500">{description}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 const methodFaqs = [
@@ -87,9 +155,13 @@ export function LuminaInteractiveList({
             </div>
           </a>
 
-          <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 text-sm text-gray-600 md:flex">
+          <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 text-sm font-medium text-gray-600 lg:flex">
+            <UsmleDropdown />
+            <a href="/abim-internal-medicine-question-bank" className="hover:text-[#06005A] transition-colors">
+              ABIM
+            </a>
             <a href="#how-it-works" className="hover:text-[#06005A] transition-colors">
-              The Method
+              Method
             </a>
             <a href="/about" className="hover:text-[#06005A] transition-colors">
               About
@@ -334,339 +406,66 @@ export function LuminaInteractiveList({
       </div>
 
       {/* Adaptive Engine Section */}
-      <div className="bg-white px-6 py-16 sm:py-20">
+      <div className="bg-white px-6 py-16 sm:py-24">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-2xl border border-gray-200 bg-[#F4F2FB] p-5 sm:p-8">
-            <div className="mx-auto mb-6 max-w-2xl text-center sm:mb-10">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
                 Adaptive Engine
               </p>
-              <h2 className="font-[family-name:var(--font-display)] mt-3 text-balance text-3xl font-bold tracking-tight text-black sm:text-4xl">
-                MedPrep Institute remembers your USMLE mistakes and trains you from first principles.
+              <h2 className="font-[family-name:var(--font-display)] mt-3 text-balance text-3xl font-bold tracking-tight text-[#06005A] sm:text-4xl">
+                MedPrep Institute remembers your mistakes and trains you from first principles.
               </h2>
-            </div>
-
-            <div className="flex flex-col items-center gap-8 lg:flex-row lg:gap-0">
-              {/* Question card */}
-              <div className="w-full max-w-sm rounded-xl border border-gray-200 bg-white p-5 lg:w-[340px] lg:shrink-0">
-                <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">
-                  <svg className="size-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                    <path d="M12 7v14" />
-                    <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
-                  </svg>
-                  Question
-                </p>
-                <p className="mt-3 text-[0.95rem] leading-relaxed text-black">
-                  A 62-year-old man presents with acute shortness of breath and pleuritic chest pain. What is the most likely diagnosis?
-                </p>
-                <div className="mt-4 flex flex-col gap-1.5">
-                  <div className="flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-600">
-                    <span className="w-4 font-medium">A.</span>
-                    <span>Pneumonia</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-600">
-                    <span className="w-4 font-medium">B.</span>
-                    <span>Pulmonary embolism</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-black">
-                    <span className="w-4 font-medium">C.</span>
-                    <span>Acute myocardial infarction</span>
-                    <svg className="ml-auto size-4 text-red-600" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                      <path d="M18 6 6 18" />
-                      <path d="m6 6 12 12" />
-                    </svg>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-600">
-                    <span className="w-4 font-medium">D.</span>
-                    <span>Asthma exacerbation</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-600">
-                    <span className="w-4 font-medium">E.</span>
-                    <span>Pericarditis</span>
-                  </div>
-                </div>
-                <p className="mt-4 flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2.5 text-sm text-black">
-                  <span className="font-semibold text-red-600">Incorrect.</span>
-                  Let's focus on this topic.
-                </p>
-              </div>
-
-              {/* Connector: mobile arrow down */}
-              <svg className="size-5 text-gray-400 lg:hidden" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                <path d="M12 5v14" />
-                <path d="m19 12-7 7-7-7" />
-              </svg>
-
-              {/* Connector: desktop line */}
-              <div className="relative hidden w-16 shrink-0 items-center px-1 lg:flex" aria-hidden="true">
-                <div className="h-px flex-1 bg-gray-200" />
-              </div>
-
-              {/* Center engine node */}
-              <div className="relative flex size-44 shrink-0 flex-col items-center justify-center rounded-full bg-[#06005A] px-6 text-center text-white shadow-xl">
-                <svg className="size-7" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                  <path d="M12 18V5" />
-                  <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4" />
-                  <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5" />
-                  <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77" />
-                  <path d="M18 18a4 4 0 0 0 2-7.464" />
-                  <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517" />
-                  <path d="M6 18a4 4 0 0 1-2-7.464" />
-                  <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77" />
-                </svg>
-                <p className="mt-2.5 text-xs font-semibold uppercase tracking-[0.18em]">Adaptive engine</p>
-                <p className="mt-1 text-xs text-white/70">Analyzing response&hellip;</p>
-              </div>
-
-              {/* Connector: mobile arrow down */}
-              <svg className="size-5 text-gray-400 lg:hidden" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                <path d="M12 5v14" />
-                <path d="m19 12-7 7-7-7" />
-              </svg>
-
-              {/* Connector: desktop line */}
-              <div className="relative hidden w-16 shrink-0 items-center px-1 lg:flex" aria-hidden="true">
-                <div className="h-px flex-1 bg-gray-200" />
-              </div>
-
-              {/* Output cards */}
-              <div className="grid w-full max-w-sm gap-3 lg:max-w-none lg:flex-1">
-                <div className="rounded-xl border border-gray-200 bg-white p-5">
-                  <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">
-                    <svg className="size-3.5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                      <path d="M3 3v5h5" />
-                    </svg>
-                    Same topic &middot; new angle
-                  </p>
-                  <p className="mt-2.5 text-sm leading-relaxed text-black">
-                    What is the most appropriate initial imaging for suspected pulmonary embolism?
-                  </p>
-                </div>
-                <div className="rounded-xl border border-gray-200 bg-white p-5">
-                  <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">
-                    <svg className="size-3.5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                      <path d="M15 6a9 9 0 0 0-9 9V3" />
-                      <circle cx="18" cy="6" r="3" />
-                      <circle cx="6" cy="18" r="3" />
-                    </svg>
-                    Related topic
-                  </p>
-                  <p className="mt-2.5 text-sm leading-relaxed text-black">
-                    Which ECG finding suggests right heart strain?
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Built-in spaced repetition timeline */}
-            <div className="mt-8 border-t border-gray-200 pt-6">
-              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">
-                <svg className="size-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                  <path d="M3 3v5h5" />
-                </svg>
-                Built-in spaced repetition
+              <p className="mt-5 text-lg leading-relaxed text-gray-600">
+                Miss a question, and the concept behind it gets flagged, not just that one
+                question. It comes back on a spaced schedule, from a new angle each time, so the
+                things you get wrong become the things you know best.
               </p>
-              <div className="mt-5 flex items-start px-1">
-                <div className="flex w-max flex-col items-center gap-1.5 px-2">
-                  <span className="flex size-7 items-center justify-center rounded-full bg-[#06005A] text-white">
-                    <svg className="size-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                      <path d="M20 6 9 17l-5-5" />
-                    </svg>
-                  </span>
-                  <span className="text-sm font-medium text-black">Review soon</span>
-                  <span className="text-xs text-gray-500">1 day</span>
-                </div>
-                <div className="mt-3.5 h-px flex-1 bg-gray-200" />
-                <div className="flex w-max flex-col items-center gap-1.5 px-2">
-                  <span className="flex size-7 items-center justify-center rounded-full border border-gray-300 bg-white">
-                    <span className="size-2 rounded-full bg-gray-400" />
-                  </span>
-                  <span className="text-sm font-medium text-black">Reinforce</span>
-                  <span className="text-xs text-gray-500">3 days</span>
-                </div>
-                <div className="mt-3.5 h-px flex-1 bg-gray-200" />
-                <div className="flex w-max flex-col items-center gap-1.5 px-2">
-                  <span className="flex size-7 items-center justify-center rounded-full border-[1.5px] border-[#C46B10] text-[#C46B10]">
-                    <svg className="size-3.5 fill-current" viewBox="0 0 20 20">
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  </span>
-                  <span className="text-sm font-medium text-black">Mastered</span>
-                </div>
-              </div>
+              <ul className="mt-6 divide-y divide-gray-200 border-y border-gray-200">
+                {[
+                  { icon: Flag, text: 'Every miss is tracked by concept, not just by question.' },
+                  { icon: RotateCcw, text: 'Reviews come back on a spaced schedule, automatically.' },
+                  { icon: Target, text: 'Your weakest topics move to the front of your next set.' },
+                ].map(({ icon: Icon, text }) => (
+                  <li key={text} className="flex items-start gap-3 py-3.5 text-base text-gray-700">
+                    <Icon className="mt-0.5 size-4 shrink-0 text-[#C46B10]" />
+                    {text}
+                  </li>
+                ))}
+              </ul>
             </div>
+            <img
+              src="/MedPrep institute (2).jpg"
+              alt="A missed question flagged by MedPrep Institute, with its review scheduled for a few days later."
+              className="w-full rounded-2xl"
+            />
           </div>
         </div>
       </div>
 
-      {/* Competitive Edge Section */}
-      <div className="bg-[#f5f5f5] px-6 py-16 sm:py-20">
+      {/* Jump Between Exams Section */}
+      <div className="bg-white px-6 py-16 sm:py-24">
         <div className="mx-auto max-w-6xl">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
-              Competitive Edge
-            </p>
-            <h2 className="font-[family-name:var(--font-display)] mt-4 text-balance text-3xl font-bold tracking-tight text-black sm:text-4xl">
-              Match into the most competitive residency programs &amp; fellowships.
-            </h2>
-            <p className="mt-4 max-w-xl text-lg leading-relaxed text-gray-600">
-              While most students still use traditional random-style question banks, you will have a competitive edge by using the MedPrep Institute Method.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-gray-200 bg-gray-200 sm:grid-cols-2">
-            <div className="bg-white p-7 sm:p-8">
-              <svg className="size-6 text-[#06005A]" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                <path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978" />
-                <path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978" />
-                <path d="M18 9h1.5a1 1 0 0 0 0-5H18" />
-                <path d="M4 22h16" />
-                <path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z" />
-                <path d="M6 9H4.5a1 1 0 0 1 0-5H6" />
-              </svg>
-              <h3 className="mt-5 text-lg font-semibold text-black">High honors in your Clerkship</h3>
-              <p className="mt-2 text-base leading-relaxed text-gray-600">
-                Set MedPrep Institute to focus on your current clerkship. Realistic clinical vignettes will prepare you for any patient you encounter.
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <img
+              src="/MedPrep institute (16).png"
+              alt="A student moving from USMLE Step 1 to Step 2 to Step 3."
+              className="w-full rounded-2xl"
+            />
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
+                Across every exam
               </p>
-            </div>
-
-            <div className="bg-white p-7 sm:p-8">
-              <svg className="size-6 text-[#06005A]" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                <path d="M12 18V5" />
-                <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4" />
-                <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5" />
-                <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77" />
-                <path d="M18 18a4 4 0 0 0 2-7.464" />
-                <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517" />
-                <path d="M6 18a4 4 0 0 1-2-7.464" />
-                <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77" />
-              </svg>
-              <h3 className="mt-5 text-lg font-semibold text-black">Learn without even taking notes</h3>
-              <p className="mt-2 text-base leading-relaxed text-gray-600">
-                With our built in spaced repetition engine, long term memory is built into your practice. Your only job is to understand the material, not take notes.
-              </p>
-            </div>
-
-            <div className="bg-white p-7 sm:p-8">
-              <svg className="size-6 text-[#06005A]" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                <path d="M8 2v4" />
-                <path d="M16 2v4" />
-                <rect width="18" height="18" x="3" y="4" rx="2" />
-                <path d="M3 10h18" />
-                <path d="m9 16 2 2 4-4" />
-              </svg>
-              <h3 className="mt-5 text-lg font-semibold text-black">Just do 10 questions a day</h3>
-              <p className="mt-2 text-base leading-relaxed text-gray-600">
-                Consistency is key, and MedPrep Institute makes it easy. Just do 10 questions a day and you'll be well on your way to matching into the most competitive residency programs &amp; fellowships.
-              </p>
-            </div>
-
-            <div className="bg-white p-7 sm:p-8">
-              <svg className="size-6 text-[#06005A]" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                <circle cx="6" cy="19" r="3" />
-                <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" />
-                <circle cx="18" cy="5" r="3" />
-              </svg>
-              <h3 className="mt-5 text-lg font-semibold text-black">Your second exam is even easier</h3>
-              <p className="mt-2 text-base leading-relaxed text-gray-600">
-                Based on how you perform in your first QBank, your next exam will be hyper-focussed on what you missed or struggled with. You are not starting from scratch.
+              <h2 className="font-[family-name:var(--font-display)] mt-4 text-balance text-3xl font-bold tracking-tight text-[#06005A] sm:text-4xl">
+                Jump from exam to exam like it&rsquo;s effortless.
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-gray-600">
+                The more you understand, the less MedPrep Institute needs to ask you about it.
+                Concepts you have not mastered carry forward automatically, so your next exam
+                starts by teaching you exactly what the last one showed you still needed to learn.
               </p>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* The Method Section */}
-      <div id="how-it-works" className="bg-white px-6 py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
-              The method
-            </p>
-            <h2 className="font-[family-name:var(--font-display)] mt-4 text-balance text-3xl font-bold tracking-tight text-black sm:text-4xl">
-              A curated path that adapts as you go. Feels effortless, like reading your favorite story.
-            </h2>
-            <p className="mt-4 max-w-xl text-lg leading-relaxed text-gray-600">
-              Working through a USMLE question bank should feel like building a coherent knowledge structure &mdash; not memorizing random, disconnected facts.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            <div className="rounded-2xl border border-gray-200 bg-[#f5f5f5] p-7 sm:p-8">
-              <svg
-                viewBox="0 0 320 110"
-                className="h-auto w-full"
-                role="img"
-                aria-label="Concepts revealed in order, each new one connecting back to concepts you have already seen."
-              >
-                <line x1="41" y1="78" x2="87" y2="78" stroke="rgba(6,0,90,0.16)" strokeWidth="1.5" />
-                <line x1="105" y1="78" x2="151" y2="78" stroke="rgba(6,0,90,0.16)" strokeWidth="1.5" />
-                <line x1="169" y1="78" x2="215" y2="78" stroke="rgba(6,0,90,0.16)" strokeWidth="1.5" />
-                <line x1="233" y1="78" x2="279" y2="78" stroke="rgba(6,0,90,0.16)" strokeWidth="1.5" />
-                <path d="M 32 68 Q 96 16 160 68" fill="none" stroke="#06005A" strokeOpacity="0.3" strokeWidth="1.5" />
-                <path d="M 96 68 Q 160 16 224 68" fill="none" stroke="#06005A" strokeOpacity="0.3" strokeWidth="1.5" />
-                <path d="M 160 68 Q 224 16 288 68" fill="none" stroke="#06005A" strokeOpacity="0.3" strokeWidth="1.5" />
-                <circle cx="32" cy="78" r="7" fill="#06005A" />
-                <circle cx="96" cy="78" r="7" fill="#06005A" />
-                <circle cx="160" cy="78" r="7" fill="#06005A" />
-                <g>
-                  <circle cx="224" cy="78" r="7" fill="white" stroke="#06005A" strokeWidth="1.5" />
-                  <circle cx="224" cy="78" r="2.5" fill="#06005A" />
-                </g>
-                <circle cx="288" cy="78" r="7" fill="white" stroke="rgba(6,0,90,0.3)" strokeWidth="1.5" />
-              </svg>
-              <h3 className="font-[family-name:var(--font-display)] mt-5 text-2xl tracking-tight text-black">
-                Concepts build on what you&rsquo;ve seen
-              </h3>
-              <p className="mt-2 text-base leading-relaxed text-gray-600">
-                Questions arrive in an order where each new concept connects to ones you&rsquo;ve already covered &mdash; a coherent structure, not disjointed chunks.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-gray-200 bg-[#f5f5f5] p-7 sm:p-8">
-              <svg
-                viewBox="0 0 320 110"
-                className="h-auto w-full"
-                role="img"
-                aria-label="A missed question returns as variations in later sets until the concept is mastered."
-              >
-                <defs>
-                  <marker id="method-arrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto">
-                    <path d="M 0 0 L 7 4 L 0 8 Z" fill="#C46B10" />
-                  </marker>
-                </defs>
-                <line x1="41" y1="78" x2="87" y2="78" stroke="rgba(6,0,90,0.16)" strokeWidth="1.5" />
-                <line x1="105" y1="78" x2="151" y2="78" stroke="rgba(6,0,90,0.16)" strokeWidth="1.5" />
-                <line x1="169" y1="78" x2="215" y2="78" stroke="rgba(6,0,90,0.16)" strokeWidth="1.5" />
-                <line x1="233" y1="78" x2="279" y2="78" stroke="rgba(6,0,90,0.16)" strokeWidth="1.5" />
-                <path d="M 160 66 Q 192 34 222 66" fill="none" stroke="#C46B10" strokeOpacity="0.7" strokeWidth="1.5" strokeDasharray="3 6" markerEnd="url(#method-arrow)" />
-                <path d="M 160 66 Q 224 12 286 66" fill="none" stroke="#C46B10" strokeOpacity="0.7" strokeWidth="1.5" strokeDasharray="3 6" markerEnd="url(#method-arrow)" />
-                <circle cx="32" cy="78" r="7" fill="#06005A" />
-                <circle cx="96" cy="78" r="7" fill="#06005A" />
-                <g>
-                  <circle cx="160" cy="78" r="7" fill="white" stroke="#C46B10" strokeWidth="2" />
-                  <path d="M 157.4 75.4 l 5.2 5.2 M 162.6 75.4 l -5.2 5.2" stroke="#C46B10" strokeWidth="1.5" strokeLinecap="round" />
-                </g>
-                <g>
-                  <circle cx="224" cy="78" r="7" fill="white" stroke="#C46B10" strokeWidth="1.5" />
-                  <circle cx="224" cy="78" r="2.5" fill="#C46B10" />
-                </g>
-                <g>
-                  <circle cx="288" cy="78" r="7" fill="#06005A" />
-                  <path d="M 285.2 78 l 2 2.2 l 3.6 -4.2" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </g>
-              </svg>
-              <h3 className="font-[family-name:var(--font-display)] mt-5 text-2xl tracking-tight text-black">
-                Mistakes reshape your path
-              </h3>
-              <p className="mt-2 text-base leading-relaxed text-gray-600">
-                Get a question wrong and variations on the same objective return on a spaced-repetition schedule until it sticks.
-              </p>
-            </div>
-          </div>
-
         </div>
       </div>
 
@@ -903,7 +702,7 @@ export function LuminaInteractiveList({
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-gray-600">
               Anything else?{' '}
-              <a href="mailto:support@medprepinstitute.com" className="underline underline-offset-4">
+              <a href="mailto:support@medprepinstitute.org" className="underline underline-offset-4">
                 Write to us
               </a>{' '}
               and a member of the team will get back to you.

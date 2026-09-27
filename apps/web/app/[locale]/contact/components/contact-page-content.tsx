@@ -54,10 +54,10 @@ export const ContactPageContent = () => {
                 Support
               </p>
               <a
-                href="mailto:support@medprepinstitute.com"
+                href="mailto:support@medprepinstitute.org"
                 className="mt-1.5 block text-base font-medium text-[#06005A] hover:underline"
               >
-                support@medprepinstitute.com
+                support@medprepinstitute.org
               </a>
               <p className="mt-1 text-sm text-gray-500">
                 We typically reply within 1 business day.
