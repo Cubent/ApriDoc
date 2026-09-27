@@ -365,7 +365,10 @@ const PaywallPage = () => {
   const startCheckout = async () => {
     setIsRedirecting(true);
     setError(null);
-    trackEvent('checkout-started', { plan: selected, value: META_PLAN_VALUE[selected] });
+    // One event name per plan (start-trial-monthly / -quarterly / -yearly), so the plans
+    // show up as separate rows in Umami. The button itself is data-umami-ignore so the
+    // generic click tracker does not log a second, plan-less event for the same click.
+    trackEvent(`start-trial-${selected}`, { plan: selected, value: META_PLAN_VALUE[selected] });
     trackMeta('InitiateCheckout', {
       value: META_PLAN_VALUE[selected],
       currency: 'USD',
@@ -425,6 +428,7 @@ const PaywallPage = () => {
               <button
                 key={p.id}
                 type="button"
+                data-track={`plan-${p.id}`}
                 onClick={() => setSelected(p.id)}
                 className={`rounded-2xl border p-5 text-left transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${
                   isSelected
@@ -466,6 +470,7 @@ const PaywallPage = () => {
         <button
           type="button"
           onClick={startCheckout}
+          data-umami-ignore
           disabled={isRedirecting}
           className="mt-6 w-full rounded-full bg-[#C46B10] px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#a95a0d] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >

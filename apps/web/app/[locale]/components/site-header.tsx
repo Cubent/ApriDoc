@@ -19,6 +19,9 @@ export const SiteHeader = () => (
         <Link href="/#how-it-works" className="hover:text-[#06005A] transition-colors">
           The Method
         </Link>
+        <Link href="/about" className="hover:text-[#06005A] transition-colors">
+          About
+        </Link>
         <Link href="/blog" className="hover:text-[#06005A] transition-colors">
           Blog
         </Link>

@@ -988,6 +988,7 @@ export function LuminaInteractiveList({
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">Company</p>
               <ul className="mt-4 flex flex-col gap-3 text-sm">
+                <li><a href="/about" className="text-white/70 hover:text-white">About</a></li>
                 <li><a href="/blog" className="text-white/70 hover:text-white">Blog</a></li>
                 <li><a href="/contact" className="text-white/70 hover:text-white">Contact</a></li>
                 <li><a href="/#faq" className="text-white/70 hover:text-white">FAQ</a></li>

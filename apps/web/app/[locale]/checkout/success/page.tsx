@@ -30,7 +30,7 @@ const reportTrialStarted = () => {
       currency: 'USD',
       ...(value !== undefined && { value: 0, predicted_ltv: value }),
     });
-    trackEvent('trial-started', { plan: plan ?? 'unknown' });
+    trackEvent(`trial-started-${plan ?? 'unknown'}`, { plan: plan ?? 'unknown' });
   });
 };
 
