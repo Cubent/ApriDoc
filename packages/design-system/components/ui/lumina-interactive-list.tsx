@@ -533,146 +533,52 @@ export function LuminaInteractiveList({
         </div>
       </div>
 
-      {/* Compounded Learning Section */}
+      {/* Exams we cover Section */}
       <div className="bg-white px-6 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
-                Compounded Learning
-              </p>
-              <h2 className="font-[family-name:var(--font-display)] mt-4 text-balance text-3xl font-bold tracking-tight text-black sm:text-4xl">
-                After this exam, your next one is dramatically easier.
-              </h2>
-              <p className="mt-4 max-w-md text-lg leading-relaxed text-gray-600">
-                As you progress through the USMLE from STEP 1 to STEP 3, you'll find that the material you struggled with in the previous exam is prioritized first in the next question bank. If there were any concepts you didn't finish, they will also be prioritized in the next question bank. Your learning compounds instead of starting over. You will be glad you started early.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-gray-200 bg-[#f5f5f5] p-4 sm:p-7">
-              <svg
-                viewBox="0 0 520 470"
-                className="h-auto w-full"
-                role="img"
-                aria-label="Unresolved concepts from Step 1 are projected onto Step 2 CK, then resolved in the Step 3 bank."
-              >
-                <defs>
-                  <marker id="proj-arrow" viewBox="0 0 8 8" refX="4" refY="6" markerWidth="7" markerHeight="7" orient="auto">
-                    <path d="M 0 0 L 8 0 L 4 7 Z" fill="#C46B10" />
-                  </marker>
-                </defs>
-
-                {/* Step 1 platform */}
-                <g>
-                  <path d="M 40 85 L 190 147 L 340 85 L 340 93 L 190 155 L 40 93 Z" fill="rgba(6,0,90,0.06)" />
-                  <path d="M 190 23 L 340 85 L 190 147 L 40 85 Z" fill="white" stroke="rgba(6,0,90,0.16)" />
-                  <circle cx="190" cy="55" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="156" cy="70" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="224" cy="70" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="190" cy="85" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="156" cy="100" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="224" cy="100" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="190" cy="115" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <g>
-                    <circle cx="122" cy="85" r="6" fill="white" stroke="#C46B10" strokeWidth="2" />
-                    <circle cx="122" cy="85" r="2" fill="#C46B10" />
-                  </g>
-                  <g>
-                    <circle cx="258" cy="85" r="6" fill="white" stroke="#C46B10" strokeWidth="2" />
-                    <circle cx="258" cy="85" r="2" fill="#C46B10" />
-                  </g>
-                  <text x="356" y="81" className="font-[family-name:var(--font-display)]" fontSize="23" fill="#06005A">
-                    Step 1
-                  </text>
-                  <text x="356" y="102" fontSize="14" fill="#6b7280">
-                    Two concepts
-                  </text>
-                  <text x="356" y="120" fontSize="14" fill="#6b7280">
-                    left unresolved
-                  </text>
-                </g>
-
-                {/* Step 2 CK platform */}
-                <g>
-                  <path d="M 40 235 L 190 297 L 340 235 L 340 243 L 190 305 L 40 243 Z" fill="rgba(6,0,90,0.06)" />
-                  <path d="M 190 173 L 340 235 L 190 297 L 40 235 Z" fill="white" stroke="rgba(6,0,90,0.16)" />
-                  <circle cx="190" cy="205" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="156" cy="220" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="224" cy="220" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="190" cy="235" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="156" cy="250" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="224" cy="250" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="190" cy="265" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <g>
-                    <circle cx="122" cy="235" r="10" fill="none" stroke="#C46B10" strokeOpacity="0.35" />
-                    <circle cx="122" cy="235" r="6" fill="#C46B10" />
-                  </g>
-                  <g>
-                    <circle cx="258" cy="235" r="10" fill="none" stroke="#C46B10" strokeOpacity="0.35" />
-                    <circle cx="258" cy="235" r="6" fill="#C46B10" />
-                  </g>
-                  <text x="356" y="231" className="font-[family-name:var(--font-display)]" fontSize="23" fill="#06005A">
-                    Step 2 CK
-                  </text>
-                  <text x="356" y="252" fontSize="14" fill="#6b7280">
-                    The same gaps
-                  </text>
-                  <text x="356" y="270" fontSize="14" fill="#6b7280">
-                    come up first
-                  </text>
-                </g>
-
-                {/* Step 3 platform */}
-                <g>
-                  <path d="M 40 385 L 190 447 L 340 385 L 340 393 L 190 455 L 40 393 Z" fill="rgba(6,0,90,0.06)" />
-                  <path d="M 190 323 L 340 385 L 190 447 L 40 385 Z" fill="white" stroke="rgba(6,0,90,0.16)" />
-                  <circle cx="190" cy="355" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="156" cy="370" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="224" cy="370" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="190" cy="385" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="156" cy="400" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="224" cy="400" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <circle cx="190" cy="415" r="4.5" fill="rgba(6,0,90,0.18)" />
-                  <g>
-                    <circle cx="122" cy="385" r="10" fill="none" stroke="rgba(6,0,90,0.3)" />
-                    <circle cx="122" cy="385" r="6" fill="#06005A" />
-                    <path d="M 119.4 385 l 1.9 2 l 3.4 -3.8" fill="none" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                  </g>
-                  <g>
-                    <circle cx="258" cy="385" r="10" fill="none" stroke="rgba(6,0,90,0.3)" />
-                    <circle cx="258" cy="385" r="6" fill="#06005A" />
-                    <path d="M 255.4 385 l 1.9 2 l 3.4 -3.8" fill="none" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                  </g>
-                  <text x="356" y="381" className="font-[family-name:var(--font-display)]" fontSize="23" fill="#06005A">
-                    Step 3
-                  </text>
-                  <text x="356" y="402" fontSize="14" fill="#6b7280">
-                    Resolved &mdash; and
-                  </text>
-                  <text x="356" y="420" fontSize="14" fill="#6b7280">
-                    built upon
-                  </text>
-                </g>
-
-                {/* Projection lines */}
-                <line x1="122" y1="97" x2="122" y2="219" stroke="#C46B10" strokeOpacity="0.7" strokeWidth="1.5" strokeDasharray="3 6" markerEnd="url(#proj-arrow)" />
-                <line x1="258" y1="97" x2="258" y2="219" stroke="#C46B10" strokeOpacity="0.7" strokeWidth="1.5" strokeDasharray="3 6" markerEnd="url(#proj-arrow)" />
-                <line x1="122" y1="247" x2="122" y2="369" stroke="#C46B10" strokeOpacity="0.7" strokeWidth="1.5" strokeDasharray="3 6" markerEnd="url(#proj-arrow)" />
-                <line x1="258" y1="247" x2="258" y2="369" stroke="#C46B10" strokeOpacity="0.7" strokeWidth="1.5" strokeDasharray="3 6" markerEnd="url(#proj-arrow)" />
-              </svg>
-            </div>
-          </div>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
+            Exams we cover
+          </p>
+          <h2 className="font-[family-name:var(--font-display)] mt-4 max-w-3xl text-balance text-3xl font-bold tracking-tight text-black sm:text-4xl">
+            One platform from Step 1 to board certification.
+          </h2>
+          <ul className="mt-12 divide-y divide-gray-200 border-y border-gray-200">
+            {[
+              { name: 'USMLE Step 1', href: '/usmle-step-1-question-bank', body: 'Foundational science and clinical knowledge.' },
+              { name: 'USMLE Step 2 CK', href: '/usmle-step-2-question-bank', body: 'Clinical management and patient-care vignettes.' },
+              { name: 'USMLE Step 3', href: '/usmle-step-3-question-bank', body: 'Managing patients from presentation to follow-up.' },
+              { name: 'ABIM Internal Medicine', href: '/abim-internal-medicine-question-bank', body: 'Board certification across internal medicine.' },
+            ].map((exam) => (
+              <li key={exam.name}>
+                <a
+                  href={exam.href}
+                  className="group grid items-center gap-2 py-6 md:grid-cols-[1fr_1.4fr_auto] md:gap-8"
+                >
+                  <span className="font-[family-name:var(--font-display)] text-2xl font-medium text-black group-hover:underline group-hover:underline-offset-4">
+                    {exam.name}
+                  </span>
+                  <span className="text-base text-gray-600">{exam.body}</span>
+                  <span
+                    aria-hidden="true"
+                    className="hidden text-2xl text-[#06005A] transition-transform duration-200 group-hover:translate-x-1 md:block"
+                  >
+                    &rarr;
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
       {/* Quote Section */}
       <div className="mx-auto max-w-3xl px-6 pt-16 pb-10 text-center sm:pt-20 sm:pb-12">
         <p className="font-[family-name:var(--font-display)] text-balance text-2xl leading-snug tracking-tight text-black sm:text-3xl">
-          These are the most important exams of your life. They should not be left to chance.
+          These exams will shape your career. They deserve better than random practice.
         </p>
         <div className="mx-auto mt-8 h-px w-10 bg-black/40" />
         <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
-          The MedPrep Institute Team
+          Built by the MedPrep Institute team
         </p>
       </div>
 
