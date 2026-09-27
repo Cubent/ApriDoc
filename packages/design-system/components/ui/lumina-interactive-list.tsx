@@ -73,10 +73,10 @@ export function LuminaInteractiveList({
 
   return (
     <>
-      {/* Header */}
+      {/* Header: kept in sync with the shared SiteHeader (apps/web/app/[locale]/components/site-header.tsx) */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="relative max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3">
             <img
               src="/animateos-logo (1).png"
               alt="MedPrep Institute Logo"
@@ -85,11 +85,17 @@ export function LuminaInteractiveList({
             <div className="text-xl font-medium text-[#06005A]">
               MedPrep Institute
             </div>
-          </div>
+          </a>
 
           <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 text-sm text-gray-600 md:flex">
             <a href="#how-it-works" className="hover:text-[#06005A] transition-colors">
               The Method
+            </a>
+            <a href="/about" className="hover:text-[#06005A] transition-colors">
+              About
+            </a>
+            <a href="/blog" className="hover:text-[#06005A] transition-colors">
+              Blog
             </a>
             <a href="#faq" className="hover:text-[#06005A] transition-colors">
               Resources
