@@ -21,12 +21,12 @@ const TermsOfServicePage = () => (
       <h1 className="font-[family-name:var(--font-display)] mt-3 text-4xl font-bold tracking-tight text-black sm:text-5xl">
         Terms of Service
       </h1>
-      <p className="mt-3 text-sm text-gray-500">Last updated September 15, 2026</p>
+      <p className="mt-3 text-sm text-gray-500">Last updated September 27, 2026</p>
 
       <div className="prose prose-neutral mt-10 max-w-none prose-headings:font-[family-name:var(--font-display)] prose-headings:text-black prose-h2:mt-10 prose-h2:text-2xl prose-p:leading-relaxed prose-p:text-gray-700 prose-li:text-gray-700 prose-a:text-[#06005A]">
         <p>
           These Terms of Service (&quot;Terms&quot;) govern your access to and use of
-          medprepinstitute.org and related MedPrep Institute products and services. By using
+          www.medprepinstitute.org and related MedPrep Institute products and services. By using
           MedPrep Institute, you agree to these Terms.
         </p>
 
@@ -35,7 +35,11 @@ const TermsOfServicePage = () => (
           MedPrep Institute provides exam-preparation and study tools. MedPrep Institute is not
           medical advice, clinical guidance, legal advice, or a substitute for professional
           judgment. Question explanations, generated content, analytics, and study
-          recommendations are provided for educational use only.
+          recommendations are provided for educational use only. The AI Tutor and other
+          AI-assisted content are generated using a third-party AI model (OpenAI). AI-generated
+          responses can be incorrect or incomplete, are not reviewed by a physician in real time,
+          and should not be relied on as a substitute for your course materials, an instructor, or
+          a licensed physician.
         </p>
 
         <h2>Accounts and access</h2>
@@ -115,9 +119,11 @@ const TermsOfServicePage = () => (
 
         <h2>Third-party services and links</h2>
         <p>
-          MedPrep Institute may integrate with third-party services such as Stripe, Plausible
-          Analytics, Google Analytics, hosting providers, email providers, and other operational
-          vendors. Third-party services are governed by their own terms and policies. We are not
+          MedPrep Institute integrates with third-party services, including Clerk
+          (authentication), Stripe (payments), OpenAI (the AI Tutor and AI-assisted content),
+          Umami Analytics (usage analytics), Meta Pixel and Meta Conversions API (advertising
+          measurement), hosting providers, email providers, and other operational vendors.
+          Third-party services are governed by their own terms and policies. We are not
           responsible for third-party websites or services that we do not control.
         </p>
 

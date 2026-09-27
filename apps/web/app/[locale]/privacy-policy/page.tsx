@@ -21,20 +21,21 @@ const PrivacyPolicyPage = () => (
       <h1 className="font-[family-name:var(--font-display)] mt-3 text-4xl font-bold tracking-tight text-black sm:text-5xl">
         Privacy Policy
       </h1>
-      <p className="mt-3 text-sm text-gray-500">Last updated September 15, 2026</p>
+      <p className="mt-3 text-sm text-gray-500">Last updated September 27, 2026</p>
 
       <div className="prose prose-neutral mt-10 max-w-none prose-headings:font-[family-name:var(--font-display)] prose-headings:text-black prose-h2:mt-10 prose-h2:text-2xl prose-p:leading-relaxed prose-p:text-gray-700 prose-li:text-gray-700 prose-a:text-[#06005A]">
         <p>
           MedPrep Institute (&quot;MedPrep Institute,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;)
           respects your privacy. This Privacy Policy explains what information we collect, how we
-          use it, and the choices you have when you use medprepinstitute.org and related MedPrep
-          Institute services.
+          use it, and the choices you have when you use www.medprepinstitute.org and related
+          MedPrep Institute services.
         </p>
 
         <h2>Information we collect</h2>
         <ul>
           <li>
-            <strong>Account information:</strong> your name and email address.
+            <strong>Account information:</strong> your name, email address, and authentication
+            data handled by our sign-in provider, Clerk.
           </li>
           <li>
             <strong>Usage data:</strong> activity needed to operate the app, such as selected
@@ -47,10 +48,21 @@ const PrivacyPolicyPage = () => (
             credit card numbers.
           </li>
           <li>
+            <strong>AI Tutor conversations:</strong> if you use the AI Tutor, the questions you ask
+            and the practice question you were viewing are sent to our AI provider, OpenAI, to
+            generate a response.
+          </li>
+          <li>
             <strong>Analytics data:</strong> website and product interaction information collected
-            through Plausible Analytics and Google Analytics. This may include pages visited,
-            events, approximate location, device/browser information, and referral source
-            depending on your browser settings and the analytics provider.
+            through Umami Analytics. This may include pages visited, buttons clicked, device and
+            browser information, and referral source, depending on your browser settings.
+          </li>
+          <li>
+            <strong>Advertising data:</strong> if you arrive from or interact with a MedPrep
+            Institute ad, the Meta (Facebook) Pixel and Meta Conversions API may collect
+            information such as your IP address, browser information, and, for signed-in actions
+            like starting a trial or a subscription, a hashed (not plain-text) version of your
+            email address, to measure ad performance.
           </li>
         </ul>
 
@@ -65,12 +77,16 @@ const PrivacyPolicyPage = () => (
             To process subscriptions, free trials, checkout sessions, cancellations, and
             refund-related account actions through Stripe.
           </li>
+          <li>To generate AI Tutor responses and other AI-assisted study content through OpenAI.</li>
           <li>To respond to support requests and service notices.</li>
           <li>
             To monitor reliability, diagnose errors, prevent abuse, and improve MedPrep Institute.
           </li>
-          <li>To understand site usage through Plausible Analytics and Google Analytics.</li>
-          <li>To support future advertising or retargeting through Google, if enabled.</li>
+          <li>To understand site usage through Umami Analytics.</li>
+          <li>
+            To measure and improve advertising performance through the Meta Pixel and Meta
+            Conversions API.
+          </li>
           <li>To comply with legal obligations and enforce our Terms of Service.</li>
         </ul>
 
@@ -83,25 +99,44 @@ const PrivacyPolicyPage = () => (
           session IDs, but does not store your full card number.
         </p>
 
+        <h2>AI-assisted features</h2>
+        <p>
+          The AI Tutor and other AI-assisted study content are generated using OpenAI&apos;s
+          models. When you use the AI Tutor, your messages and relevant practice context are sent
+          to OpenAI to generate a reply. AI-generated content can be incorrect, and it is provided
+          for study purposes only, not as verified medical or clinical guidance. See the
+          &quot;Educational purpose&quot; section of our{' '}
+          <Link href="/terms-of-service">Terms of Service</Link> for more on this limitation.
+        </p>
+
         <h2>Cookies, analytics, and advertising</h2>
         <p>
-          MedPrep Institute may use cookies, local storage, pixels, and similar technologies for
-          login sessions, checkout, security, analytics, and product functionality. We use
-          Plausible Analytics and Google Analytics. Plausible is designed to be privacy-focused
-          and GDPR-compliant. Google Analytics helps us understand usage and may use cookies or
-          similar identifiers. We may use Google retargeting or advertising features in the
-          future.
+          MedPrep Institute uses cookies, local storage, pixels, and similar technologies for
+          login sessions, checkout, security, analytics, and product functionality.
         </p>
+        <ul>
+          <li>
+            <strong>Umami Analytics</strong> for understanding site and product usage. It is a
+            privacy-oriented analytics tool that does not sell data to third parties.
+          </li>
+          <li>
+            <strong>Meta Pixel and Meta Conversions API</strong> for measuring the performance of
+            our advertising. This can include page views, button clicks, and account milestones
+            such as starting a trial or a subscription.
+          </li>
+        </ul>
         <p>
           You can control cookies through your browser settings. Blocking some cookies or storage
-          may affect account login, checkout, or app functionality.
+          may affect account login, checkout, or app functionality, and may limit which analytics
+          or advertising features work as intended.
         </p>
 
         <h2>How information is shared</h2>
         <p>
           We do not sell your personal information. We share information only as needed with
-          service providers that help us operate MedPrep Institute, including hosting, analytics,
-          email, security, and Stripe payment processing. We may also disclose information if
+          service providers that help us operate MedPrep Institute, including hosting, Clerk
+          (authentication), Stripe (payments), OpenAI (AI Tutor and AI-assisted content), Umami
+          (analytics), and Meta (advertising measurement). We may also disclose information if
           required by law, to protect rights and safety, to prevent abuse, or as part of a
           business transfer such as a merger, acquisition, or sale of assets.
         </p>
