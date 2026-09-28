@@ -285,6 +285,14 @@ const Body = () => (
     />
 
     <H2 section={S.faq} />
+    <h3>What are the Step 1 exam dates in 2026?</h3>
+    <p>
+      There is no fixed date. You apply for a three-month eligibility period, then book an actual
+      appointment inside it through Prometric. Registration and the block format both changed in
+      2026, and our{' '}
+      <Link href="/blog/usmle-step-1-exam-dates-2026">USMLE Step 1 exam dates guide</Link> covers
+      what changed.
+    </p>
     <h3>How long should I study for Step 1?</h3>
     <p>
       Most students spend four to eight weeks in dedicated study, after building habits with a
