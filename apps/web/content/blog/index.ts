@@ -4,6 +4,7 @@ import { post as step1ExamDates2026 } from './usmle-step-1-exam-dates-2026';
 import { post as step1StudyGuide } from './usmle-step-1-study-guide';
 import { post as step2CkExamDates2026 } from './usmle-step-2-ck-exam-dates-2026';
 import { post as step2CkStudyGuide } from './usmle-step-2-ck-study-guide';
+import { post as step3ExamDates2026 } from './usmle-step-3-exam-dates-2026';
 import { post as step3StudyGuide } from './usmle-step-3-study-guide';
 import { post as twoPassesQbank } from './two-passes-through-a-usmle-question-bank';
 import type { BlogPost } from './types';
@@ -17,4 +18,5 @@ export const posts: BlogPost[] = [
   abimStudyGuide,
   step1ExamDates2026,
   step2CkExamDates2026,
+  step3ExamDates2026,
 ];

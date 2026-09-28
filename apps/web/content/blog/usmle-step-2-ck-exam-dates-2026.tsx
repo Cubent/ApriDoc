@@ -213,6 +213,13 @@ const Body = () => (
       change. Practicing in shorter timed sets can help you adjust to the new block rhythm before
       test day.
     </p>
+    <h3>What about Step 3 exam dates?</h3>
+    <p>
+      Step 3 follows the same eligibility-period system, but it has its own prerequisites, fee and
+      two-day format. See our{' '}
+      <Link href="/blog/usmle-step-3-exam-dates-2026">USMLE Step 3 exam dates guide</Link> for the
+      specifics.
+    </p>
     <PostCta
       heading="Try the adaptive Step 2 CK Qbank free for 7 days"
       body="Short sets, reviews scheduled for you, and your weakest specialties prioritized automatically."

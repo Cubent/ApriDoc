@@ -297,6 +297,13 @@ const Body = () => (
       or residency program. Confirm your own program's timeline and your state's requirements
       early, since they vary.
     </p>
+    <h3>What are the Step 3 exam dates in 2026?</h3>
+    <p>
+      There is no single fixed date. You apply for a roughly three-month eligibility period, then
+      book actual test days through Prometric. Our{' '}
+      <Link href="/blog/usmle-step-3-exam-dates-2026">USMLE Step 3 exam dates 2026 guide</Link>{' '}
+      covers eligibility, registration, cost and the format change in detail.
+    </p>
     <h3>Is Step 3 pass/fail like Step 1?</h3>
     <p>
       No. Step 3 reports a three-digit score, the same as Step 2 CK. Only Step 1 moved to
