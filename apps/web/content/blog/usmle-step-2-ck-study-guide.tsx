@@ -301,6 +301,16 @@ const Body = () => (
     />
 
     <H2 section={S.faq} />
+    <h3>What are the Step 2 CK exam dates in 2026?</h3>
+    <p>
+      There is no fixed date. You apply for a three-month eligibility period, then book an actual
+      appointment inside it through Prometric. Registration and the block format both changed in
+      2026, and our{' '}
+      <Link href="/blog/usmle-step-2-ck-exam-dates-2026">
+        USMLE Step 2 CK exam dates guide
+      </Link>{' '}
+      covers what changed.
+    </p>
     <h3>How long should I study for Step 2 CK?</h3>
     <p>
       Many students take two to six weeks of dedicated study after clerkships end, shorter than a

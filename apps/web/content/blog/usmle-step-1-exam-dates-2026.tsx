@@ -210,6 +210,14 @@ const Body = () => (
       change. Practicing in shorter timed sets can help you adjust to the new block rhythm before
       test day.
     </p>
+    <h3>What about Step 2 CK exam dates?</h3>
+    <p>
+      The same eligibility-period system and 2026 changes apply there too. See our{' '}
+      <Link href="/blog/usmle-step-2-ck-exam-dates-2026">
+        USMLE Step 2 CK exam dates guide
+      </Link>{' '}
+      for the specifics.
+    </p>
     <PostCta
       heading="Try the adaptive Step 1 Qbank free for 7 days"
       body="Short sets, reviews scheduled for you, and your weakest systems prioritized automatically."
