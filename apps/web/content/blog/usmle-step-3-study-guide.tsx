@@ -314,6 +314,11 @@ const Body = () => (
       consistent question sets between shifts, with full review of every explanation, work better
       than a plan that assumes free time you may not get.
     </p>
+    <h3>What comes after Step 3?</h3>
+    <p>
+      For internal medicine residents, the next major exam is board certification. Our{' '}
+      <Link href="/blog/abim-study-guide">ABIM study guide</Link> covers how to prepare for it.
+    </p>
     <h3>Does my Step 3 score affect fellowship matching?</h3>
     <p>
       By the time you take Step 3, you are already in residency, so it does not factor into
