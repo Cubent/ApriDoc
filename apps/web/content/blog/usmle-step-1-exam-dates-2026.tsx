@@ -225,6 +225,13 @@ const Body = () => (
       <Link href="/blog/usmle-step-3-exam-dates-2026">USMLE Step 3 exam dates guide</Link> for the
       specifics.
     </p>
+    <h3>What other Step 1 rules should I know about?</h3>
+    <p>
+      Attempt limits, exam order with Step 2 CK, and how pass/fail affects residency applications
+      are separate from exam dates. Our{' '}
+      <Link href="/blog/8-things-to-know-usmle-step-1">8 things to know about Step 1</Link> covers
+      those.
+    </p>
     <PostCta
       heading="Try the adaptive Step 1 Qbank free for 7 days"
       body="Short sets, reviews scheduled for you, and your weakest systems prioritized automatically."

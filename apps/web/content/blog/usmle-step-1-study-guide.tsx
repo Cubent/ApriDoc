@@ -293,6 +293,13 @@ const Body = () => (
       <Link href="/blog/usmle-step-1-exam-dates-2026">USMLE Step 1 exam dates guide</Link> covers
       what changed.
     </p>
+    <h3>What else should I know about Step 1 besides how to study for it?</h3>
+    <p>
+      A few rules and policies surprise people who only focus on content review: attempt limits,
+      exam order, and how pass/fail actually affects residency applications. Our{' '}
+      <Link href="/blog/8-things-to-know-usmle-step-1">8 things to know about Step 1</Link> covers
+      those details.
+    </p>
     <h3>How long should I study for Step 1?</h3>
     <p>
       Most students spend four to eight weeks in dedicated study, after building habits with a
