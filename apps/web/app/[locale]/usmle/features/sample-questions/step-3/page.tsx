@@ -1,7 +1,6 @@
 import { createMetadata } from '@repo/seo/metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { AllQuestionsStatic } from '../../../../components/sample-questions/all-questions-static';
 import { SampleQuestionsQuiz } from '../../../../components/sample-questions/sample-questions-quiz';
 import { step3SampleQuestions } from '../../../../components/sample-questions/step3-questions';
 import { SiteFooter } from '../../../../components/site-footer';
@@ -66,8 +65,6 @@ const Step3SampleQuestionsPage = () => (
     </div>
 
     <SampleQuestionsQuiz questions={step3SampleQuestions} examLabel="Step 3" campaign="step3-sample-questions" />
-
-    <AllQuestionsStatic questions={step3SampleQuestions} examLabel="Step 3" />
 
     {/* Context / cross-link section */}
     <div className="bg-[#F4F2FB] px-6 py-16 sm:py-20">

@@ -1,7 +1,6 @@
 import { createMetadata } from '@repo/seo/metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { AllQuestionsStatic } from '../../../components/sample-questions/all-questions-static';
 import { abimSampleQuestions } from '../../../components/sample-questions/abim-questions';
 import { SampleQuestionsQuiz } from '../../../components/sample-questions/sample-questions-quiz';
 import { SiteFooter } from '../../../components/site-footer';
@@ -66,8 +65,6 @@ const AbimSampleQuestionsPage = () => (
     </div>
 
     <SampleQuestionsQuiz questions={abimSampleQuestions} examLabel="ABIM" campaign="abim-sample-questions" />
-
-    <AllQuestionsStatic questions={abimSampleQuestions} examLabel="ABIM" />
 
     {/* Context / cross-link section */}
     <div className="bg-[#F4F2FB] px-6 py-16 sm:py-20">

@@ -34,14 +34,10 @@ export const SiteFooter = () => (
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">Resources</p>
           <ul className="mt-4 flex flex-col gap-3 text-sm">
             <li><Link href="/blog" className="text-white/70 hover:text-white">Blog</Link></li>
-            <li><Link href="/blog/usmle-step-1-study-guide" className="text-white/70 hover:text-white">Step 1 Study Guide</Link></li>
-            <li><Link href="/blog/usmle-step-2-ck-study-guide" className="text-white/70 hover:text-white">Step 2 CK Study Guide</Link></li>
-            <li><Link href="/blog/usmle-step-3-study-guide" className="text-white/70 hover:text-white">Step 3 Study Guide</Link></li>
-            <li><Link href="/blog/abim-study-guide" className="text-white/70 hover:text-white">ABIM Study Guide</Link></li>
-            <li><Link href="/usmle/features/sample-questions" className="text-white/70 hover:text-white">Step 1 Sample Questions</Link></li>
-            <li><Link href="/usmle/features/sample-questions/step-2" className="text-white/70 hover:text-white">Step 2 CK Sample Questions</Link></li>
-            <li><Link href="/usmle/features/sample-questions/step-3" className="text-white/70 hover:text-white">Step 3 Sample Questions</Link></li>
-            <li><Link href="/abim/features/sample-questions" className="text-white/70 hover:text-white">ABIM Sample Questions</Link></li>
+            <li><Link href="/usmle/features/sample-questions" className="text-white/70 hover:text-white">Step 1 Questions</Link></li>
+            <li><Link href="/usmle/features/sample-questions/step-2" className="text-white/70 hover:text-white">Step 2 CK Questions</Link></li>
+            <li><Link href="/usmle/features/sample-questions/step-3" className="text-white/70 hover:text-white">Step 3 Questions</Link></li>
+            <li><Link href="/abim/features/sample-questions" className="text-white/70 hover:text-white">ABIM Questions</Link></li>
           </ul>
         </div>
 
