@@ -131,7 +131,7 @@ const methodFaqs = [
 
 export function LuminaInteractiveList({
   authSlot,
-  heroTitle = 'The USMLE Prep Platform Behind a 95% Pass Rate',
+  heroTitle = 'A Smarter Way to Prepare for the USMLE',
 }: LuminaInteractiveListProps = {}) {
   const [openMethodFaq, setOpenMethodFaq] = useState<number | null>(0);
 
