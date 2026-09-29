@@ -2,26 +2,26 @@ import { createMetadata } from '@repo/seo/metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AllQuestionsStatic } from '../../../components/sample-questions/all-questions-static';
+import { abimSampleQuestions } from '../../../components/sample-questions/abim-questions';
 import { SampleQuestionsQuiz } from '../../../components/sample-questions/sample-questions-quiz';
-import { step1SampleQuestions } from '../../../components/sample-questions/step1-questions';
 import { SiteFooter } from '../../../components/site-footer';
 import { SiteHeader } from '../../../components/site-header';
 
 export const metadata: Metadata = createMetadata({
-  title: 'Free USMLE Step 1 Sample Questions',
+  title: 'Free ABIM Sample Questions',
   description:
-    'Try 5 free USMLE Step 1 sample questions with full explanations for every answer choice. No account required.',
-  path: '/usmle/features/sample-questions',
+    'Try 5 free ABIM Internal Medicine board exam sample questions with full explanations for every answer choice. No account required.',
+  path: '/abim/features/sample-questions',
   keywords: [
-    'USMLE Step 1 sample questions',
-    'free Step 1 practice questions',
-    'USMLE Step 1 free trial',
-    'NBME style questions',
-    'Step 1 question bank sample',
+    'ABIM sample questions',
+    'free ABIM practice questions',
+    'ABIM exam free trial',
+    'internal medicine board exam questions',
+    'ABIM question bank sample',
   ],
 });
 
-const SampleQuestionsPage = () => (
+const AbimSampleQuestionsPage = () => (
   <div className="min-h-screen bg-white">
     <script
       type="application/ld+json"
@@ -29,11 +29,11 @@ const SampleQuestionsPage = () => (
         __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'Quiz',
-          about: { '@type': 'Thing', name: 'USMLE Step 1' },
+          about: { '@type': 'Thing', name: 'ABIM Internal Medicine Certification Exam' },
           educationalAlignment: {
             '@type': 'AlignmentObject',
             alignmentType: 'educationalSubject',
-            targetName: 'USMLE Step 1',
+            targetName: 'ABIM Internal Medicine Certification Exam',
           },
           provider: {
             '@type': 'EducationalOrganization',
@@ -55,55 +55,55 @@ const SampleQuestionsPage = () => (
           <span>FREE SAMPLE QUESTIONS</span>
         </p>
         <h1 className="font-[family-name:var(--font-display)] text-4xl font-bold leading-tight text-white sm:text-5xl">
-          Try 5 free USMLE Step 1 questions
+          Try 5 free ABIM sample questions
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-200">
-          Real NBME-style vignettes with full explanations for every answer choice, right here. No
-          account, no email, no time limit. Answer them below to see what the full question bank
-          looks like.
+          Real board-style internal medicine vignettes across hematology, rheumatology,
+          nephrology, gastroenterology and infectious disease, with full explanations for every
+          answer choice. No account, no email, no time limit.
         </p>
       </div>
     </div>
 
-    <SampleQuestionsQuiz questions={step1SampleQuestions} examLabel="Step 1" campaign="step1-sample-questions" />
+    <SampleQuestionsQuiz questions={abimSampleQuestions} examLabel="ABIM" campaign="abim-sample-questions" />
 
-    <AllQuestionsStatic questions={step1SampleQuestions} examLabel="Step 1" />
+    <AllQuestionsStatic questions={abimSampleQuestions} examLabel="ABIM" />
 
     {/* Context / cross-link section */}
     <div className="bg-[#F4F2FB] px-6 py-16 sm:py-20">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight text-black sm:text-3xl">
-          This is a small taste of the full Step 1 Qbank
+          This is a small taste of the full ABIM Qbank
         </h2>
         <p className="mx-auto mt-4 max-w-xl leading-relaxed text-gray-600">
           The full{' '}
-          <Link href="/usmle-step-1-question-bank" className="font-medium text-[#06005A] hover:underline">
-            USMLE Step 1 question bank
+          <Link href="/abim-internal-medicine-question-bank" className="font-medium text-[#06005A] hover:underline">
+            ABIM question bank
           </Link>{' '}
-          covers every subject and system on the blueprint, with an adaptive engine that targets
-          your weak spots and brings concepts back with spaced repetition. If your exam date is
-          already set, our{' '}
-          <Link href="/blog/usmle-step-1-exam-dates-2026" className="font-medium text-[#06005A] hover:underline">
-            Step 1 exam dates guide
+          covers every internal medicine discipline on the blueprint, with an adaptive engine
+          that targets your weak spots and fits into short gaps in a busy clinical schedule. If
+          you're earlier in training, our{' '}
+          <Link href="/blog/abim-study-guide" className="font-medium text-[#06005A] hover:underline">
+            ABIM study guide
           </Link>{' '}
-          covers registration, scheduling and the 2026 format change. Studying for a different
-          exam? Try our free{' '}
-          <Link href="/usmle/features/sample-questions/step-2" className="font-medium text-[#06005A] hover:underline">
-            Step 2 CK
+          covers when to start and how to build a study plan around your final residency year.
+          Studying for a different exam? Try our free{' '}
+          <Link href="/usmle/features/sample-questions" className="font-medium text-[#06005A] hover:underline">
+            Step 1
           </Link>
           ,{' '}
-          <Link href="/usmle/features/sample-questions/step-3" className="font-medium text-[#06005A] hover:underline">
-            Step 3
+          <Link href="/usmle/features/sample-questions/step-2" className="font-medium text-[#06005A] hover:underline">
+            Step 2 CK
           </Link>{' '}
           or{' '}
-          <Link href="/abim/features/sample-questions" className="font-medium text-[#06005A] hover:underline">
-            ABIM
+          <Link href="/usmle/features/sample-questions/step-3" className="font-medium text-[#06005A] hover:underline">
+            Step 3
           </Link>{' '}
           sample questions.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
-            href="/sign-up?utm_source=marketing&utm_medium=context-cta&utm_campaign=step1-sample-questions"
+            href="/sign-up?utm_source=marketing&utm_medium=context-cta&utm_campaign=abim-sample-questions"
             className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#C46B10] px-8 text-base font-semibold text-white transition-colors hover:bg-[#a95a0d] sm:w-auto"
           >
             Start your free trial
@@ -116,4 +116,4 @@ const SampleQuestionsPage = () => (
   </div>
 );
 
-export default SampleQuestionsPage;
+export default AbimSampleQuestionsPage;

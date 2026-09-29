@@ -114,6 +114,12 @@ export const Step3PageContent = () => {
               See the method
             </a>
           </div>
+          <a
+            href="/usmle/features/sample-questions/step-3"
+            className="mt-4 inline-block text-sm font-medium text-white/80 underline-offset-4 hover:text-white hover:underline"
+          >
+            Not ready to sign up? Try 5 free sample questions first.
+          </a>
         </div>
       </div>
 

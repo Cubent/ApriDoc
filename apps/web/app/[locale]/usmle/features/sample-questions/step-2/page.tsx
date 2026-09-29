@@ -1,11 +1,11 @@
 import { createMetadata } from '@repo/seo/metadata';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { AllQuestionsStatic } from '../../../../components/sample-questions/all-questions-static';
+import { SampleQuestionsQuiz } from '../../../../components/sample-questions/sample-questions-quiz';
+import { step2SampleQuestions } from '../../../../components/sample-questions/step2-questions';
 import { SiteFooter } from '../../../../components/site-footer';
 import { SiteHeader } from '../../../../components/site-header';
-import { AllQuestionsStatic } from '../components/all-questions-static';
-import { SampleQuestionsQuiz } from '../components/sample-questions-quiz';
-import { step2SampleQuestions } from '../components/step2-questions';
 
 export const metadata: Metadata = createMetadata({
   title: 'Free USMLE Step 2 CK Sample Questions',
@@ -86,12 +86,20 @@ const Step2SampleQuestionsPage = () => (
           <Link href="/blog/usmle-step-2-ck-exam-dates-2026" className="font-medium text-[#06005A] hover:underline">
             Step 2 CK exam dates guide
           </Link>{' '}
-          covers registration, scheduling and the 2026 format change. Still working through basic
-          science? Try our{' '}
+          covers registration, scheduling and the 2026 format change. Studying for a different
+          exam? Try our free{' '}
           <Link href="/usmle/features/sample-questions" className="font-medium text-[#06005A] hover:underline">
-            free Step 1 sample questions
+            Step 1
           </Link>
-          .
+          ,{' '}
+          <Link href="/usmle/features/sample-questions/step-3" className="font-medium text-[#06005A] hover:underline">
+            Step 3
+          </Link>{' '}
+          or{' '}
+          <Link href="/abim/features/sample-questions" className="font-medium text-[#06005A] hover:underline">
+            ABIM
+          </Link>{' '}
+          sample questions.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a

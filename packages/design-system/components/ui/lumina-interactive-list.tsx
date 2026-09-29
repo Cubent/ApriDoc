@@ -659,7 +659,7 @@ export function LuminaInteractiveList({
       {/* Footer */}
       <footer className="px-6 pb-10 pt-16" style={{ backgroundColor: '#06005A' }}>
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
+          <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.1fr_1fr_1fr_1fr_1fr]">
             <div>
               <div className="flex items-center gap-2.5">
                 <img
@@ -687,10 +687,24 @@ export function LuminaInteractiveList({
             </div>
 
             <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">Resources</p>
+              <ul className="mt-4 flex flex-col gap-3 text-sm">
+                <li><a href="/blog" className="text-white/70 hover:text-white">Blog</a></li>
+                <li><a href="/blog/usmle-step-1-study-guide" className="text-white/70 hover:text-white">Step 1 Study Guide</a></li>
+                <li><a href="/blog/usmle-step-2-ck-study-guide" className="text-white/70 hover:text-white">Step 2 CK Study Guide</a></li>
+                <li><a href="/blog/usmle-step-3-study-guide" className="text-white/70 hover:text-white">Step 3 Study Guide</a></li>
+                <li><a href="/blog/abim-study-guide" className="text-white/70 hover:text-white">ABIM Study Guide</a></li>
+                <li><a href="/usmle/features/sample-questions" className="text-white/70 hover:text-white">Step 1 Sample Questions</a></li>
+                <li><a href="/usmle/features/sample-questions/step-2" className="text-white/70 hover:text-white">Step 2 CK Sample Questions</a></li>
+                <li><a href="/usmle/features/sample-questions/step-3" className="text-white/70 hover:text-white">Step 3 Sample Questions</a></li>
+                <li><a href="/abim/features/sample-questions" className="text-white/70 hover:text-white">ABIM Sample Questions</a></li>
+              </ul>
+            </div>
+
+            <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">Company</p>
               <ul className="mt-4 flex flex-col gap-3 text-sm">
                 <li><a href="/about" className="text-white/70 hover:text-white">About</a></li>
-                <li><a href="/blog" className="text-white/70 hover:text-white">Blog</a></li>
                 <li><a href="/contact" className="text-white/70 hover:text-white">Contact</a></li>
                 <li><a href="/#faq" className="text-white/70 hover:text-white">FAQ</a></li>
               </ul>

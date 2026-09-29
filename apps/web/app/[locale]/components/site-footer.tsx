@@ -3,7 +3,7 @@ import Link from 'next/link';
 export const SiteFooter = () => (
   <footer className="px-6 pb-10 pt-16" style={{ backgroundColor: '#06005A' }}>
     <div className="mx-auto max-w-7xl">
-      <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
+      <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.1fr_1fr_1fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-2.5">
             <img
@@ -25,10 +25,23 @@ export const SiteFooter = () => (
             <li><Link href="/usmle-step-2-question-bank" className="text-white/70 hover:text-white">Step 2 CK Qbank</Link></li>
             <li><Link href="/usmle-step-3-question-bank" className="text-white/70 hover:text-white">Step 3 Qbank</Link></li>
             <li><Link href="/abim-internal-medicine-question-bank" className="text-white/70 hover:text-white">ABIM Qbank</Link></li>
-            <li><Link href="/usmle/features/sample-questions" className="text-white/70 hover:text-white">Step 1 Sample Questions</Link></li>
-            <li><Link href="/usmle/features/sample-questions/step-2" className="text-white/70 hover:text-white">Step 2 CK Sample Questions</Link></li>
             <li><Link href="/#how-it-works" className="text-white/70 hover:text-white">The Method</Link></li>
             <li><Link href="/sign-up" className="text-white/70 hover:text-white">Start practicing</Link></li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">Resources</p>
+          <ul className="mt-4 flex flex-col gap-3 text-sm">
+            <li><Link href="/blog" className="text-white/70 hover:text-white">Blog</Link></li>
+            <li><Link href="/blog/usmle-step-1-study-guide" className="text-white/70 hover:text-white">Step 1 Study Guide</Link></li>
+            <li><Link href="/blog/usmle-step-2-ck-study-guide" className="text-white/70 hover:text-white">Step 2 CK Study Guide</Link></li>
+            <li><Link href="/blog/usmle-step-3-study-guide" className="text-white/70 hover:text-white">Step 3 Study Guide</Link></li>
+            <li><Link href="/blog/abim-study-guide" className="text-white/70 hover:text-white">ABIM Study Guide</Link></li>
+            <li><Link href="/usmle/features/sample-questions" className="text-white/70 hover:text-white">Step 1 Sample Questions</Link></li>
+            <li><Link href="/usmle/features/sample-questions/step-2" className="text-white/70 hover:text-white">Step 2 CK Sample Questions</Link></li>
+            <li><Link href="/usmle/features/sample-questions/step-3" className="text-white/70 hover:text-white">Step 3 Sample Questions</Link></li>
+            <li><Link href="/abim/features/sample-questions" className="text-white/70 hover:text-white">ABIM Sample Questions</Link></li>
           </ul>
         </div>
 
@@ -36,7 +49,6 @@ export const SiteFooter = () => (
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">Company</p>
           <ul className="mt-4 flex flex-col gap-3 text-sm">
             <li><Link href="/about" className="text-white/70 hover:text-white">About</Link></li>
-            <li><Link href="/blog" className="text-white/70 hover:text-white">Blog</Link></li>
             <li><Link href="/contact" className="text-white/70 hover:text-white">Contact</Link></li>
             <li><Link href="/#faq" className="text-white/70 hover:text-white">FAQ</Link></li>
           </ul>
