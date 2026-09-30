@@ -23,10 +23,7 @@ const describe = (subscription: NonNullable<BillingCardProps['subscription']>) =
   if (status === 'trialing' && trialEnd) {
     return cancelAtPeriodEnd
       ? { badge: 'Free trial', text: `Your trial ends on ${formatDate(trialEnd)} and won't renew.` }
-      : {
-          badge: 'Free trial',
-          text: `Your free trial ends on ${formatDate(trialEnd)}. Your plan starts then unless you cancel.`,
-        };
+      : { badge: 'Free trial', text: undefined };
   }
   if (status === 'past_due') {
     return {
@@ -37,7 +34,7 @@ const describe = (subscription: NonNullable<BillingCardProps['subscription']>) =
   if (cancelAtPeriodEnd) {
     return { badge: 'Canceling', text: `Your access ends on ${formatDate(currentPeriodEnd)}.` };
   }
-  return { badge: 'Active', text: `Your plan renews on ${formatDate(currentPeriodEnd)}.` };
+  return { badge: 'Active', text: undefined };
 };
 
 /** Shown before sending a trialing user to the Stripe portal, since canceling
@@ -59,7 +56,7 @@ const CancelTrialWarning = ({
       <h2 className="mt-4 text-lg font-bold text-[#06005A] dark:text-white">Before you go to billing</h2>
       <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
         If you cancel your free trial, you&apos;ll lose access to question practice within 24
-        hours. Everything else, including your account, stays available.
+        hours.
       </p>
       <div className="mt-6 flex flex-col gap-2.5">
         <button
@@ -148,9 +145,11 @@ export const BillingCard = ({ subscription }: BillingCardProps) => {
                     {subscription.planLabel} plan
                   </p>
                 )}
-                <p className="mt-1 max-w-md text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                  {details?.text}
-                </p>
+                {details?.text && (
+                  <p className="mt-1 max-w-md text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    {details.text}
+                  </p>
+                )}
               </>
             ) : (
               <p className="mt-1 max-w-md text-sm leading-relaxed text-gray-500 dark:text-gray-400">
