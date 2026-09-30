@@ -607,7 +607,7 @@ const Body = () => (
 export const post: BlogPost = {
   slug: 'top-usmle-step-1-question-banks',
   title: 'Top USMLE Step 1 Question Banks: A Full Comparison',
-  seoTitle: 'Top USMLE Step 1 Question Banks (2026)',
+  seoTitle: 'Top USMLE Step 1 Question Banks',
   description:
     'A deep-dive comparison of every major USMLE Step 1 question bank: verified 2026 prices, strengths, drawbacks and exactly which plan to buy.',
   publishedAt: '2026-09-30T18:00:00+02:00',

@@ -571,7 +571,7 @@ const Body = () => (
 export const post: BlogPost = {
   slug: 'top-usmle-step-2-ck-question-banks',
   title: 'Top USMLE Step 2 CK Question Banks: A Full Comparison',
-  seoTitle: 'Top USMLE Step 2 CK Question Banks (2026)',
+  seoTitle: 'Top USMLE Step 2 CK Question Banks',
   description:
     'A deep-dive comparison of every major USMLE Step 2 CK question bank: verified 2026 prices, strengths, drawbacks and exactly which plan to buy.',
   publishedAt: '2026-10-01T12:00:00+02:00',
