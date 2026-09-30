@@ -31,6 +31,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
   }
 
+  // Defaults to true so existing callers (the trial paywall) are unaffected;
+  // the "choose a plan" flow shown once a trial has already been used passes
+  // withTrial: false so the same checkout doesn't hand out a second trial.
+  const withTrial = body?.withTrial !== false;
+
   const user = await currentUser();
   const email = user?.primaryEmailAddress?.emailAddress;
 
@@ -40,7 +45,10 @@ export async function POST(request: Request) {
   const session = await stripe.checkout.sessions.create({
     mode: 'subscription',
     line_items: [{ price: priceId, quantity: 1 }],
-    subscription_data: { trial_period_days: TRIAL_DAYS, metadata: { clerkUserId: userId } },
+    subscription_data: {
+      ...(withTrial && { trial_period_days: TRIAL_DAYS }),
+      metadata: { clerkUserId: userId },
+    },
     client_reference_id: userId,
     customer_email: email,
     metadata: { clerkUserId: userId },

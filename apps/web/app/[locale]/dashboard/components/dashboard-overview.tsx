@@ -8,21 +8,29 @@ import {
 } from '@repo/database/qbank';
 import { Lock, Play, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import { getSubscription, resolveAccess } from '@/lib/subscription';
 import { NextExamAdvantageCard } from './next-exam-advantage-card';
 import { PaymentFailedBanner } from './payment-failed-banner';
+import { PracticeLocked } from './practice-locked';
 
 const DASHBOARD_PREVIEW_COUNT = 2;
 
 export const DashboardOverview = async ({
   previewPaymentFailed = false,
+  previewLocked = false,
 }: {
   previewPaymentFailed?: boolean;
+  previewLocked?: boolean;
 }) => {
   const { userId } = await auth();
   if (!userId) return null;
 
   const preference = await database.userPreference.findUnique({ where: { clerkUserId: userId } });
   if (!preference) return null;
+
+  const forceLocked = previewLocked && process.env.NODE_ENV === 'development';
+  const subscription = await getSubscription(userId);
+  const allowed = forceLocked ? false : (await resolveAccess(subscription)).allowed;
 
   const stats = await getOverviewStats(userId, preference.exam);
   const studyGuidePreview = stats.studyGuideUnlocked
@@ -61,6 +69,12 @@ export const DashboardOverview = async ({
       </div>
 
       <PaymentFailedBanner preview={previewPaymentFailed} />
+
+      {!allowed && (
+        <div className="mt-8">
+          <PracticeLocked hadAccessBefore={forceLocked ? true : subscription !== null} />
+        </div>
+      )}
 
       <div className="mt-8 rounded-2xl bg-[#000C3F] p-6 sm:p-8">
         {stats.studyGuideUnlocked && studyGuidePreview.length > 0 ? (

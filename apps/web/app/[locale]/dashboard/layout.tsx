@@ -2,7 +2,7 @@ import { auth } from '@clerk/nextjs/server';
 import { database } from '@repo/database';
 import { redirect } from 'next/navigation';
 import type { ReactNode } from 'react';
-import { getSubscription, resolveAccess } from '@/lib/subscription';
+import { getSubscription } from '@/lib/subscription';
 import { DashboardShell } from './components/dashboard-shell';
 
 // Neon's serverless Postgres suspends its compute when idle and takes several
@@ -15,10 +15,14 @@ export const maxDuration = 30;
 const DashboardLayout = async ({ children }: { children: ReactNode }) => {
   const { userId } = await auth();
 
-  // Paywall: the dashboard needs a trialing/active subscription, or a past_due
-  // one still inside its 3-day grace period. Middleware already guarantees a
-  // signed-in user here.
-  if (userId && !(await resolveAccess(await getSubscription(userId))).allowed) {
+  // Someone who never started a trial/subscription at all has no reason to
+  // be in the dashboard yet — send them to start one. Once a subscription
+  // exists (even a lapsed/canceled one), they're let through: only
+  // question-practice itself is gated after that (see
+  // dashboard/practice/page.tsx and the dashboard overview), so they can
+  // still reach account/billing to reactivate. Middleware already
+  // guarantees a signed-in user here.
+  if (userId && (await getSubscription(userId)) === null) {
     redirect('/paywall');
   }
 

@@ -10,7 +10,6 @@ import {
   Coffee,
   GraduationCap,
   HelpCircle,
-  Infinity as InfinityIcon,
   ListChecks,
   MapPin,
   Microscope,
@@ -21,7 +20,6 @@ import {
   Sprout,
   Stethoscope,
   Target,
-  Timer,
   TrendingUp,
   Zap,
   type LucideIcon,
@@ -70,12 +68,6 @@ const RETAKE_OPTIONS: Option[] = [
   { id: 'true', label: 'Retaking', description: "You've taken it before and know roughly where you struggled.", icon: RotateCcw },
 ];
 
-// ids match the TimedPreference enum
-const TIMED_OPTIONS: Option[] = [
-  { id: 'TIMED', label: 'Timed', description: 'Practice under real exam time pressure from the start.', icon: Timer },
-  { id: 'UNTIMED', label: 'Untimed', description: 'Take your time while you build up your foundation.', icon: InfinityIcon },
-];
-
 // ids match the NextExamPlan enum
 const NEXT_EXAM_OPTIONS: Option[] = [
   { id: 'YES', label: 'Yes, already lined up', description: 'e.g. Step 2 CK after Step 1, or ABIM after Step 3.', icon: MapPin },
@@ -83,8 +75,8 @@ const NEXT_EXAM_OPTIONS: Option[] = [
   { id: 'NOT_SURE', label: 'Not sure', description: 'Still figuring out the path.', icon: HelpCircle },
 ];
 
-const TOTAL_STEPS = 9;
-const NEXT_EXAM_STEP = 5;
+const TOTAL_STEPS = 8;
+const NEXT_EXAM_STEP = 4;
 
 // ABIM is the last exam in the path, so "planning your next exam" is skipped for it and
 // every later step number shifts down by one.
@@ -250,21 +242,10 @@ function StepRetake({ selected, onSelect }: { selected: string | null; onSelect:
   );
 }
 
-function StepTimedPreference({ selected, onSelect }: { selected: string | null; onSelect: (id: string) => void }) {
-  return (
-    <div>
-      <StepEyebrow n={4} />
-      <Heading>Timed or untimed to start?</Heading>
-      <p className="mt-3 text-lg text-gray-600">You can always switch this later.</p>
-      <OptionCards options={TIMED_OPTIONS} selected={selected} onSelect={onSelect} />
-    </div>
-  );
-}
-
 function StepNextExamPlan({ selected, onSelect }: { selected: string | null; onSelect: (id: string) => void }) {
   return (
     <div>
-      <StepEyebrow n={5} />
+      <StepEyebrow n={4} />
       <Heading>Already planning your next exam after this one?</Heading>
       <p className="mt-3 text-lg text-gray-600">
         Your progress carries forward, and your weak areas get prioritized first.
@@ -277,7 +258,7 @@ function StepNextExamPlan({ selected, onSelect }: { selected: string | null; onS
 function StepSemester() {
   return (
     <div>
-      <StepEyebrow n={6} />
+      <StepEyebrow n={5} />
       <StepImage src={STEP_IMAGES.semester} className="max-w-[12rem]" />
       <Heading>Your everyday study routine.</Heading>
       <p className="mt-4 text-lg leading-relaxed text-gray-600">
@@ -302,7 +283,7 @@ function StepSemester() {
 function StepDedicated() {
   return (
     <div>
-      <StepEyebrow n={7} />
+      <StepEyebrow n={6} />
       <StepImage src={STEP_IMAGES.dedicated} />
       <Heading>Dedicated study period.</Heading>
       <p className="mt-4 text-lg leading-relaxed text-gray-600">
@@ -327,7 +308,7 @@ function StepDedicated() {
 function StepStory() {
   return (
     <div>
-      <StepEyebrow n={8} />
+      <StepEyebrow n={7} />
       <StepImage src={STEP_IMAGES.story} className="max-w-[12rem]" />
       <Heading>Questions build on each other.</Heading>
       <p className="mt-4 text-lg leading-relaxed text-gray-600">
@@ -350,7 +331,7 @@ function StepStory() {
 function StepCompounding() {
   return (
     <div>
-      <StepEyebrow n={9} />
+      <StepEyebrow n={8} />
       <Heading>After this exam.</Heading>
       <p className="mt-4 text-lg leading-relaxed text-gray-600">
         Your progress will be waiting for you when you start studying for the next exam.
@@ -387,7 +368,6 @@ type Answers = {
   exam: string | null;
   prepStage: string | null;
   isRetake: string | null;
-  timedPreference: string | null;
   nextExamPlan: string | null;
 };
 
@@ -397,7 +377,6 @@ const OnboardingTrialPage = () => {
     exam: null,
     prepStage: null,
     isRetake: null,
-    timedPreference: null,
     nextExamPlan: null,
   });
   const [isSaving, setIsSaving] = useState(false);
@@ -416,9 +395,8 @@ const OnboardingTrialPage = () => {
     (step === 1 && Boolean(answers.exam)) ||
     (step === 2 && Boolean(answers.prepStage)) ||
     (step === 3 && Boolean(answers.isRetake)) ||
-    (step === 4 && Boolean(answers.timedPreference)) ||
-    (step === 5 && Boolean(answers.nextExamPlan)) ||
-    step > 5;
+    (step === 4 && Boolean(answers.nextExamPlan)) ||
+    step > 4;
 
   const skipNextExam = answers.exam === 'ABIM';
   const totalSteps = skipNextExam ? TOTAL_STEPS - 1 : TOTAL_STEPS;
@@ -446,7 +424,6 @@ const OnboardingTrialPage = () => {
           exam: answers.exam,
           prepStage: answers.prepStage,
           isRetake: answers.isRetake === 'true',
-          timedPreference: answers.timedPreference,
           // Skipped for ABIM; undefined is dropped from the JSON (null would fail validation).
           nextExamPlan: skipNextExam ? undefined : answers.nextExamPlan,
         }),
@@ -513,21 +490,15 @@ const OnboardingTrialPage = () => {
           />
         )}
         {step === 4 && (
-          <StepTimedPreference
-            selected={answers.timedPreference}
-            onSelect={(timedPreference) => setAnswers((a) => ({ ...a, timedPreference }))}
-          />
-        )}
-        {step === 5 && (
           <StepNextExamPlan
             selected={answers.nextExamPlan}
             onSelect={(nextExamPlan) => setAnswers((a) => ({ ...a, nextExamPlan }))}
           />
         )}
-        {step === 6 && <StepSemester />}
-        {step === 7 && <StepDedicated />}
-        {step === 8 && <StepStory />}
-        {step === 9 && <StepCompounding />}
+        {step === 5 && <StepSemester />}
+        {step === 6 && <StepDedicated />}
+        {step === 7 && <StepStory />}
+        {step === 8 && <StepCompounding />}
       </div>
 
       {saveError && (
