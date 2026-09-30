@@ -40,6 +40,16 @@ export async function prepareNextSet(userId: string, examType: ExamType, focusSy
     : new Map();
 
   for (const p of picks) {
+    // Re-check right before every write, not just once at the top: this
+    // function can run concurrently for the same user (e.g. the dashboard's
+    // background prefetch racing a direct /api/practice/next call), and
+    // picking + generation above takes long enough that another call can
+    // easily finish filling the set while this one was still working.
+    // Without this, both calls would each write a full set and the session
+    // ends up with double the intended questions.
+    const currentCount = await database.sessionQuestion.count({ where: { sessionId: session.id } });
+    if (currentCount >= SET_SIZE) break;
+
     let questionId = p.question?.id;
     if (!questionId) {
       const generated = generatedByObjectiveId.get(p.objective.id);
