@@ -93,7 +93,9 @@ const Body = () => (
       Step 1 has been pass/fail since 2022, so there is no score to chase. You still have to pass,
       and a question bank is the most direct way to rehearse the exam&rsquo;s format and find gaps.
       If you want to see how our own Step 1 practice works, read about the{' '}
-      <Link href="/usmle-step-1-question-bank">MedPrep Step 1 question bank</Link>.
+      <Link href="/usmle-step-1-question-bank">MedPrep Step 1 question bank</Link>. For a full
+      strengths, drawbacks and which-plan-to-buy breakdown of every bank below, see our{' '}
+      <Link href="/blog/top-usmle-step-1-question-banks">Step 1-only question bank guide</Link>.
     </p>
     <ComparisonTable
       caption="USMLE Step 1 question banks: questions, plans and prices"

@@ -197,9 +197,15 @@ export async function getOrCreateActiveSession(
   examType: ExamType,
   mode: SessionMode = SessionMode.SEMESTER
 ) {
+  // Oldest incomplete first, not newest: a next set can now be prepared and
+  // created ahead of time, while the current one is still in progress (see
+  // prepareUpcomingSet in apps/web/lib/prepare-practice-set.ts), so more
+  // than one completedAt: null session can legitimately exist at once. The
+  // one the user should actually be working through is always the oldest
+  // of those, since the newer one is queued, not started yet.
   const active = await database.studySession.findFirst({
     where: { clerkUserId, examType, mode, completedAt: null },
-    orderBy: { createdAt: 'desc' },
+    orderBy: { createdAt: 'asc' },
   });
   if (active) return active;
 
@@ -640,6 +646,7 @@ export async function recordAttempt(params: {
     learningObjectiveSummary: learningObjective.summary ?? learningObjective.title,
     isFirstCorrectEver,
     isFirstIncorrectEver,
+    answeredInSession,
     isSetComplete: answeredInSession >= SET_SIZE,
     isAiGenerated: describeSource(learningObjective).isAiGenerated,
   };

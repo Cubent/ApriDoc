@@ -335,6 +335,15 @@ const Body = () => (
       No. It is a question bank, meant to sit alongside a content review book and flashcards, not
       replace either.
     </p>
+    <h3>Which Step 1 question bank should I use?</h3>
+    <p>
+      It depends on your budget and where you are in your timeline. Our{' '}
+      <Link href="/blog/top-usmle-step-1-question-banks">
+        Step 1 question bank comparison
+      </Link>{' '}
+      breaks down UWorld, AMBOSS, TrueLearn and every other major bank, with verified prices and
+      exactly which plan to buy for your situation.
+    </p>
     <PostCta
       heading="Practice with an engine that remembers what you miss"
       body="Short daily sets, reviews scheduled for you, and your weakest systems prioritized automatically."

@@ -1,7 +1,7 @@
 import { auth } from '@clerk/nextjs/server';
 import { database } from '@repo/database';
 import { recordAttempt } from '@repo/database/qbank';
-import { prepareNextSet } from '@/lib/prepare-practice-set';
+import { prepareNextSet, prepareUpcomingSet } from '@/lib/prepare-practice-set';
 import { after, NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
@@ -33,10 +33,23 @@ export async function POST(request: Request) {
     errorType: body?.errorType,
   });
 
-  // The set they just finished is done — start filling the next one now,
-  // in the background, instead of waiting for them to click through the set
-  // summary and ask for it. getOrCreateActiveSession inside prepareNextSet
-  // creates that next session on demand.
+  // Stay one set ahead: the moment someone answers their FIRST question in a
+  // set, start queueing and filling the next 5 in the background, so it's
+  // usually already ready by the time they finish these 5. Capped at exactly
+  // one set ahead — prepareUpcomingSet no-ops if one is already queued.
+  if (result.answeredInSession === 1) {
+    const preference = await database.userPreference.findUnique({ where: { clerkUserId: userId } });
+    if (preference) {
+      after(() =>
+        prepareUpcomingSet(userId, preference.exam, preference.focusSystemIds, sessionId)
+      );
+    }
+  }
+
+  // Safety net for whenever the above didn't get a chance to finish (e.g. a
+  // very fast set, or the queued set's generation failed): make sure the
+  // next set is filled once this one is actually done, even if nothing was
+  // queued ahead of time.
   if (result.isSetComplete) {
     const preference = await database.userPreference.findUnique({ where: { clerkUserId: userId } });
     if (preference) {
