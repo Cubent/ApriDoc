@@ -208,7 +208,7 @@ export const Step1PageContent = () => {
             <p className="text-sm text-gray-500">MS-2, passed USMLE Step 1</p>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
+          <div className="order-first overflow-hidden rounded-2xl border border-gray-200 bg-white lg:order-none">
             <img
               src="/MedPrep institute (9).png"
               alt="Priya S., MS-2, passed USMLE Step 1"

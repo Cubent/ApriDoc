@@ -434,7 +434,7 @@ export function LuminaInteractiveList({
             <img
               src="/MedPrep institute (2).jpg"
               alt="A missed question flagged by MedPrep Institute, with its review scheduled for a few days later."
-              className="w-full rounded-2xl"
+              className="order-first w-full rounded-2xl lg:order-none"
             />
           </div>
         </div>
