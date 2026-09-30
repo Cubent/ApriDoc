@@ -212,7 +212,9 @@ const Body = () => (
     <p>
       Step 2 CK still returns a three-digit score, so self-assessments and score prediction matter
       more here than they do for Step 1. MedPrep also offers a dedicated{' '}
-      <Link href="/usmle-step-2-question-bank">Step 2 CK question bank</Link>.
+      <Link href="/usmle-step-2-question-bank">Step 2 CK question bank</Link>. For a full
+      strengths, drawbacks and which-plan-to-buy breakdown of every bank below, see our{' '}
+      <Link href="/blog/top-usmle-step-2-ck-question-banks">Step 2 CK-only question bank guide</Link>.
     </p>
     <ComparisonTable
       caption="USMLE Step 2 CK question banks: questions, plans and prices"
