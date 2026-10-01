@@ -192,6 +192,12 @@ const Body = () => (
       <Link href="/blog/usmle-step-2-ck-syllabus">Step 2 CK syllabus guide</Link> for the full
       comparison.
     </p>
+    <h3>What about after Step 3? Does ABIM publish a similar blueprint?</h3>
+    <p>
+      Yes. See our <Link href="/blog/abim-syllabus">ABIM syllabus guide</Link> for the Internal
+      Medicine Certification Exam blueprint most residents take after Step 3, which uses a single
+      medical-content-category axis instead of Step 3&rsquo;s system and physician task axes.
+    </p>
     <h3>Does the content outline ever change?</h3>
     <p>
       The NBME and FSMB can update it, so treat the figures here as a snapshot and confirm the

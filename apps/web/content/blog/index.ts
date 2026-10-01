@@ -1,4 +1,5 @@
 import { post as abimStudyGuide } from './abim-study-guide';
+import { post as abimSyllabus } from './abim-syllabus';
 import { post as bestUsmleQuestionBanks } from './best-usmle-question-banks';
 import { post as eightThingsStep1 } from './8-things-to-know-usmle-step-1';
 import { post as step1ExamDates2026 } from './usmle-step-1-exam-dates-2026';
@@ -33,4 +34,5 @@ export const posts: BlogPost[] = [
   usmleStep1Syllabus,
   usmleStep2CkSyllabus,
   usmleStep3Syllabus,
+  abimSyllabus,
 ];

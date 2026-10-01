@@ -99,8 +99,10 @@ const Body = () => (
       neurology, psychiatry, dermatology, geriatric syndromes, allergy and immunology,
       obstetrics and gynecology, ophthalmology, otolaryngology and dental medicine, and a
       miscellaneous category, plus cross-cutting topics like critical care, clinical epidemiology,
-      ethics, nutrition, palliative care and patient safety woven throughout. ABIM reviews and
-      updates this blueprint, so check the current version on{' '}
+      ethics, nutrition, palliative care and patient safety woven throughout. See our{' '}
+      <Link href="/blog/abim-syllabus">ABIM syllabus guide</Link> for the exact percentage for
+      every one of the 18 categories. ABIM reviews and updates this blueprint, so check the current
+      version on{' '}
       <a href="https://www.abim.org/" target="_blank" rel="noopener noreferrer">
         ABIM.org
       </a>{' '}
@@ -289,6 +291,12 @@ const Body = () => (
     <p>
       ABIM publishes its own retake policies and timelines. Since the exam is offered once a year,
       confirm the current policy directly with ABIM rather than assuming.
+    </p>
+    <h3>What exactly does the ABIM exam cover?</h3>
+    <p>
+      See our <Link href="/blog/abim-syllabus">ABIM syllabus guide</Link> for the full blueprint:
+      all 18 medical content categories with their exact percentages, straight from ABIM&rsquo;s
+      official documentation.
     </p>
     <h3>How is this different from studying for Step 3?</h3>
     <p>
