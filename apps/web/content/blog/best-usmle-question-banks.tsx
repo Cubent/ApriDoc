@@ -327,7 +327,9 @@ const Body = () => (
     <p>
       Step 3 also returns a three-digit score, and it includes Computer-based Case Simulations
       (CCS), where you manage a virtual patient by ordering tests and treatments. Among the banks we
-      checked, only UWorld lists CCS cases on its official page.
+      checked, only UWorld lists CCS cases on its official page. For a full strengths, drawbacks
+      and which-plan-to-buy breakdown of every bank below, see our{' '}
+      <Link href="/blog/top-usmle-step-3-question-banks">Step 3-only question bank guide</Link>.
     </p>
     <ComparisonTable
       caption="USMLE Step 3 question banks: questions, CCS cases, plans and prices"

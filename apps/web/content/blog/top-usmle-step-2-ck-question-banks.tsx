@@ -517,11 +517,13 @@ const Body = () => (
       Step 2 CK-only version, with a full strengths, drawbacks and which-plan-to-buy breakdown for
       each bank, including the gaps we could not verify for a couple of them.
     </p>
-    <h3>What about Step 1 question banks?</h3>
+    <h3>What about Step 1 or Step 3 question banks?</h3>
     <p>
       See our{' '}
       <Link href="/blog/top-usmle-step-1-question-banks">Step 1 question bank comparison</Link>{' '}
-      for the same depth of breakdown, applied to preclinical prep.
+      and{' '}
+      <Link href="/blog/top-usmle-step-3-question-banks">Step 3 question bank comparison</Link>{' '}
+      for the same depth of breakdown, applied to preclinical prep and residency.
     </p>
 
     <PostCta

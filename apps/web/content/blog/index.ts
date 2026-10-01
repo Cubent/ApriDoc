@@ -9,6 +9,7 @@ import { post as step3ExamDates2026 } from './usmle-step-3-exam-dates-2026';
 import { post as step3StudyGuide } from './usmle-step-3-study-guide';
 import { post as topStep1QuestionBanks } from './top-usmle-step-1-question-banks';
 import { post as topStep2CkQuestionBanks } from './top-usmle-step-2-ck-question-banks';
+import { post as topStep3QuestionBanks } from './top-usmle-step-3-question-banks';
 import { post as twoPassesQbank } from './two-passes-through-a-usmle-question-bank';
 import type { BlogPost } from './types';
 
@@ -25,4 +26,5 @@ export const posts: BlogPost[] = [
   eightThingsStep1,
   topStep1QuestionBanks,
   topStep2CkQuestionBanks,
+  topStep3QuestionBanks,
 ];

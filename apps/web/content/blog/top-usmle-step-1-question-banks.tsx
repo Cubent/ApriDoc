@@ -548,13 +548,17 @@ const Body = () => (
       Step 1-only version, with a full strengths/drawbacks/which-plan-to-buy breakdown for each
       bank specifically for Step 1, instead of a shorter combined summary.
     </p>
-    <h3>What about Step 2 CK question banks?</h3>
+    <h3>What about Step 2 CK or Step 3 question banks?</h3>
     <p>
       See our{' '}
       <Link href="/blog/top-usmle-step-2-ck-question-banks">
         Step 2 CK question bank comparison
       </Link>{' '}
-      for the same depth of breakdown, applied to clerkship-year prep.
+      and{' '}
+      <Link href="/blog/top-usmle-step-3-question-banks">
+        Step 3 question bank comparison
+      </Link>{' '}
+      for the same depth of breakdown, applied to clerkship year and residency.
     </p>
 
     <PostCta

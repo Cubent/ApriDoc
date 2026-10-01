@@ -337,6 +337,12 @@ const Body = () => (
       No. It is a multiple-choice question bank, meant to sit alongside a dedicated CCS resource
       and the official NBME self-assessments, not replace either.
     </p>
+    <h3>Which Step 3 question bank should I use?</h3>
+    <p>
+      Our <Link href="/blog/top-usmle-step-3-question-banks">Step 3 question bank comparison</Link>{' '}
+      breaks down which banks actually have Step 3 content, which ones include CCS case
+      simulations, and exactly which plan to buy.
+    </p>
     <PostCta
       heading="Practice with an engine that remembers what you miss"
       body="Short daily sets, reviews scheduled for you, and your weakest disciplines prioritized automatically."
