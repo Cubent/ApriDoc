@@ -10,12 +10,12 @@ const signup = (medium: string) =>
 
 const S = {
   compared: { id: 'step-3-question-banks-compared', title: 'Step 3 question banks compared' },
+  medprep: { id: 'medprep', title: 'MedPrep Institute: adaptive practice (our product)' },
   uworld: { id: 'uworld', title: 'UWorld: the only bank here with CCS cases' },
   amboss: { id: 'amboss', title: 'AMBOSS: Step 3 covered under the same USMLE plan' },
   boardvitals: { id: 'boardvitals', title: 'BoardVitals: budget multiple-choice practice' },
   kaplan: { id: 'kaplan', title: 'Kaplan Qbank' },
   noStep3: { id: 'banks-without-step-3', title: 'Banks without a Step 3 product' },
-  medprep: { id: 'medprep', title: 'MedPrep Institute: adaptive practice (our product)' },
   choose: { id: 'how-to-choose', title: 'How to choose your Step 3 bank' },
   perDay: { id: 'questions-per-day', title: 'How many Step 3 questions should you do per day?' },
   start: { id: 'when-to-start', title: 'When should you start a Step 3 question bank?' },
@@ -180,6 +180,62 @@ const Body = () => (
       }
     />
 
+    <H2 section={S.medprep} />
+    <p>
+      MedPrep Institute is the question bank we build. Instead of a static set of Step 3
+      vignettes, an adaptive engine flags the concept behind every question you miss and brings
+      you variations on it through spaced repetition. If you used MedPrep for Step 1 or Step 2 CK,
+      your progress carries over automatically into Step 3.
+    </p>
+    <h3>What you get for Step 3</h3>
+    <ul>
+      <li>NBME-style patient management vignettes across every clinical discipline.</li>
+      <li>An adaptive engine that targets your weak disciplines instead of moving on after one attempt.</li>
+      <li>Built-in spaced repetition, so a missed concept comes back on a schedule.</li>
+      <li>Physician-reviewed explanations.</li>
+      <li>{MEDPREP_STEP3_TOPICS} Step 3 question topics, each producing a full clinical vignette when you reach it.</li>
+      <li>Five-question sets built to fit into short gaps in a resident&rsquo;s day, between patients or after a shift.</li>
+    </ul>
+    <ComparisonTable
+      caption="MedPrep Institute plans and pricing"
+      columns={[
+        { key: 'plan', label: 'Plan' },
+        { key: 'price', label: 'Price' },
+        { key: 'monthly', label: 'Effective monthly cost' },
+        { key: 'note', label: 'Notes' },
+      ]}
+      rows={[
+        {
+          id: 'monthly',
+          cells: { plan: 'Monthly', price: '$40 per month', monthly: '$40', note: '7-day free trial' },
+        },
+        {
+          id: 'quarterly',
+          cells: { plan: '3 months', price: '$110 every 3 months', monthly: '$36.67', note: 'Save 10%' },
+        },
+        {
+          id: 'yearly',
+          featured: true,
+          cells: { plan: 'Yearly', price: '$400 per year', monthly: '$33.33', note: 'Save 20%, best value' },
+        },
+      ]}
+      footnote="Every plan starts with a 7-day free trial. Cancel anytime before day 7 and pay nothing."
+    />
+    <h3>Who it suits for Step 3, and where to add something</h3>
+    <p>
+      MedPrep suits residents who need multiple-choice practice that fits around shift work and
+      resurfaces weak concepts automatically. It does not include CCS case simulations, so pair it
+      with UWorld or another dedicated CCS resource for day two of the exam, and with the official
+      NBME self-assessments to check readiness.
+    </p>
+    <PostCta
+      heading="Try the adaptive Step 3 Qbank free for 7 days"
+      body="Five-question sets that fit between patients, with reviews scheduled for whatever you miss."
+      href={signup('medprep-section')}
+      label="Start your free trial"
+      note="No charge today. Cancel anytime before day 7 and pay nothing."
+    />
+
     <H2 section={S.uworld} />
     <p>
       UWorld is the only bank in this comparison with confirmed CCS case simulations, 90+ of them,
@@ -271,62 +327,6 @@ const Body = () => (
       product. If you are using one of these for Step 1 or Step 2 CK, plan on a different bank for
       Step 3 rather than assuming the same subscription will carry over.
     </p>
-
-    <H2 section={S.medprep} />
-    <p>
-      MedPrep Institute is the question bank we build. Instead of a static set of Step 3
-      vignettes, an adaptive engine flags the concept behind every question you miss and brings
-      you variations on it through spaced repetition. If you used MedPrep for Step 1 or Step 2 CK,
-      your progress carries over automatically into Step 3.
-    </p>
-    <h3>What you get for Step 3</h3>
-    <ul>
-      <li>NBME-style patient management vignettes across every clinical discipline.</li>
-      <li>An adaptive engine that targets your weak disciplines instead of moving on after one attempt.</li>
-      <li>Built-in spaced repetition, so a missed concept comes back on a schedule.</li>
-      <li>Physician-reviewed explanations.</li>
-      <li>{MEDPREP_STEP3_TOPICS} Step 3 question topics, each producing a full clinical vignette when you reach it.</li>
-      <li>Five-question sets built to fit into short gaps in a resident&rsquo;s day, between patients or after a shift.</li>
-    </ul>
-    <ComparisonTable
-      caption="MedPrep Institute plans and pricing"
-      columns={[
-        { key: 'plan', label: 'Plan' },
-        { key: 'price', label: 'Price' },
-        { key: 'monthly', label: 'Effective monthly cost' },
-        { key: 'note', label: 'Notes' },
-      ]}
-      rows={[
-        {
-          id: 'monthly',
-          cells: { plan: 'Monthly', price: '$40 per month', monthly: '$40', note: '7-day free trial' },
-        },
-        {
-          id: 'quarterly',
-          cells: { plan: '3 months', price: '$110 every 3 months', monthly: '$36.67', note: 'Save 10%' },
-        },
-        {
-          id: 'yearly',
-          featured: true,
-          cells: { plan: 'Yearly', price: '$400 per year', monthly: '$33.33', note: 'Save 20%, best value' },
-        },
-      ]}
-      footnote="Every plan starts with a 7-day free trial. Cancel anytime before day 7 and pay nothing."
-    />
-    <h3>Who it suits for Step 3, and where to add something</h3>
-    <p>
-      MedPrep suits residents who need multiple-choice practice that fits around shift work and
-      resurfaces weak concepts automatically. It does not include CCS case simulations, so pair it
-      with UWorld or another dedicated CCS resource for day two of the exam, and with the official
-      NBME self-assessments to check readiness.
-    </p>
-    <PostCta
-      heading="Try the adaptive Step 3 Qbank free for 7 days"
-      body="Five-question sets that fit between patients, with reviews scheduled for whatever you miss."
-      href={signup('medprep-section')}
-      label="Start your free trial"
-      note="No charge today. Cancel anytime before day 7 and pay nothing."
-    />
 
     <H2 section={S.choose} />
     <ul>

@@ -10,6 +10,7 @@ const signup = (medium: string) =>
 
 const S = {
   compared: { id: 'step-1-question-banks-compared', title: 'Step 1 question banks compared' },
+  medprep: { id: 'medprep', title: 'MedPrep Institute: adaptive practice (our product)' },
   uworld: { id: 'uworld', title: 'UWorld: the default choice for a reason' },
   amboss: { id: 'amboss', title: 'AMBOSS: a library and score predictor built in' },
   truelearn: { id: 'truelearn', title: 'TrueLearn: the budget-friendly entry point' },
@@ -17,7 +18,6 @@ const S = {
   lecturio: { id: 'lecturio', title: 'Lecturio: questions bundled with a full video library' },
   usmlerx: { id: 'usmlerx', title: 'USMLE-Rx: built around First Aid' },
   kaplan: { id: 'kaplan', title: 'Kaplan Qbank' },
-  medprep: { id: 'medprep', title: 'MedPrep Institute: adaptive practice (our product)' },
   choose: { id: 'how-to-choose', title: 'How to choose your Step 1 bank' },
   perDay: { id: 'questions-per-day', title: 'How many Step 1 questions should you do per day?' },
   start: { id: 'when-to-start', title: 'When should you start a Step 1 question bank?' },
@@ -197,6 +197,61 @@ const Body = () => (
       }
     />
 
+    <H2 section={S.medprep} />
+    <p>
+      MedPrep Institute is the question bank we build, and it works differently from every fixed,
+      pre-written bank below: instead of a static set of questions you work through once, an
+      adaptive engine flags the concept behind every question you miss and brings you variations
+      on it through spaced repetition over the following days.
+    </p>
+    <h3>What you get for Step 1</h3>
+    <ul>
+      <li>NBME-style vignettes with clinical images, across every Step 1 subject and organ system.</li>
+      <li>An adaptive engine that targets your weak spots instead of moving on after one attempt.</li>
+      <li>Built-in spaced repetition, so a missed concept comes back on a schedule rather than only if you remember to review it.</li>
+      <li>Physician-reviewed explanations.</li>
+      <li>{MEDPREP_STEP1_TOPICS} Step 1 question topics, each producing a full clinical vignette when you reach it.</li>
+    </ul>
+    <ComparisonTable
+      caption="MedPrep Institute plans and pricing"
+      columns={[
+        { key: 'plan', label: 'Plan' },
+        { key: 'price', label: 'Price' },
+        { key: 'monthly', label: 'Effective monthly cost' },
+        { key: 'note', label: 'Notes' },
+      ]}
+      rows={[
+        {
+          id: 'monthly',
+          cells: { plan: 'Monthly', price: '$40 per month', monthly: '$40', note: '7-day free trial' },
+        },
+        {
+          id: 'quarterly',
+          cells: { plan: '3 months', price: '$110 every 3 months', monthly: '$36.67', note: 'Save 10%' },
+        },
+        {
+          id: 'yearly',
+          featured: true,
+          cells: { plan: 'Yearly', price: '$400 per year', monthly: '$33.33', note: 'Save 20%, best value' },
+        },
+      ]}
+      footnote="Every plan starts with a 7-day free trial. Cancel anytime before day 7 and pay nothing."
+    />
+    <h3>Who it suits for Step 1, and where to add something</h3>
+    <p>
+      MedPrep suits students who keep missing the same concepts and want reviews scheduled for
+      them automatically instead of planning them by hand. It does not include official-style
+      self-assessment exams or a score predictor. Pair it with UWorld&rsquo;s self-assessments or
+      the official NBME self-assessments for that piece.
+    </p>
+    <PostCta
+      heading="Try the adaptive Step 1 Qbank free for 7 days"
+      body="NBME-style vignettes with an adaptive engine and built-in spaced repetition for whatever you keep missing."
+      href={signup('medprep-section')}
+      label="Start your free trial"
+      note="No charge today. Cancel anytime before day 7 and pay nothing."
+    />
+
     <H2 section={S.uworld} />
     <p>
       UWorld is the bank most students name first, and the numbers back that up: 3,600+ Step 1
@@ -364,61 +419,6 @@ const Body = () => (
       <External href="https://www.kaptest.com/">kaptest.com</External> directly for current
       pricing and question counts.
     </p>
-
-    <H2 section={S.medprep} />
-    <p>
-      MedPrep Institute is the question bank we build, and it works differently from every fixed,
-      pre-written bank above: instead of a static set of questions you work through once, an
-      adaptive engine flags the concept behind every question you miss and brings you variations
-      on it through spaced repetition over the following days.
-    </p>
-    <h3>What you get for Step 1</h3>
-    <ul>
-      <li>NBME-style vignettes with clinical images, across every Step 1 subject and organ system.</li>
-      <li>An adaptive engine that targets your weak spots instead of moving on after one attempt.</li>
-      <li>Built-in spaced repetition, so a missed concept comes back on a schedule rather than only if you remember to review it.</li>
-      <li>Physician-reviewed explanations.</li>
-      <li>{MEDPREP_STEP1_TOPICS} Step 1 question topics, each producing a full clinical vignette when you reach it.</li>
-    </ul>
-    <ComparisonTable
-      caption="MedPrep Institute plans and pricing"
-      columns={[
-        { key: 'plan', label: 'Plan' },
-        { key: 'price', label: 'Price' },
-        { key: 'monthly', label: 'Effective monthly cost' },
-        { key: 'note', label: 'Notes' },
-      ]}
-      rows={[
-        {
-          id: 'monthly',
-          cells: { plan: 'Monthly', price: '$40 per month', monthly: '$40', note: '7-day free trial' },
-        },
-        {
-          id: 'quarterly',
-          cells: { plan: '3 months', price: '$110 every 3 months', monthly: '$36.67', note: 'Save 10%' },
-        },
-        {
-          id: 'yearly',
-          featured: true,
-          cells: { plan: 'Yearly', price: '$400 per year', monthly: '$33.33', note: 'Save 20%, best value' },
-        },
-      ]}
-      footnote="Every plan starts with a 7-day free trial. Cancel anytime before day 7 and pay nothing."
-    />
-    <h3>Who it suits for Step 1, and where to add something</h3>
-    <p>
-      MedPrep suits students who keep missing the same concepts and want reviews scheduled for
-      them automatically instead of planning them by hand. It does not include official-style
-      self-assessment exams or a score predictor. Pair it with UWorld&rsquo;s self-assessments or
-      the official NBME self-assessments for that piece.
-    </p>
-    <PostCta
-      heading="Try the adaptive Step 1 Qbank free for 7 days"
-      body="NBME-style vignettes with an adaptive engine and built-in spaced repetition for whatever you keep missing."
-      href={signup('medprep-section')}
-      label="Start your free trial"
-      note="No charge today. Cancel anytime before day 7 and pay nothing."
-    />
 
     <H2 section={S.choose} />
     <ul>
