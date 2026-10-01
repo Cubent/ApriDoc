@@ -354,6 +354,12 @@ const Body = () => (
       breaks down UWorld, AMBOSS, TrueLearn and every other major bank, with verified prices and
       exactly which plan to buy for your situation.
     </p>
+    <h3>What does Step 2 CK actually cover?</h3>
+    <p>
+      Our <Link href="/blog/usmle-step-2-ck-syllabus">Step 2 CK syllabus guide</Link> breaks down
+      the official content outline by content area, clinical science and physician task, with the
+      exact percentage ranges from USMLE.org.
+    </p>
     <PostCta
       heading="Practice with an engine that remembers what you miss"
       body="Short daily sets, reviews scheduled for you, and your weakest specialties prioritized automatically."

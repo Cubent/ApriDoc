@@ -188,6 +188,12 @@ const Body = () => (
       flatter than the spread across disciplines, so no single system dominates the way Pathology
       does.
     </p>
+    <h3>What about the Step 2 CK syllabus?</h3>
+    <p>
+      See our <Link href="/blog/usmle-step-2-ck-syllabus">Step 2 CK syllabus guide</Link> for the
+      same breakdown applied to Step 2 CK, which replaces Step 1&rsquo;s discipline axis with a
+      clinical science axis organized by rotation.
+    </p>
     <h3>Does the content outline ever change?</h3>
     <p>
       The NBME and FSMB can update it, so treat the figures here as a snapshot and confirm the
