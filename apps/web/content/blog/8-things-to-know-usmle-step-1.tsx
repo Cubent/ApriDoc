@@ -165,6 +165,12 @@ const Body = () => (
       Yes. Your USMLE transcript reports every attempt, and this is visible to programs through
       ERAS, even though the pass itself does not come with a score.
     </p>
+    <h3>What does Step 1 actually cover?</h3>
+    <p>
+      Our <Link href="/blog/usmle-step-1-syllabus">Step 1 syllabus guide</Link> breaks down the
+      official content outline by system, discipline and physician task, with the exact
+      percentage ranges from USMLE.org.
+    </p>
     <PostCta
       heading="Try the adaptive Step 1 Qbank free for 7 days"
       body="Short sets, reviews scheduled for you, and your weakest systems prioritized automatically."
