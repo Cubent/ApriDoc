@@ -304,6 +304,12 @@ const Body = () => (
       <Link href="/blog/usmle-step-3-exam-dates-2026">USMLE Step 3 exam dates 2026 guide</Link>{' '}
       covers eligibility, registration, cost and the format change in detail.
     </p>
+    <h3>What does Step 3 actually cover?</h3>
+    <p>
+      See our <Link href="/blog/usmle-step-3-syllabus">Step 3 syllabus guide</Link> for the exact
+      percentage breakdown by system and physician task, straight from the official NBME/FSMB
+      content outline.
+    </p>
     <h3>Is Step 3 pass/fail like Step 1?</h3>
     <p>
       No. Step 3 reports a three-digit score, the same as Step 2 CK. Only Step 1 moved to

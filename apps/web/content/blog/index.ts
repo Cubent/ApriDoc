@@ -13,6 +13,7 @@ import { post as topStep3QuestionBanks } from './top-usmle-step-3-question-banks
 import { post as twoPassesQbank } from './two-passes-through-a-usmle-question-bank';
 import { post as usmleStep1Syllabus } from './usmle-step-1-syllabus';
 import { post as usmleStep2CkSyllabus } from './usmle-step-2-ck-syllabus';
+import { post as usmleStep3Syllabus } from './usmle-step-3-syllabus';
 import type { BlogPost } from './types';
 
 export const posts: BlogPost[] = [
@@ -31,4 +32,5 @@ export const posts: BlogPost[] = [
   topStep3QuestionBanks,
   usmleStep1Syllabus,
   usmleStep2CkSyllabus,
+  usmleStep3Syllabus,
 ];

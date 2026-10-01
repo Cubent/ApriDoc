@@ -194,6 +194,12 @@ const Body = () => (
       same breakdown applied to Step 2 CK, which replaces Step 1&rsquo;s discipline axis with a
       clinical science axis organized by rotation.
     </p>
+    <h3>What about the Step 3 syllabus?</h3>
+    <p>
+      See our <Link href="/blog/usmle-step-3-syllabus">Step 3 syllabus guide</Link> for the same
+      breakdown applied to Step 3, which drops the discipline axis entirely and shifts heavily
+      toward diagnosis and management instead of foundational science.
+    </p>
     <h3>Does the content outline ever change?</h3>
     <p>
       The NBME and FSMB can update it, so treat the figures here as a snapshot and confirm the

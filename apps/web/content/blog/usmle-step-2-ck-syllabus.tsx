@@ -212,6 +212,12 @@ const Body = () => (
       specific patient-care categories instead of Step 1&rsquo;s four. See our{' '}
       <Link href="/blog/usmle-step-1-syllabus">Step 1 syllabus guide</Link> for that breakdown.
     </p>
+    <h3>What about the Step 3 syllabus?</h3>
+    <p>
+      See our <Link href="/blog/usmle-step-3-syllabus">Step 3 syllabus guide</Link> for the same
+      breakdown applied to Step 3, which drops the clinical science axis entirely and shifts
+      heavily toward diagnosis and management instead of foundational science.
+    </p>
     <h3>Does the content outline ever change?</h3>
     <p>
       The NBME and FSMB can update it, so treat the figures here as a snapshot and confirm the
