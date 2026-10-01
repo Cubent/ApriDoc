@@ -11,7 +11,7 @@ const signup = (medium: string) =>
 const S = {
   compared: { id: 'step-3-question-banks-compared', title: 'Step 3 question banks compared' },
   medprep: { id: 'medprep', title: 'MedPrep Institute: adaptive practice (our product)' },
-  uworld: { id: 'uworld', title: 'UWorld: the only bank here with CCS cases' },
+  uworld: { id: 'uworld', title: 'UWorld: the most established Step 3 bank' },
   amboss: { id: 'amboss', title: 'AMBOSS: Step 3 covered under the same USMLE plan' },
   boardvitals: { id: 'boardvitals', title: 'BoardVitals: budget multiple-choice practice' },
   kaplan: { id: 'kaplan', title: 'Kaplan Qbank' },
@@ -59,8 +59,7 @@ const Body = () => (
       This guide is the Step 3-only, deep-dive version of our{' '}
       <Link href="/blog/best-usmle-question-banks">general USMLE question bank comparison</Link>.
       Same verified prices and question counts, but with a full breakdown of each bank
-      specifically for Step 3: strengths, drawbacks, exactly which plan to buy, and how each one
-      handles (or does not handle) the exam&rsquo;s Computer-based Case Simulations.
+      specifically for Step 3: strengths, drawbacks, and exactly which plan to buy.
     </p>
 
     <Callout title="Step 3 has a much smaller bank market than Step 1 or Step 2 CK" tone="disclosure">
@@ -73,14 +72,12 @@ const Body = () => (
 
     <H2 section={S.compared} />
     <p>
-      Step 3 also returns a three-digit score, like Step 2 CK, and it includes Computer-based Case
-      Simulations (CCS), where you manage a virtual patient by ordering tests and treatments over
-      simulated time. Among the banks we checked, only UWorld lists CCS cases on its official
-      page. MedPrep also offers a dedicated{' '}
+      Step 3 also returns a three-digit score, like Step 2 CK, and is given over two test days.
+      MedPrep also offers a dedicated{' '}
       <Link href="/usmle-step-3-question-bank">Step 3 question bank</Link>.
     </p>
     <ComparisonTable
-      caption="USMLE Step 3 question banks: questions, CCS cases, plans and prices"
+      caption="USMLE Step 3 question banks: questions, plans and prices"
       columns={[
         { key: 'bank', label: 'Question bank' },
         { key: 'questions', label: 'Step 3 content' },
@@ -104,10 +101,10 @@ const Body = () => (
           id: 'uworld',
           cells: {
             bank: 'UWorld',
-            questions: '2,100+ questions and 90+ CCS cases',
+            questions: '2,100+',
             plans: <Lines items={['90 days: $449', '180 days: $499', '360 days: $599']} />,
             trial: `2 self-assessments on every plan. Free trial: ${NOT_CONFIRMED.toLowerCase()}`,
-            best: 'The only bank we checked that lists CCS cases',
+            best: 'Exam-style volume with official self-assessments on every plan',
           },
         },
         {
@@ -126,7 +123,7 @@ const Body = () => (
             bank: 'BoardVitals',
             questions: '1,500+',
             plans: <Lines items={BOARDVITALS_STEP3_PRICES} />,
-            trial: 'No CCS practice; pass guarantee on the Prepare and Master plans',
+            trial: '100% pass guarantee on the Prepare and Master plans',
             best: 'Budget multiple-choice practice for Step 3',
           },
         },
@@ -224,9 +221,8 @@ const Body = () => (
     <h3>Who it suits for Step 3, and where to add something</h3>
     <p>
       MedPrep suits residents who need multiple-choice practice that fits around shift work and
-      resurfaces weak concepts automatically. It does not include CCS case simulations, so pair it
-      with UWorld or another dedicated CCS resource for day two of the exam, and with the official
-      NBME self-assessments to check readiness.
+      resurfaces weak concepts automatically. Pair it with the official NBME self-assessments to
+      check readiness closer to your test date.
     </p>
     <PostCta
       heading="Try the adaptive Step 3 Qbank free for 7 days"
@@ -238,15 +234,12 @@ const Body = () => (
 
     <H2 section={S.uworld} />
     <p>
-      UWorld is the only bank in this comparison with confirmed CCS case simulations, 90+ of them,
-      alongside 2,100+ multiple-choice questions. That is the single biggest differentiator for
-      Step 3 specifically, since day two of the real exam is CCS, not just more multiple-choice
-      questions.
+      UWorld is the most established Step 3 bank in this comparison, with 2,100+ multiple-choice
+      questions and official self-assessments included on every plan regardless of length.
     </p>
     <h3>Strengths for Step 3</h3>
     <ul>
-      <li>90+ CCS case simulations, unmatched by any other bank we checked.</li>
-      <li>2,100+ multiple-choice questions for day one and the MCQ portion of day two.</li>
+      <li>The largest confirmed multiple-choice bank in this comparison at 2,100+ questions.</li>
       <li>Two official self-assessments included on every plan, regardless of length.</li>
       <li>An optional QBank Plus tier that adds medical videos for $99 more.</li>
     </ul>
@@ -277,21 +270,21 @@ const Body = () => (
     </ul>
     <h3>Drawbacks for Step 3</h3>
     <ul>
-      <li>No CCS case simulations, since AMBOSS&rsquo;s Step 3 coverage is multiple-choice only.</li>
       <li>No Step 3-specific question count published, since it is part of the combined Qbank figure.</li>
+      <li>No official self-assessment forms confirmed for Step 3 on the page we checked.</li>
     </ul>
     <h3>Which plan to buy for Step 3</h3>
     <p>
       If you already have an active AMBOSS subscription from Step 1 or Step 2 CK, it already
       covers Step 3 multiple-choice practice at no extra cost. If you are starting fresh for Step
-      3 only, the 6-month plan ($378) is a reasonable supplementary purchase alongside a
-      CCS-capable bank like UWorld.
+      3 only, the 6-month plan ($378) is a reasonable supplementary purchase alongside a primary
+      bank.
     </p>
 
     <H2 section={S.boardvitals} />
     <p>
       BoardVitals sells the same three-tier structure for Step 3 that it uses for Step 1: Cram (1
-      month), Prepare (3 months) and Master (6 months), with 1,500+ questions and no CCS practice.
+      month), Prepare (3 months) and Master (6 months), with 1,500+ questions.
     </p>
     <h3>Strengths for Step 3</h3>
     <ul>
@@ -301,14 +294,14 @@ const Body = () => (
     </ul>
     <h3>Drawbacks for Step 3</h3>
     <ul>
-      <li>No CCS case simulations at all, so it cannot be a standalone Step 3 prep tool.</li>
       <li>The smallest confirmed multiple-choice bank in this comparison at 1,500+ questions.</li>
+      <li>Less name recognition among residents and programs than UWorld or AMBOSS.</li>
     </ul>
     <h3>Which plan to buy for Step 3</h3>
     <p>
-      BoardVitals works best as budget multiple-choice volume paired with a dedicated CCS
-      resource, not as your only Step 3 bank. The Prepare tier (3 months, $169) is the cheapest
-      option that still carries the pass guarantee.
+      The Prepare tier (3 months, $169) is the cheapest option that still carries the pass
+      guarantee, and the natural default for a standard study block. Save the 1-month Cram tier
+      ($109) for a genuinely compressed timeline.
     </p>
 
     <H2 section={S.kaplan} />
@@ -331,17 +324,15 @@ const Body = () => (
     <H2 section={S.choose} />
     <ul>
       <li>
-        <strong>You need CCS practice:</strong> UWorld. It is the only bank here with confirmed
-        case simulations, and CCS is half of day two of the real exam.
-      </li>
-      <li>
         <strong>You already have AMBOSS from Step 1 or Step 2 CK:</strong> your subscription
-        already covers Step 3 multiple-choice questions at no extra cost. Pair it with UWorld or
-        another CCS resource.
+        already covers Step 3 multiple-choice questions at no extra cost.
       </li>
       <li>
-        <strong>Your budget is tight:</strong> BoardVitals&rsquo; Prepare tier ($169 for 3 months),
-        paired with a separate CCS resource.
+        <strong>You want the most established, highest-volume bank:</strong> UWorld, especially if
+        you want official self-assessments included.
+      </li>
+      <li>
+        <strong>Your budget is tight:</strong> BoardVitals&rsquo; Prepare tier ($169 for 3 months).
       </li>
       <li>
         <strong>You want extra multiple-choice volume that fits around resident shifts:</strong>{' '}
@@ -355,12 +346,9 @@ const Body = () => (
 
     <H2 section={S.perDay} />
     <p>
-      Step 3&rsquo;s two-day, two-part format changes how volume should work compared to Step 1 or
-      Step 2 CK. Day one is multiple-choice only; day two mixes multiple-choice with CCS cases.
-      Split your practice to match: dedicate most sessions to multiple-choice questions, since that
-      is most of the exam, but do not skip CCS practice entirely in the weeks before your test
-      date, since it is a real, substantial part of day two that multiple-choice drilling alone
-      will not prepare you for.
+      Step 3&rsquo;s two-day format changes how volume should work compared to Step 1 or Step 2
+      CK. Spread your practice across both days&rsquo; worth of material instead of only drilling
+      one, since each day draws from a broad range of disciplines and management scenarios.
     </p>
     <Callout title="A small daily habit beats an ambitious one you cannot sustain" tone="disclosure">
       <p>
@@ -375,7 +363,7 @@ const Body = () => (
       board or residency program, and a true dedicated study block is not guaranteed the way it
       was for Step 1 or Step 2 CK. Build a small daily habit early rather than waiting for a
       dedicated period that may not come, and treat any protected study time your program does
-      give you as a bonus for final review and CCS practice, not your primary study window.
+      give you as a bonus for final review, not your primary study window.
     </p>
     <p>
       If you have not built a full schedule yet, our{' '}
@@ -394,7 +382,7 @@ const Body = () => (
       </li>
       <li>
         The official <External href="https://www.usmle.org/">USMLE website</External>: content
-        outlines, CCS format guidance and the interactive testing experience.
+        outlines, format guidance and the interactive testing experience.
       </li>
       <li>Your program: ask your residency coordinator or medical library about institutional access before paying for anything.</li>
     </ul>
@@ -405,28 +393,22 @@ const Body = () => (
       <li>Read every explanation, including for questions you got right.</li>
       <li>Track misses by concept, not by question, so patterns stand out even with limited study time.</li>
       <li>Let missed concepts come back on a schedule instead of only once. Spaced repetition does this automatically.</li>
-      <li>Do not skip CCS practice. It is a real part of day two, and multiple-choice drilling alone will not prepare you for it.</li>
+      <li>Use official self-assessments to check readiness in your final weeks, not as daily practice.</li>
       <li>Protect sleep before test day more than you protect any single extra study session, especially coming off clinical duties.</li>
     </ol>
 
     <H2 section={S.faq} />
     <h3>What is the single best question bank for USMLE Step 3?</h3>
     <p>
-      UWorld, because it is the only bank we checked with confirmed CCS case simulations alongside
-      2,100+ multiple-choice questions. If you already have AMBOSS from an earlier Step, it covers
-      Step 3 multiple-choice practice at no extra cost, but you will still need a separate CCS
-      resource.
+      UWorld, since it is the most established Step 3 bank in this comparison, with 2,100+
+      multiple-choice questions and official self-assessments included on every plan. If you
+      already have AMBOSS from an earlier Step, it covers Step 3 multiple-choice practice at no
+      extra cost.
     </p>
     <h3>Do TrueLearn, Lecturio or USMLE-Rx cover Step 3?</h3>
     <p>
       No. None of their official pages we checked list a Step 3 product. If you used one of them
       for Step 1 or Step 2 CK, plan on a different bank for Step 3.
-    </p>
-    <h3>Do I need a bank with CCS cases, or can I use multiple-choice only?</h3>
-    <p>
-      CCS is a real, substantial part of day two of the real exam, so multiple-choice practice
-      alone will leave a genuine gap. UWorld is the only bank in this comparison with confirmed
-      CCS content; everyone else here covers multiple-choice only.
     </p>
     <h3>When during residency should I take Step 3?</h3>
     <p>
@@ -478,8 +460,8 @@ const Body = () => (
         <External href="https://www.kaptest.com/">Kaplan</External>
       </li>
       <li>
-        <External href="https://www.usmle.org/">USMLE.org</External> for Step 3 scoring, CCS
-        format and official materials
+        <External href="https://www.usmle.org/">USMLE.org</External> for Step 3 scoring, format
+        and official materials
       </li>
     </ul>
     <p className="text-sm text-gray-500">
@@ -496,9 +478,9 @@ export const post: BlogPost = {
   title: 'Top USMLE Step 3 Question Banks: A Full Comparison',
   seoTitle: 'Top USMLE Step 3 Question Banks',
   description:
-    'A deep-dive comparison of every major USMLE Step 3 question bank: verified prices, CCS case coverage, strengths, drawbacks and exactly which plan to buy.',
+    'A deep-dive comparison of every major USMLE Step 3 question bank: verified prices, strengths, drawbacks and exactly which plan to buy.',
   publishedAt: '2026-10-01T14:00:00+02:00',
-  updatedAt: '2026-10-01T14:00:00+02:00',
+  updatedAt: '2026-10-01T16:00:00+02:00',
   author: { name: 'MedPrep Institute Editorial Team', url: 'https://www.medprepinstitute.org' },
   // Hands typing with a stethoscope nearby, downloaded from Unsplash (free to use under the
   // Unsplash License): https://images.unsplash.com/photo-1758691462848-ba1e929da259
@@ -508,7 +490,6 @@ export const post: BlogPost = {
     'top USMLE Step 3 question banks',
     'best Step 3 question bank',
     'USMLE Step 3 Qbank comparison',
-    'Step 3 CCS practice',
     'Step 3 question bank prices',
     'free Step 3 practice questions',
   ],
