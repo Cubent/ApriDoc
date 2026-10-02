@@ -190,6 +190,11 @@ const Body = () => (
       <Link href="/blog/usmle-step-3-syllabus">USMLE Step 3 syllabus guide</Link> for that
       comparison.
     </p>
+    <h3>Which ABIM question bank should I use?</h3>
+    <p>
+      See our <Link href="/blog/top-abim-question-banks">ABIM question bank comparison</Link> for
+      verified prices and a full breakdown of UWorld, MKSAP, AMBOSS, TrueLearn and BoardVitals.
+    </p>
     <h3>Does the blueprint ever change?</h3>
     <p>
       Yes. ABIM reviews and updates it annually based on surveys of trainees, program directors and

@@ -298,6 +298,12 @@ const Body = () => (
       all 18 medical content categories with their exact percentages, straight from ABIM&rsquo;s
       official documentation.
     </p>
+    <h3>Which ABIM question bank should I use?</h3>
+    <p>
+      See our <Link href="/blog/top-abim-question-banks">ABIM question bank comparison</Link> for
+      verified prices and a full strengths-and-drawbacks breakdown of UWorld, MKSAP, AMBOSS,
+      TrueLearn and BoardVitals.
+    </p>
     <h3>How is this different from studying for Step 3?</h3>
     <p>
       The content overlaps heavily with internal medicine topics from Step 3, but the exam is
