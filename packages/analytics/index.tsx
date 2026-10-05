@@ -1,8 +1,10 @@
 import type { ReactNode } from 'react';
-import { GoogleAnalytics } from './google';
+import { GoogleAnalytics, sendGAEvent } from './google';
 import { keys } from './keys';
 import { PostHogProvider } from './posthog/client';
 import { VercelAnalytics } from './vercel';
+
+export { sendGAEvent };
 
 type AnalyticsProviderProps = {
   readonly children: ReactNode;

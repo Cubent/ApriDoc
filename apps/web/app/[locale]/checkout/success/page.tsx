@@ -2,6 +2,7 @@
 
 import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { sendGAEvent } from '@repo/analytics';
 import { trackEvent } from '../../../../lib/umami';
 import {
   META_PLAN_KEY,
@@ -31,6 +32,13 @@ const reportTrialStarted = () => {
       ...(value !== undefined && { value: 0, predicted_ltv: value }),
     });
     trackEvent(`trial-started-${plan ?? 'unknown'}`, { plan: plan ?? 'unknown' });
+    // Custom GA4 event: the trial itself is $0, so this is kept separate from
+    // the real purchase conversion sent server-side once Stripe charges the
+    // card. See sendGA4Purchase in lib/ga4-measurement-protocol.ts.
+    sendGAEvent('event', 'start_trial', {
+      plan: plan ?? 'unknown',
+      ...(value !== undefined && { predicted_ltv: value, currency: 'USD' }),
+    });
   });
 };
 

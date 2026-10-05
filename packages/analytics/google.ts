@@ -1,1 +1,1 @@
-export { GoogleAnalytics } from '@next/third-parties/google';
+export { GoogleAnalytics, sendGAEvent } from '@next/third-parties/google';

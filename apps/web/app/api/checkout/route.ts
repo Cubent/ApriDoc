@@ -26,6 +26,10 @@ export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
   const plan = body?.plan as string | undefined;
   const priceId = plan ? PRICE_ID_BY_PLAN[plan] : undefined;
+  // Captured client-side from the _ga cookie so the Stripe webhook can later
+  // attribute the real (server-side) Purchase event back to this visitor's
+  // GA4 session. See lib/ga4-measurement-protocol.ts.
+  const gaClientId = body?.gaClientId as string | undefined;
 
   if (!plan || !priceId) {
     return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
@@ -47,11 +51,11 @@ export async function POST(request: Request) {
     line_items: [{ price: priceId, quantity: 1 }],
     subscription_data: {
       ...(withTrial && { trial_period_days: TRIAL_DAYS }),
-      metadata: { clerkUserId: userId },
+      metadata: { clerkUserId: userId, ...(gaClientId && { gaClientId }) },
     },
     client_reference_id: userId,
     customer_email: email,
-    metadata: { clerkUserId: userId },
+    metadata: { clerkUserId: userId, ...(gaClientId && { gaClientId }) },
     success_url: `${origin}/checkout/success`,
     cancel_url: `${origin}/paywall`,
     allow_promotion_codes: true,

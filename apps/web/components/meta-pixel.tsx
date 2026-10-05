@@ -3,6 +3,7 @@
 import { useUser } from '@clerk/nextjs';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
+import { sendGAEvent } from '@repo/analytics';
 import { META_PIXEL_ID, once, trackMeta } from '../lib/meta-pixel';
 import { trackEvent } from '../lib/umami';
 
@@ -26,6 +27,9 @@ export const MetaPixel = () => {
     once(`mp_meta_reg_${user.id}`, () => {
       trackMeta('CompleteRegistration', { status: true });
       trackEvent('signup-completed');
+      // GA4's standard sign_up event, so Google Ads can import it as a
+      // conversion goal the same way it imports purchase and begin_checkout.
+      sendGAEvent('event', 'sign_up', { method: 'clerk' });
     });
   }, [isLoaded, user]);
 

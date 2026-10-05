@@ -1,6 +1,7 @@
 import { database } from '@repo/database';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { sendGA4Purchase } from '../../../../lib/ga4-measurement-protocol';
 import { sendMetaPurchase } from '../../../../lib/meta-capi';
 
 // Stripe is the system of record for billing state — this handler is the
@@ -74,24 +75,35 @@ export async function POST(request: Request) {
     await upsertFromSubscription(event.data.object as Stripe.Subscription);
   }
 
-  // Report real payments to Meta Ads. Trial invoices are $0, so only charges count.
+  // Report real payments to Meta Ads and Google Ads (via GA4). Trial invoices
+  // are $0, so only charges count.
   if (event.type === 'invoice.paid') {
     const invoice = event.data.object as Stripe.Invoice;
     if (invoice.amount_paid > 0) {
-      await sendMetaPurchase({
-        eventId: invoice.id ?? `${event.id}`,
-        eventTime: invoice.status_transitions?.paid_at ?? invoice.created,
-        email: invoice.customer_email,
-        // The subscription metadata sits under `parent` on newer Stripe API
-        // versions and at the top level (`subscription_details`) on older ones.
-        clerkUserId:
-          invoice.parent?.subscription_details?.metadata?.clerkUserId ??
-          (invoice as unknown as {
-            subscription_details?: { metadata?: Record<string, string> | null };
-          }).subscription_details?.metadata?.clerkUserId,
-        value: invoice.amount_paid / 100,
-        currency: invoice.currency,
-      });
+      // The subscription metadata sits under `parent` on newer Stripe API
+      // versions and at the top level (`subscription_details`) on older ones.
+      const subscriptionMetadata =
+        invoice.parent?.subscription_details?.metadata ??
+        (invoice as unknown as {
+          subscription_details?: { metadata?: Record<string, string> | null };
+        }).subscription_details?.metadata;
+
+      await Promise.all([
+        sendMetaPurchase({
+          eventId: invoice.id ?? `${event.id}`,
+          eventTime: invoice.status_transitions?.paid_at ?? invoice.created,
+          email: invoice.customer_email,
+          clerkUserId: subscriptionMetadata?.clerkUserId,
+          value: invoice.amount_paid / 100,
+          currency: invoice.currency,
+        }),
+        sendGA4Purchase({
+          eventId: invoice.id ?? `${event.id}`,
+          clientId: subscriptionMetadata?.gaClientId,
+          value: invoice.amount_paid / 100,
+          currency: invoice.currency,
+        }),
+      ]);
     }
   }
 

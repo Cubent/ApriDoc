@@ -10,6 +10,8 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { useState } from 'react';
+import { sendGAEvent } from '@repo/analytics';
+import { getGaClientId } from '../../../../lib/ga4-client-id';
 import { META_PLAN_KEY, META_PLAN_VALUE, trackMeta } from '../../../../lib/meta-pixel';
 import { trackEvent } from '../../../../lib/umami';
 
@@ -397,6 +399,16 @@ export const PaywallContent = ({ withTrial }: { withTrial: boolean }) => {
       currency: 'USD',
       content_name: `${plan.label} plan`,
     });
+    // GA4's begin_checkout, so Google Ads can import it as the "Inizio
+    // procedura di pagamento" conversion goal. The real Purchase event fires
+    // server-side from the Stripe webhook, days later when the trial
+    // converts. See sendGA4Purchase.
+    sendGAEvent('event', 'begin_checkout', {
+      currency: 'USD',
+      value: META_PLAN_VALUE[selected],
+      items: [{ item_name: `${plan.label} plan` }],
+    });
+    const gaClientId = getGaClientId();
     try {
       window.sessionStorage.setItem(META_PLAN_KEY, selected);
     } catch {
@@ -406,7 +418,7 @@ export const PaywallContent = ({ withTrial }: { withTrial: boolean }) => {
       const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plan: selected, withTrial }),
+        body: JSON.stringify({ plan: selected, withTrial, gaClientId }),
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data.url) {

@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
 import { useEffect, useRef } from 'react';
+import { sendGAEvent } from '@repo/analytics';
 import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID, trackEvent } from '../lib/umami';
 
 // Umami already drops well-known crawlers by user agent on its servers. This also catches
@@ -53,6 +54,16 @@ export const UmamiAnalytics = () => {
       const kind = isExternal ? 'outbound' : anchor ? 'link' : 'button';
 
       trackEvent(`${kind}: ${label}`, {
+        label,
+        kind,
+        page: pathRef.current,
+        section: sectionOf(element),
+        ...(anchor && { href: anchor.getAttribute('href') ?? '' }),
+      });
+      // Same click, mirrored to GA4. One event name ('site_interaction') with
+      // the specifics as params, since GA4 event names are capped at 40
+      // chars and reject the "kind: label" format Umami uses.
+      sendGAEvent('event', 'site_interaction', {
         label,
         kind,
         page: pathRef.current,
