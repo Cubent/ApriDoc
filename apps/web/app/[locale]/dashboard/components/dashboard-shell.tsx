@@ -64,21 +64,16 @@ export const DashboardShell = ({
         {paymentIssue && (
           <div
             role="alert"
-            className="flex flex-wrap items-center justify-between gap-3 border-b border-rose-200 bg-rose-50 px-4 py-3 dark:border-rose-500/30 dark:bg-rose-500/10 sm:px-6"
+            className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 bg-[#06005A] px-4 py-1.5 text-center text-xs text-white sm:px-6"
           >
-            <div className="flex min-w-0 items-start gap-3">
-              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-600 dark:bg-rose-500/20 dark:text-rose-300">
-                <TriangleAlert className="size-4" />
-              </span>
-              <p className="text-sm leading-relaxed text-rose-800/90 dark:text-rose-200/80">
-                <span className="font-semibold text-rose-900 dark:text-rose-100">Payment failed.</span>{' '}
-                {paymentIssue.afterTrial
-                  ? 'Your free trial has ended and we could not charge your card.'
-                  : 'We could not process your latest payment.'}{' '}
-                {deadlineText(paymentIssue.accessEndsAt ? new Date(paymentIssue.accessEndsAt) : null, Date.now())}{' '}
-                Your progress is saved and will be waiting once it is fixed.
-              </p>
-            </div>
+            <TriangleAlert className="size-3.5 shrink-0" />
+            <p className="leading-snug">
+              <span className="font-semibold">Payment failed.</span>{' '}
+              {paymentIssue.afterTrial
+                ? 'Your free trial has ended and we could not charge your card.'
+                : 'We could not process your latest payment.'}{' '}
+              {deadlineText(paymentIssue.accessEndsAt ? new Date(paymentIssue.accessEndsAt) : null, Date.now())}
+            </p>
             <UpdatePaymentButton />
           </div>
         )}
