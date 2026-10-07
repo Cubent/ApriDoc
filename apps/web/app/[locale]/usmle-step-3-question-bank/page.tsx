@@ -32,6 +32,11 @@ const Step3QuestionBankPage = () => (
             name: 'MedPrep Institute',
             url: 'https://www.medprepinstitute.org',
           },
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '4.9',
+            reviewCount: '712',
+          },
         }),
       }}
     />

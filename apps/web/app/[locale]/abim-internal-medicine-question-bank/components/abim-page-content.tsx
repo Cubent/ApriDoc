@@ -86,20 +86,39 @@ export const AbimPageContent = () => {
       {/* Hero */}
       <div
         className="relative overflow-hidden bg-cover bg-center px-6 pt-16 pb-20 sm:pt-20 sm:pb-28"
-        style={{ backgroundColor: '#06005A', backgroundImage: "url('/MedPrep (3).png')" }}
+        style={{
+          backgroundColor: '#06005A',
+          backgroundImage: "url('/usmle.png')",
+        }}
       >
         <div className="relative mx-auto max-w-4xl text-center">
-          <p className="mb-5 flex flex-wrap items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/80">
+          <p className="mb-5 flex flex-wrap items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-white">
             <span>ABIM INTERNAL MEDICINE QUESTION BANK</span>
           </p>
           <h1 className="font-[family-name:var(--font-display)] text-4xl font-bold leading-tight text-white sm:text-6xl">
-            Prepare for the ABIM exam with a Qbank that remembers what you miss.
+            Pass the ABIM exam on the first try.{' '}
+            <span className="text-white">Guaranteed with our Qbank.</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-200 sm:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white sm:text-xl">
             Internal medicine vignettes across 27 clinical disciplines, an adaptive engine
             that targets your weak spots, and built-in spaced repetition so what you learn
             actually sticks.
           </p>
+          <div className="mt-6 flex justify-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2">
+              <div className="flex items-center gap-0.5 text-[#C46B10]">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <svg key={i} className="size-4 fill-current" viewBox="0 0 20 20">
+                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                  </svg>
+                ))}
+              </div>
+              <span className="h-4 w-px bg-white/20" aria-hidden="true" />
+              <p className="text-sm text-white/90">
+                <span className="font-bold text-white">4.8</span> &middot; 489 reviews
+              </p>
+            </div>
+          </div>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href="/sign-up"

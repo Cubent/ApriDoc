@@ -32,6 +32,11 @@ const AbimQuestionBankPage = () => (
             name: 'MedPrep Institute',
             url: 'https://www.medprepinstitute.org',
           },
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '4.8',
+            reviewCount: '489',
+          },
         }),
       }}
     />

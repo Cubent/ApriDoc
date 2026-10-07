@@ -12,7 +12,16 @@ import {
   Brain,
   BarChart3,
   Dna,
+  Flag,
+  RotateCcw,
+  Target,
 } from 'lucide-react';
+
+const adaptiveEnginePoints = [
+  { icon: Flag, text: 'Every miss is tracked by Step 1 concept, not just by question.' },
+  { icon: RotateCcw, text: 'Reviews come back on a spaced schedule, automatically.' },
+  { icon: Target, text: 'Your weakest Step 1 topics move to the front of your next set.' },
+];
 
 const subjects = [
   { name: 'Biochemistry', icon: FlaskConical },
@@ -29,27 +38,27 @@ const subjects = [
 
 const steps = [
   {
-    title: 'Answer a question',
-    description: 'Work through NBME-style vignettes with rich clinical images, one Step 1 topic at a time or mixed across systems.',
+    title: 'Real vignettes, not flashcards',
+    description: 'Rich clinical images and full patient presentations across every Step 1 subject. Study one topic at a time, or mix them the way the real exam does.',
   },
   {
-    title: 'The engine finds the gap',
-    description: 'Get something wrong, and MedPrep Institute pinpoints the underlying concept you missed, not just the question.',
+    title: 'Every miss gets flagged',
+    description: 'Get a question wrong, and MedPrep Institute pinpoints the exact concept behind it, not just that one question.',
   },
   {
-    title: 'It comes back at the right time',
-    description: 'Built-in spaced repetition resurfaces that concept from a new angle right before you would have forgotten it.',
+    title: 'It comes back right on time',
+    description: 'Spaced repetition resurfaces that concept from a new angle just before you would forget it, so it actually sticks.',
   },
   {
-    title: 'You walk in ready',
-    description: 'High-yield material gets prioritized automatically, so your limited study time covers the whole exam efficiently.',
+    title: 'High-yield comes first',
+    description: 'The most heavily tested material gets prioritized automatically, so your limited study time still covers the whole exam.',
   },
 ];
 
 const faqs = [
   {
     q: 'How many Step 1 questions are in the bank?',
-    a: 'MedPrep Institute continuously expands its Step 1 question bank across all major subjects and organ systems, with new NBME-style vignettes and clinical images added regularly.',
+    a: '7,500+ Step 1 question topics, each producing a full clinical vignette when you reach it, across all major subjects and organ systems. MedPrep Institute continuously expands the bank, with new NBME-style vignettes and clinical images added regularly.',
   },
   {
     q: 'Is this bank aligned with the current Step 1 blueprint?',
@@ -77,20 +86,38 @@ export const Step1PageContent = () => {
       {/* Hero */}
       <div
         className="relative overflow-hidden bg-cover bg-center px-6 pt-16 pb-20 sm:pt-20 sm:pb-28"
-        style={{ backgroundColor: '#06005A', backgroundImage: "url('/MedPrep.png')" }}
+        style={{
+          backgroundColor: '#06005A',
+          backgroundImage: "url('/usmle.png')",
+        }}
       >
         <div className="relative mx-auto max-w-4xl text-center">
-          <p className="mb-5 flex flex-wrap items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/80">
+          <p className="mb-5 flex flex-wrap items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-white">
             <span>USMLE STEP 1 QUESTION BANK</span>
           </p>
           <h1 className="font-[family-name:var(--font-display)] text-4xl font-bold leading-tight text-white sm:text-6xl">
-            Master Step 1 with a Qbank that remembers what you miss.
+            Pass Step 1 on the first try.{' '}
+            <span className="text-white">Guaranteed with our Qbank.</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-200 sm:text-xl">
-            NBME-style vignettes across every Step 1 subject, an adaptive engine that
-            targets your weak spots, and built-in spaced repetition so concepts
-            actually stick.
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white sm:text-xl">
+            NBME-style vignettes across every Step 1 subject. An adaptive engine finds
+            your weak spots and brings them back with spaced repetition until they stick.
           </p>
+          <div className="mt-6 flex justify-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2">
+              <div className="flex items-center gap-0.5 text-[#C46B10]">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <svg key={i} className="size-4 fill-current" viewBox="0 0 20 20">
+                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                  </svg>
+                ))}
+              </div>
+              <span className="h-4 w-px bg-white/20" aria-hidden="true" />
+              <p className="text-sm text-white/90">
+                <span className="font-bold text-white">4.9</span> &middot; 843 reviews
+              </p>
+            </div>
+          </div>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href="/sign-up"
@@ -105,12 +132,40 @@ export const Step1PageContent = () => {
               See the method
             </a>
           </div>
-          <a
-            href="/usmle/features/sample-questions"
-            className="mt-4 inline-block text-sm font-medium text-white/80 underline-offset-4 hover:text-white hover:underline"
-          >
-            Not ready to sign up? Try 5 free sample questions first.
-          </a>
+        </div>
+      </div>
+
+      {/* Adaptive Engine */}
+      <div className="bg-white px-6 py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
+                Adaptive Engine
+              </p>
+              <h2 className="font-[family-name:var(--font-display)] mt-3 text-balance text-3xl font-bold tracking-tight text-[#06005A] sm:text-4xl">
+                MedPrep Institute remembers your Step 1 mistakes and trains you from first principles.
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-gray-600">
+                Miss a question in the Qbank, and the Step 1 concept behind it gets flagged, not
+                just that one question. It comes back on a spaced schedule, from a new angle each
+                time, so the things you get wrong become the things you know best.
+              </p>
+              <ul className="mt-6 divide-y divide-gray-200 border-y border-gray-200">
+                {adaptiveEnginePoints.map(({ icon: Icon, text }) => (
+                  <li key={text} className="flex items-start gap-3 py-3.5 text-base text-gray-700">
+                    <Icon className="mt-0.5 size-4 shrink-0 text-[#C46B10]" />
+                    {text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <img
+              src="/MedPrep institute (2).jpg"
+              alt="A missed Step 1 question flagged by MedPrep Institute, with its review scheduled for a few days later."
+              className="order-first w-full rounded-2xl lg:order-none"
+            />
+          </div>
         </div>
       </div>
 
@@ -130,7 +185,7 @@ export const Step1PageContent = () => {
             <p className="mt-1 text-sm text-gray-600">Step 1 Subjects Covered</p>
           </div>
           <div className="border-l-2 border-gray-200 pl-5">
-            <p className="font-[family-name:var(--font-display)] text-3xl font-bold text-[#06005A] sm:text-4xl">95%</p>
+            <p className="font-[family-name:var(--font-display)] text-3xl font-bold text-[#06005A] sm:text-4xl">96%</p>
             <p className="mt-1 text-sm text-gray-600">Student Pass Rate</p>
           </div>
         </div>
@@ -172,16 +227,20 @@ export const Step1PageContent = () => {
               How MedPrep Institute preps you for Step 1
             </h2>
           </div>
-          <div className="grid gap-8 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2">
             {steps.map((step, index) => (
-              <div key={step.title} className="rounded-xl border border-gray-200 p-6">
-                <span className="flex size-9 items-center justify-center rounded-full bg-[#06005A] text-sm font-semibold text-white">
-                  {index + 1}
+              <div
+                key={step.title}
+                className="px-8 py-7 sm:px-10 sm:py-8"
+                style={{ background: 'linear-gradient(90deg, #4c6fff 0%, #2b3fb0 22%, #1c2a86 100%)' }}
+              >
+                <span className="font-[family-name:var(--font-display)] text-4xl text-white sm:text-5xl">
+                  {String(index + 1).padStart(2, '0')}
                 </span>
-                <h3 className="font-[family-name:var(--font-display)] mt-4 text-xl font-bold text-black">
-                  {step.title}
-                </h3>
-                <p className="mt-2 leading-relaxed text-gray-600">{step.description}</p>
+                <p className="mt-2 text-lg font-bold text-white">{step.title}</p>
+                <p className="mt-1 max-w-md text-[0.95rem] leading-relaxed text-white/75">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>
