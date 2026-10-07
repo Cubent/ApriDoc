@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { after } from 'next/server';
 import type { ReactNode } from 'react';
 import { prepareNextSet } from '@/lib/prepare-practice-set';
-import { getSubscription } from '@/lib/subscription';
+import { getPaymentIssue, getSubscription } from '@/lib/subscription';
 import { DashboardShell } from './components/dashboard-shell';
 
 // Neon's serverless Postgres suspends its compute when idle and takes several
@@ -19,6 +19,19 @@ export const maxDuration = 60;
 const DashboardLayout = async ({ children }: { children: ReactNode }) => {
   const { userId } = await auth();
 
+  const preference = userId
+    ? await database.userPreference.findUnique({ where: { clerkUserId: userId } })
+    : null;
+
+  // Someone who has not answered the onboarding questionnaire yet (no
+  // UserPreference row) has not picked an exam, so there is nothing to show
+  // them here. This also covers returning sign-ins: Clerk's sign-in page
+  // always lands on /dashboard, and only a user who never finished
+  // onboarding gets bounced from here.
+  if (userId && !preference) {
+    redirect('/onboarding/trial');
+  }
+
   // Someone who never started a trial/subscription at all has no reason to
   // be in the dashboard yet — send them to start one. Once a subscription
   // exists (even a lapsed/canceled one), they're let through: only
@@ -26,13 +39,14 @@ const DashboardLayout = async ({ children }: { children: ReactNode }) => {
   // dashboard/practice/page.tsx and the dashboard overview), so they can
   // still reach account/billing to reactivate. Middleware already
   // guarantees a signed-in user here.
-  if (userId && (await getSubscription(userId)) === null) {
+  const subscription = userId ? await getSubscription(userId) : null;
+  if (userId && subscription === null) {
     redirect('/paywall');
   }
 
-  const preference = userId
-    ? await database.userPreference.findUnique({ where: { clerkUserId: userId } })
-    : null;
+  // Shown as a bar above the header on every dashboard page (see
+  // dashboard-shell.tsx) when Stripe could not charge the customer.
+  const paymentIssue = subscription ? await getPaymentIssue(subscription) : null;
 
   // Start filling the next practice set the moment someone lands anywhere in
   // the dashboard, not when they open Practice — prepareNextSet no-ops if a
@@ -58,6 +72,11 @@ const DashboardLayout = async ({ children }: { children: ReactNode }) => {
       currentExam={preference?.exam ?? null}
       examSelectedAt={preference?.examSelectedAt?.toISOString() ?? null}
       showWelcome={!hasAnsweredQuestions}
+      paymentIssue={
+        paymentIssue
+          ? { afterTrial: paymentIssue.afterTrial, accessEndsAt: paymentIssue.accessEndsAt?.toISOString() ?? null }
+          : null
+      }
     >
       {children}
     </DashboardShell>

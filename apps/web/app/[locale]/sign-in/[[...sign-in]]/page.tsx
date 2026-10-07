@@ -11,7 +11,7 @@ const SignInPage = () => (
       />
       <span className="text-xl font-medium text-[#06005A]">MedPrep Institute</span>
     </Link>
-    <SignIn signUpUrl="/sign-up" forceRedirectUrl="/onboarding/trial" />
+    <SignIn signUpUrl="/sign-up" forceRedirectUrl="/dashboard" />
   </div>
 );
 

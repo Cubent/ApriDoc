@@ -10,16 +10,13 @@ import { Lock, Play, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { getSubscription, resolveAccess } from '@/lib/subscription';
 import { NextExamAdvantageCard } from './next-exam-advantage-card';
-import { PaymentFailedBanner } from './payment-failed-banner';
 import { PracticeLocked } from './practice-locked';
 
 const DASHBOARD_PREVIEW_COUNT = 2;
 
 export const DashboardOverview = async ({
-  previewPaymentFailed = false,
   previewLocked = false,
 }: {
-  previewPaymentFailed?: boolean;
   previewLocked?: boolean;
 }) => {
   const { userId } = await auth();
@@ -67,8 +64,6 @@ export const DashboardOverview = async ({
       <div className="mt-6">
         <NextExamAdvantageCard />
       </div>
-
-      <PaymentFailedBanner preview={previewPaymentFailed} />
 
       {!allowed && (
         <div className="mt-8">

@@ -10,12 +10,8 @@ const DashboardOverviewPage = async ({
 
   return (
     <div>
-      {/* /dashboard?preview=payment-failed forces the payment banner, and
-          ?preview=locked forces the no-plan block (dev server only). */}
-      <DashboardOverview
-        previewPaymentFailed={preview === 'payment-failed'}
-        previewLocked={preview === 'locked'}
-      />
+      {/* /dashboard?preview=locked forces the no-plan block (dev server only). */}
+      <DashboardOverview previewLocked={preview === 'locked'} />
       <DashboardStatsPreview />
     </div>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, TriangleAlert } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { type ReactNode, useEffect, useState } from 'react';
@@ -9,9 +9,13 @@ import { DashboardHeaderActions } from './dashboard-header-actions';
 import { ExamSwitcher } from './exam-switcher';
 import { MobileMenu } from './mobile-menu';
 import { NAV_ITEMS, isActiveNavItem } from './nav-items';
+import { deadlineText } from './payment-failed-banner';
+import { UpdatePaymentButton } from './update-payment-button';
 import { WelcomeModal } from './welcome-modal';
 
 const SIDEBAR_COLLAPSED_KEY = 'medprep-sidebar-collapsed';
+
+type PaymentIssueProp = { afterTrial: boolean; accessEndsAt: string | null } | null;
 
 type DashboardShellProps = {
   children: ReactNode;
@@ -19,6 +23,8 @@ type DashboardShellProps = {
   examSelectedAt?: string | null;
   /** Show the one-time welcome popup (new users only). */
   showWelcome?: boolean;
+  /** Shown as a bar above the header when Stripe could not charge the customer. */
+  paymentIssue?: PaymentIssueProp;
 };
 
 export const DashboardShell = ({
@@ -26,6 +32,7 @@ export const DashboardShell = ({
   currentExam,
   examSelectedAt,
   showWelcome = false,
+  paymentIssue = null,
 }: DashboardShellProps) => {
   const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -53,8 +60,28 @@ export const DashboardShell = ({
   return (
     <PracticeProvider>
     <div className="min-h-screen bg-[#F7F7FA] dark:bg-[#0B0620]">
-      {/* Header */}
-      <header className="sticky top-0 z-50 flex h-16 items-center justify-between border-b border-gray-200 bg-white px-4 dark:border-white/10 dark:bg-[#120A2E] sm:px-6">
+      <div className="sticky top-0 z-50">
+        {paymentIssue && (
+          <div
+            role="alert"
+            className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 bg-rose-600 px-4 py-2.5 text-center text-sm text-white sm:px-6"
+          >
+            <span className="flex items-center gap-2 font-semibold">
+              <TriangleAlert className="size-4 shrink-0" />
+              Payment failed
+            </span>
+            <p className="leading-relaxed">
+              {paymentIssue.afterTrial
+                ? 'Your free trial has ended and we could not charge your card.'
+                : 'We could not process your latest payment.'}{' '}
+              {deadlineText(paymentIssue.accessEndsAt ? new Date(paymentIssue.accessEndsAt) : null, Date.now())}{' '}
+              Your progress is saved and will be waiting once it is fixed.
+            </p>
+            <UpdatePaymentButton />
+          </div>
+        )}
+        {/* Header */}
+        <header className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-4 dark:border-white/10 dark:bg-[#120A2E] sm:px-6">
         <div className="flex items-center gap-3">
           <img
             src="/animateos-logo (1).png"
@@ -78,7 +105,8 @@ export const DashboardShell = ({
           {/* Phone-only menu popup, same links as the desktop sidebar. */}
           <MobileMenu />
         </div>
-      </header>
+        </header>
+      </div>
 
       <div className="flex min-h-[calc(100vh-4rem)]">
         {/* Sidebar */}
