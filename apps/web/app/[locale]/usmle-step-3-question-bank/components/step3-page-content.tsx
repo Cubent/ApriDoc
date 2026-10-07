@@ -113,8 +113,8 @@ export const Step3PageContent = () => {
             <span className="text-white">Guaranteed with our Qbank.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white sm:text-xl">
-            Patient management vignettes across 27 clinical disciplines. An adaptive engine
-            finds your weak spots and brings them back with spaced repetition until the decisions stick.
+            Get the only Qbank built for Step 3, with real patient management vignettes,
+            an adaptive engine that targets your weak spots, built-in spaced repetition, and more.
           </p>
           <div className="mt-6 flex justify-center">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2">

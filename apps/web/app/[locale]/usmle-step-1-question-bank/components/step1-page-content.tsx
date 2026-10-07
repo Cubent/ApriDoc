@@ -100,8 +100,8 @@ export const Step1PageContent = () => {
             <span className="text-white">Guaranteed with our Qbank.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white sm:text-xl">
-            NBME-style vignettes across every Step 1 subject. An adaptive engine finds
-            your weak spots and brings them back with spaced repetition until they stick.
+            Get the only Qbank built for the updated Step 1, with NBME-style vignettes,
+            an adaptive engine that targets your weak spots, built-in spaced repetition, and more.
           </p>
           <div className="mt-6 flex justify-center">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2">
