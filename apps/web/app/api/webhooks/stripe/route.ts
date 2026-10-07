@@ -3,6 +3,8 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { sendGA4Purchase } from '../../../../lib/ga4-measurement-protocol';
 import { sendMetaPurchase } from '../../../../lib/meta-capi';
+import { sendPaymentFailedEmail } from '../../../../lib/payment-failed-email';
+import { buildPaymentIssue } from '../../../../lib/subscription';
 
 // Stripe is the system of record for billing state — this handler is the
 // ONLY place that ever writes to the Subscription table. Never write to it
@@ -104,6 +106,55 @@ export async function POST(request: Request) {
           currency: invoice.currency,
         }),
       ]);
+    }
+  }
+
+  // A failed renewal charge on an established subscription (not the first
+  // charge right after the trial ends, which gets no email). Email the
+  // customer a link to fix it, same wording and deadline as the in-app
+  // banner (dashboard/components/dashboard-shell.tsx).
+  if (event.type === 'invoice.payment_failed') {
+    const invoice = event.data.object as Stripe.Invoice;
+    const email = invoice.customer_email;
+    const customerId = typeof invoice.customer === 'string' ? invoice.customer : invoice.customer?.id;
+
+    if (email && customerId) {
+      const subscriptionRef =
+        invoice.parent?.subscription_details?.subscription ??
+        (invoice as unknown as { subscription?: string | Stripe.Subscription }).subscription;
+      const subscriptionId = typeof subscriptionRef === 'string' ? subscriptionRef : subscriptionRef?.id;
+
+      let trialEnd: number | null = null;
+      if (subscriptionId) {
+        try {
+          const stripeSubscription = await stripe.subscriptions.retrieve(subscriptionId);
+          trialEnd = stripeSubscription.trial_end;
+        } catch (error) {
+          console.error('Could not retrieve subscription for payment-failed email:', error);
+        }
+      }
+
+      const issue = buildPaymentIssue(
+        invoice.status_transitions?.finalized_at ?? invoice.created,
+        trialEnd
+      );
+
+      if (!issue.afterTrial) {
+        try {
+          const portalSession = await stripe.billingPortal.sessions.create({
+            customer: customerId,
+            return_url: `${process.env.NEXT_PUBLIC_WEB_URL ?? 'https://www.medprepinstitute.org'}/dashboard/account`,
+          });
+
+          await sendPaymentFailedEmail({
+            email,
+            accessEndsAt: issue.accessEndsAt,
+            portalUrl: portalSession.url,
+          });
+        } catch (error) {
+          console.error('Could not send payment-failed email:', error);
+        }
+      }
     }
   }
 

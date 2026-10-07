@@ -64,19 +64,21 @@ export const DashboardShell = ({
         {paymentIssue && (
           <div
             role="alert"
-            className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 bg-rose-600 px-4 py-2.5 text-center text-sm text-white sm:px-6"
+            className="flex flex-wrap items-center justify-between gap-3 border-b border-rose-200 bg-rose-50 px-4 py-3 dark:border-rose-500/30 dark:bg-rose-500/10 sm:px-6"
           >
-            <span className="flex items-center gap-2 font-semibold">
-              <TriangleAlert className="size-4 shrink-0" />
-              Payment failed
-            </span>
-            <p className="leading-relaxed">
-              {paymentIssue.afterTrial
-                ? 'Your free trial has ended and we could not charge your card.'
-                : 'We could not process your latest payment.'}{' '}
-              {deadlineText(paymentIssue.accessEndsAt ? new Date(paymentIssue.accessEndsAt) : null, Date.now())}{' '}
-              Your progress is saved and will be waiting once it is fixed.
-            </p>
+            <div className="flex min-w-0 items-start gap-3">
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-600 dark:bg-rose-500/20 dark:text-rose-300">
+                <TriangleAlert className="size-4" />
+              </span>
+              <p className="text-sm leading-relaxed text-rose-800/90 dark:text-rose-200/80">
+                <span className="font-semibold text-rose-900 dark:text-rose-100">Payment failed.</span>{' '}
+                {paymentIssue.afterTrial
+                  ? 'Your free trial has ended and we could not charge your card.'
+                  : 'We could not process your latest payment.'}{' '}
+                {deadlineText(paymentIssue.accessEndsAt ? new Date(paymentIssue.accessEndsAt) : null, Date.now())}{' '}
+                Your progress is saved and will be waiting once it is fixed.
+              </p>
+            </div>
             <UpdatePaymentButton />
           </div>
         )}
