@@ -1,88 +1,13 @@
-import { env } from '@/env';
-
-import { PrismaPlugin } from '@prisma/nextjs-monorepo-workaround-plugin';
-import { withToolbar } from '@repo/feature-flags/lib/toolbar';
-import { config, withAnalyzer } from '@repo/next-config';
-import { withLogging, withSentry } from '@repo/observability/next-config';
 import type { NextConfig } from 'next';
 
-let nextConfig: NextConfig = withToolbar(withLogging(config));
-
-// Image optimization - AVIF first for maximum compression
-nextConfig.images = {
-  ...nextConfig.images,
-  formats: ['image/avif', 'image/webp'], // AVIF first for best compression
-  deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-  imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-  minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
-  dangerouslyAllowSVG: true,
-  contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  compress: true,
+  webpack: (config) => {
+    // pdfjs-dist optionally requires the native `canvas` module (Node only).
+    config.resolve.alias = { ...config.resolve.alias, canvas: false };
+    return config;
+  },
 };
-
-nextConfig.images?.remotePatterns?.push({
-  protocol: 'https',
-  hostname: 'assets.basehub.com',
-});
-
-// Add i.postimg.cc for model images
-nextConfig.images?.remotePatterns?.push({
-  protocol: 'https',
-  hostname: 'i.postimg.cc',
-});
-
-// Performance optimizations
-nextConfig.experimental = {
-  ...nextConfig.experimental,
-  optimizePackageImports: ['lucide-react', '@repo/design-system'],
-};
-
-// pnpm monorepos: Next's file tracing doesn't copy Prisma's query engine
-// binary into the server bundle, so the deployed function throws "could not
-// locate the Query Engine". This plugin copies it next to the server chunks.
-// https://pris.ly/d/engine-not-found-nextjs
-const baseWebpack = nextConfig.webpack;
-nextConfig.webpack = (webpackConfig, options) => {
-  const configured = baseWebpack ? baseWebpack(webpackConfig, options) : webpackConfig;
-  if (options.isServer) {
-    configured.plugins = [...(configured.plugins ?? []), new PrismaPlugin()];
-  }
-  return configured;
-};
-
-// Turbopack configuration disabled temporarily due to FlightClientEntryPlugin issues
-// nextConfig.turbopack = {
-//   rules: {
-//     '*.svg': {
-//       loaders: ['@svgr/webpack'],
-//       as: '*.js',
-//     },
-//   },
-// };
-
-// Compression and caching
-nextConfig.compress = true;
-nextConfig.poweredByHeader = false;
-
-if (process.env.NODE_ENV === 'production') {
-  const redirects: NextConfig['redirects'] = async () => [
-    {
-      source: '/legal',
-      destination: '/legal/privacy',
-      statusCode: 301,
-    },
-    // Additional redirects can be added here if needed
-    // Additional redirects can be added here if needed
-  ];
-
-  nextConfig.redirects = redirects;
-}
-
-if (env.VERCEL) {
-  nextConfig = withSentry(nextConfig);
-}
-
-if (env.ANALYZE === 'true') {
-  nextConfig = withAnalyzer(nextConfig);
-}
 
 export default nextConfig;

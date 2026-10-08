@@ -1,106 +1,53 @@
-import './[locale]/styles.css';
-import { DesignSystemProvider } from '@repo/design-system';
-import { fonts } from '@repo/design-system/lib/fonts';
-import { cn } from '@repo/design-system/lib/utils';
-import { ClerkProvider } from '@clerk/nextjs';
+import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import { MetaPixel } from '../components/meta-pixel';
-import { UmamiAnalytics } from '../components/umami-analytics';
-import type { Metadata } from 'next';
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
+import { SITE } from '@/lib/tools';
+import { Plus_Jakarta_Sans } from 'next/font/google';
+import './globals.css';
+
+const font = Plus_Jakarta_Sans({ subsets: ['latin'], display: 'swap', variable: '--font-sans' });
+
+const title = 'ApriDoc.com — Apri File P7M e Strumenti PDF Online Gratis';
+const description =
+  'Apri file .p7m online, unisci, dividi, ruota e converti PDF direttamente nel browser. Gratis, senza registrazione e senza caricare i tuoi documenti su nessun server.';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.medprepinstitute.org'),
-  title: 'MedPrep Institute – All-in-One USMLE Prep Platform',
-  description: 'MedPrep Institute is the all-in-one USMLE prep platform behind a 95% pass rate, with an adaptive Qbank, AI-powered practice, and personalized study guides for Step 1, Step 2 CK, Step 3, and the ABIM Exam.',
+  metadataBase: new URL(SITE.url),
+  title: { default: title, template: '%s' },
+  description,
   keywords: [
-    'MedPrep Institute',
-    'USMLE prep platform',
-    'USMLE question bank',
-    'USMLE Step 1',
-    'USMLE Step 2 CK',
-    'USMLE Step 3',
-    'ABIM exam prep',
-    'adaptive question bank',
-    'spaced repetition medical',
-    'med school qbank',
-    'residency prep',
+    'aprire file p7m',
+    'p7m viewer',
+    'unisci pdf',
+    'dividere pdf',
+    'jpg in pdf',
+    'strumenti pdf online',
+    'firma digitale',
+    'ApriDoc',
   ],
-  robots: {
-    index: true,
-    follow: true,
-  },
-  manifest: '/manifest.json',
-  appleWebApp: {
-    title: 'MedPrep Institute',
-    statusBarStyle: 'default',
-  },
-  icons: {
-    icon: [
-      { url: '/favicon.ico?v=2', sizes: 'any' },
-      { url: '/favicon.png?v=2', type: 'image/png' },
-      { url: '/favicon-16x16.png?v=2', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png?v=2', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-192x192.png?v=2', sizes: '192x192', type: 'image/png' },
-      { url: '/favicon-512x512.png?v=2', sizes: '512x512', type: 'image/png' },
-    ],
-    shortcut: '/favicon.ico?v=2',
-    apple: '/apple-touch-icon.png?v=2',
-  },
+  alternates: { canonical: '/' },
+  robots: { index: true, follow: true },
   openGraph: {
-    title: 'MedPrep Institute – All-in-One USMLE Prep Platform',
-    description: 'The USMLE prep platform behind a 95% pass rate: an adaptive Qbank, AI-powered practice, and personalized study guides for Step 1, Step 2 CK, Step 3, and the ABIM Exam.',
+    title,
+    description,
+    url: SITE.url,
+    siteName: SITE.name,
+    locale: 'it_IT',
     type: 'website',
-    locale: 'en_US',
-    siteName: 'MedPrep Institute',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'MedPrep Institute – All-in-One USMLE Prep Platform',
-    description: 'The USMLE prep platform behind a 95% pass rate: an adaptive Qbank, AI-powered practice, and personalized study guides for Step 1, Step 2 CK, Step 3, and the ABIM Exam.',
-  },
+  twitter: { card: 'summary_large_image', title, description },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export const viewport: Viewport = { themeColor: '#1f087a' };
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html className={cn(fonts, 'scroll-smooth')} suppressHydrationWarning>
-      <body style={{ backgroundColor: '#ffffff' }}>
-        <ClerkProvider
-          appearance={{
-            cssLayerName: 'clerk',
-            variables: {
-              colorPrimary: '#06005A',
-              colorPrimaryForeground: '#ffffff',
-              colorBackground: '#F5F5F5',
-              colorForeground: '#000000',
-              colorNeutral: '#06005A',
-              colorInput: '#ffffff',
-              colorInputForeground: '#000000',
-              colorMutedForeground: '#4b5563',
-            },
-            elements: {
-              // The OTP digit boxes (email verification code) don't pick up
-              // colorInput the way regular text fields do — they render at
-              // colorBackground instead, which is a light grey nearly
-              // matching the card behind it. Force them white with a
-              // visible border so the code is actually readable.
-              otpCodeFieldInput: {
-                backgroundColor: '#ffffff',
-                borderColor: '#d1d5db',
-                color: '#000000',
-              },
-            },
-          }}
-        >
-          <MetaPixel />
-          <UmamiAnalytics />
-          <DesignSystemProvider>
-            {children}
-          </DesignSystemProvider>
-        </ClerkProvider>
+    <html lang="it" className={font.variable}>
+      <body>
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

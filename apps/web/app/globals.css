@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+:root {
+  --brand: #1f087a;
+  --brand-dark: #160557;
+  --ink: #1f2430;
+  --muted: #5b6270;
+  --line: #e6e8ec;
+  --bg: #f4f5f7;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0.9rem;
+  padding: 0.85rem 1.6rem;
+  transition: background 0.15s;
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--brand-dark);
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-weight: 600;
+  border-radius: 0.9rem;
+  padding: 0.7rem 1.2rem;
+}
+.btn-ghost:hover {
+  background: #f7f7f9;
+}
+
+.field {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 0.7rem;
+  padding: 0.6rem 0.8rem;
+}
+.field:focus {
+  outline: 2px solid var(--brand);
+  outline-offset: 1px;
+}
