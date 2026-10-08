@@ -11,16 +11,15 @@ type RootLayoutProperties = {
   readonly children: ReactNode;
 };
 
+const webUrl = env.NEXT_PUBLIC_WEB_URL ?? 'http://localhost:3001';
+
 const RootLayout = ({ children }: RootLayoutProperties) => (
   <html lang="en" className={fonts} suppressHydrationWarning>
     <body>
       <AnalyticsProvider>
         <DesignSystemProvider
-          privacyUrl={new URL(
-            '/legal/privacy',
-            env.NEXT_PUBLIC_WEB_URL
-          ).toString()}
-          termsUrl={new URL('/legal/terms', env.NEXT_PUBLIC_WEB_URL).toString()}
+          privacyUrl={new URL('/legal/privacy', webUrl).toString()}
+          termsUrl={new URL('/legal/terms', webUrl).toString()}
           helpUrl={env.NEXT_PUBLIC_DOCS_URL}
         >
           {children}
