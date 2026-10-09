@@ -58,14 +58,3 @@ export function HeroTiles() {
     </div>
   );
 }
-
-/** Small screens: tiles spread behind the text, which sits on the layer above. */
-export function HeroTilesGrid() {
-  return (
-    <div className="pointer-events-none absolute inset-0 z-0 grid grid-cols-3 grid-rows-3 place-items-center px-2 py-4 lg:hidden">
-      {SLUGS.map((slug, i) => (
-        <Tile key={slug} slug={slug} size={84} tilt={i % 2 ? 4 : -4} delay={0} />
-      ))}
-    </div>
-  );
-}
