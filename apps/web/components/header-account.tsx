@@ -12,14 +12,17 @@ const Start = () => (
 );
 
 export function HeaderAccount() {
-  if (!BILLING_ENABLED) return <Start />;
+  if (!BILLING_ENABLED) return <div className="hidden lg:block"><Start /></div>;
   return (
     <>
       <Show when="signed-out">
-        <SignInButton mode="modal">
-          <button className="text-sm font-bold hover:text-[#1f087a]">Accedi</button>
-        </SignInButton>
-        <Start />
+        {/* On phones both live in the menu instead */}
+        <div className="hidden items-center gap-4 lg:flex">
+          <SignInButton mode="modal">
+            <button className="text-sm font-bold hover:text-[#1f087a]">Accedi</button>
+          </SignInButton>
+          <Start />
+        </div>
       </Show>
       <Show when="signed-in">
         <UserButton userProfileUrl="/account" userProfileMode="navigation">
