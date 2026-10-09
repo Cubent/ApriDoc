@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { HeaderAccount } from './header-account';
+import { MobileMenu } from './mobile-menu';
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
@@ -37,6 +38,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-4">
           <HeaderAccount />
+          <MobileMenu />
         </div>
       </div>
     </header>
