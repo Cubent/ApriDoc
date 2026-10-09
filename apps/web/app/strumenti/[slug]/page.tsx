@@ -82,7 +82,7 @@ export default async function ToolPage({ params }: Props) {
       </div>
 
       {content.cards && (
-        <section className="mt-10 grid gap-4 md:grid-cols-3">
+        <section className="tool-extra mt-10 grid gap-4 md:grid-cols-3">
           {content.cards.map((c) => (
             <div key={c.title} className="rounded-2xl border border-[#e6e8ec] bg-[#f4f5f7] p-6">
               <h2 className="text-lg font-extrabold text-[#1f087a]">{c.title}</h2>
@@ -92,13 +92,13 @@ export default async function ToolPage({ params }: Props) {
         </section>
       )}
 
-      <section className="mt-10 space-y-4 text-lg leading-relaxed text-[#3d4452]">
+      <section className="tool-extra mt-10 space-y-4 text-lg leading-relaxed text-[#3d4452]">
         {content.intro.map((p) => (
           <p key={p}>{p}</p>
         ))}
       </section>
 
-      <section className="mt-14">
+      <section className="tool-extra mt-14">
         <h2 className="mb-2 text-center text-3xl font-extrabold">Domande frequenti</h2>
         <p className="mb-8 text-center text-[#5b6270]">Tutto quello che c’è da sapere su {tool.short.toLowerCase()}.</p>
         <FaqList items={content.faq} />

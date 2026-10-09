@@ -15,9 +15,10 @@ import {
   RotateCcw,
   XCircle,
 } from 'lucide-react';
-import { useEffect, useState, type ReactNode } from 'react';
-import { downloadBlob, formatSize, readBytes } from '@/lib/files';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { baseName, downloadBlob, formatSize, readBytes } from '@/lib/files';
 import type { P7mResult, P7mSigner } from '@/lib/p7m';
+import { canConvertToPdf, convertToPdf, type ConvertOptions } from '@/lib/to-pdf';
 import { findIssuer, TL_ISSUED } from '@/lib/qtsp';
 import { PdfPreview } from './pdf-preview';
 import { Dropzone, ErrorBox } from './tool-ui';
@@ -141,7 +142,39 @@ function SignerBlock({ s, signedAt }: { s: P7mSigner; signedAt?: Date }) {
   );
 }
 
-function TextEditor({ name, text }: { name: string; text: string }) {
+function Toggle({
+  checked,
+  onChange,
+  label,
+  hint,
+}: {
+  checked: boolean;
+  onChange: (v: boolean) => void;
+  label: string;
+  hint?: string;
+}) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      onClick={() => onChange(!checked)}
+      className="flex w-full items-center justify-between gap-4 text-left"
+    >
+      <span className="min-w-0">
+        <span className="block text-sm font-semibold leading-tight">{label}</span>
+        {hint && <span className="block text-xs text-[#8a91a0]">{hint}</span>}
+      </span>
+      <span className={`relative h-6 w-10 shrink-0 rounded-full transition ${checked ? 'bg-emerald-500' : 'bg-[#d5d9e0]'}`}>
+        <span
+          className={`absolute top-0.5 size-5 rounded-full bg-white shadow transition-all ${checked ? 'left-[18px]' : 'left-0.5'}`}
+        />
+      </span>
+    </button>
+  );
+}
+
+function TextEditor({ name, text, locked = false }: { name: string; text: string; locked?: boolean }) {
   const [copied, setCopied] = useState(false);
   const lines = text.split(/\r?\n/);
   if (lines.length > 1 && lines[lines.length - 1] === '') lines.pop();
@@ -170,7 +203,18 @@ function TextEditor({ name, text }: { name: string; text: string }) {
         {lines.map((line, i) => (
           <div key={i} className="flex hover:bg-[#f7f8fa]">
             <span className="w-14 shrink-0 select-none border-r border-[#eef0f3] pr-3 text-right text-[#a3a9b5]">{i + 1}</span>
-            <span className="min-w-0 flex-1 whitespace-pre-wrap break-words px-4">{line || ' '}</span>
+            {locked ? (
+              <span className="flex min-w-0 flex-1 items-center px-4">
+                {line.trim() && (
+                  <i
+                    className="h-2.5 rounded-full bg-[#e3e6ec]"
+                    style={{ width: `${Math.min(96, Math.max(8, line.trim().length * 1.15))}%` }}
+                  />
+                )}
+              </span>
+            ) : (
+              <span className="min-w-0 flex-1 whitespace-pre-wrap break-words px-4">{line || ' '}</span>
+            )}
           </div>
         ))}
       </div>
@@ -190,6 +234,28 @@ export default function P7mViewer() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [text, setText] = useState<string | null>(null);
   const [showChecks, setShowChecks] = useState(false);
+  const [converting, setConverting] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
+  const optionsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showOptions) return;
+    const onDown = (e: MouseEvent) => {
+      if (!optionsRef.current?.contains(e.target as Node)) setShowOptions(false);
+    };
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setShowOptions(false);
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [showOptions]);
+  const [convertOpts, setConvertOpts] = useState<Omit<ConvertOptions, 'loadFont'>>({
+    pdfa: false,
+    cover: false,
+    pageNumbers: false,
+  });
 
   // Hide the page title (server-rendered for SEO) once a document is being shown.
   useEffect(() => {
@@ -234,6 +300,21 @@ export default function P7mViewer() {
     pending: file,
     onRestore: (f) => void open([f]),
   });
+
+  const convert = async () => {
+    if (!result) return;
+    if (!unlocked) return openPay();
+    setConverting(true);
+    setError(null);
+    try {
+      const pdf = await convertToPdf(result, convertOpts);
+      downloadBlob(pdf, `${baseName(result.fileName)}${convertOpts.pdfa ? '-pdfa' : ''}.pdf`, 'application/pdf');
+    } catch {
+      setError('Impossibile convertire questo documento in PDF.');
+    } finally {
+      setConverting(false);
+    }
+  };
 
   const reset = () => {
     setFile(null);
@@ -287,7 +368,8 @@ export default function P7mViewer() {
                 )}
               </div>
             </div>
-            <div className="flex shrink-0 flex-wrap gap-3">
+            <div className="flex shrink-0 flex-col gap-3">
+              <div className="flex flex-wrap gap-3">
               <button
                 className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-extrabold text-[#1f087a] hover:bg-[#f0edff]"
                 onClick={() =>
@@ -302,6 +384,63 @@ export default function P7mViewer() {
               >
                 <RotateCcw size={16} /> Nuovo file
               </button>
+              </div>
+              {canConvertToPdf(result) && (
+                <button
+                  onClick={convert}
+                  disabled={converting}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/40 px-5 py-3 font-bold hover:bg-white/10 disabled:opacity-60"
+                >
+                  {converting ? (
+                    <Loader2 size={16} className="animate-spin" />
+                  ) : unlocked ? (
+                    <FileText size={16} />
+                  ) : (
+                    <Crown size={16} className="text-amber-300" />
+                  )}{' '}
+                  Converti in PDF
+                </button>
+              )}
+              {canConvertToPdf(result) && (
+                // The panel floats over the page, so opening it never pushes anything around.
+                <div ref={optionsRef} className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setShowOptions((v) => !v)}
+                    aria-expanded={showOptions}
+                    className="flex w-full items-center justify-between rounded-xl bg-white/10 px-4 py-3 text-sm font-bold hover:bg-white/15"
+                  >
+                    Altre opzioni
+                    <ChevronDown size={18} className={`transition-transform duration-200 ${showOptions ? 'rotate-180' : ''}`} />
+                  </button>
+                  <div
+                    className={`absolute right-0 top-full z-20 mt-2 w-full min-w-[280px] origin-top rounded-2xl border border-[#e6e8ec] bg-white p-4 text-[#1f2430] shadow-xl transition duration-200 ${
+                      showOptions ? 'translate-y-0 scale-100 opacity-100' : 'pointer-events-none -translate-y-1 scale-95 opacity-0'
+                    }`}
+                    aria-hidden={!showOptions}
+                  >
+                    <div className="space-y-4">
+                      <Toggle
+                        checked={convertOpts.pdfa}
+                        onChange={(pdfa) => setConvertOpts((o) => ({ ...o, pdfa }))}
+                        label="PDF/A"
+                        hint="Per archiviazione a lungo termine"
+                      />
+                      <Toggle
+                        checked={convertOpts.cover}
+                        onChange={(cover) => setConvertOpts((o) => ({ ...o, cover }))}
+                        label="Aggiungi dati della firma"
+                        hint="Pagina iniziale con firmatario e certificato"
+                      />
+                      <Toggle
+                        checked={convertOpts.pageNumbers}
+                        onChange={(pageNumbers) => setConvertOpts((o) => ({ ...o, pageNumbers }))}
+                        label="Numera le pagine"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -348,23 +487,23 @@ export default function P7mViewer() {
 
             <div className="relative min-h-[560px] overflow-hidden rounded-2xl border border-[#e6e8ec] bg-[#f4f5f7]">
               {!unlocked && (
-                <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/30">
-                  <button
-                    onClick={openPay}
-                    className="inline-flex items-center gap-2 rounded-xl bg-[#1f087a] px-6 py-3 font-extrabold text-white shadow-lg hover:bg-[#2a0d9c]"
-                  >
-                    <Lock size={18} /> Sblocca il documento
+                <div className="absolute inset-0 z-10 flex items-center justify-center bg-gradient-to-b from-white/10 via-white/40 to-white/80 p-6">
+                  <button onClick={openPay} className="btn-primary !px-7 !py-3.5 shadow-xl">
+                    <Crown size={17} /> Sblocca il documento
                   </button>
                 </div>
               )}
-              <div className={unlocked ? undefined : 'pointer-events-none select-none blur-md'} aria-hidden={!unlocked}>
+              <div
+                className={unlocked ? undefined : result.kind === 'xml' || result.kind === 'text' ? 'pointer-events-none select-none' : 'pointer-events-none select-none blur-lg'}
+                aria-hidden={!unlocked}
+              >
               {result.kind === 'pdf' ? (
                 <PdfPreview bytes={result.bytes} />
               ) : result.kind === 'image' && previewUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={previewUrl} alt={result.fileName} className="mx-auto max-h-[75vh] max-w-full p-4" />
               ) : text ? (
-                <TextEditor name={result.fileName} text={unlocked ? text : text.replace(/\S/g, '\u2592')} />
+                <TextEditor name={file.name} text={unlocked ? text : text.slice(0, 20_000)} locked={!unlocked} />
               ) : (
                 <div className="flex min-h-[560px] flex-col items-center justify-center px-6 text-center">
                   <FileText size={64} strokeWidth={1.2} className="text-[#9aa1ad]" />
