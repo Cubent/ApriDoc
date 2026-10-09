@@ -18,8 +18,8 @@ const sections: LegalSection[] = [
       <>
         <p>
           I presenti Termini e Condizioni (“Termini”) disciplinano l’utilizzo del sito <strong>apridoc.com</strong> (il
-          “Sito”) e degli strumenti online messi a disposizione (il “Servizio”), gestiti da {LEGAL.owner}, con sede
-          in {LEGAL.address}, {LEGAL.vat} (il “Titolare”).
+          “Sito”) e degli strumenti online messi a disposizione (il “Servizio”), gestiti dal titolare del Sito
+          (il “Titolare”).
         </p>
         <p>
           Utilizzando il Servizio l’utente dichiara di aver letto e accettato i presenti Termini e l’
@@ -197,7 +197,7 @@ const sections: LegalSection[] = [
     title: 'Contatti',
     body: (
       <p>
-        Per domande sui presenti Termini o sul Servizio è possibile scrivere a {LEGAL.email}.
+        Per domande sui presenti Termini o sul Servizio è possibile contattare il Titolare attraverso il Sito.
       </p>
     ),
   },

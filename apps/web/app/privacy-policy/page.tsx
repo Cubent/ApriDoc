@@ -17,13 +17,12 @@ const sections: LegalSection[] = [
       <>
         <p>
           Il titolare del trattamento dei dati personali raccolti tramite il sito <strong>apridoc.com</strong> (di
-          seguito, il “Sito”) è:
+          seguito, il “Sito”) è il gestore del Sito (il “Titolare”). In sintesi:
         </p>
         <ul>
-          <li><strong>Titolare:</strong> {LEGAL.owner}</li>
-          <li><strong>P. IVA / C.F.:</strong> {LEGAL.vat}</li>
-          <li><strong>Sede:</strong> {LEGAL.address}</li>
-          <li><strong>Contatto privacy:</strong> {LEGAL.email}</li>
+          <li><strong>Sito:</strong> apridoc.com</li>
+          <li><strong>Servizio:</strong> strumenti online per aprire file P7M e lavorare con i PDF</li>
+          <li><strong>Documenti:</strong> elaborati nel browser dell’utente, senza essere caricati sui nostri server</li>
         </ul>
         <p>
           La presente informativa è resa ai sensi degli artt. 13 e 14 del Regolamento (UE) 2016/679 (“GDPR”) e del
@@ -132,7 +131,7 @@ const sections: LegalSection[] = [
       <>
         <p>I dati di navigazione possono essere trattati, in qualità di responsabili del trattamento ai sensi
           dell’art. 28 GDPR, dal fornitore dei servizi di hosting e di infrastruttura del Sito
-          ({LEGAL.hosting}), e da soggetti che prestano assistenza tecnica e manutenzione dei sistemi.
+          e da soggetti che prestano assistenza tecnica e manutenzione dei sistemi.
         </p>
         <p>I dati possono inoltre essere comunicati ad autorità giudiziarie o amministrative quando previsto
           dalla legge. I dati non sono oggetto di diffusione né di vendita.</p>
@@ -197,7 +196,7 @@ const sections: LegalSection[] = [
           <li>opporsi al trattamento fondato sul legittimo interesse (art. 21).</li>
         </ul>
         <p>
-          Le richieste possono essere inviate a {LEGAL.email}. Il Titolare risponde senza ingiustificato ritardo e, in
+          Le richieste possono essere presentate al Titolare attraverso il Sito. Il Titolare risponde senza ingiustificato ritardo e, in
           ogni caso, entro un mese dal ricevimento, prorogabile di due mesi in caso di particolare complessità.
           Poiché i dati di navigazione non consentono, di regola, di identificare direttamente l’utente, il Titolare
           può richiedere informazioni aggiuntive per verificarne l’identità.
