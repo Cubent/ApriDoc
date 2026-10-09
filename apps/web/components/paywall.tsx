@@ -7,6 +7,7 @@ import { PRICES, singlePrice, type Kind, type Plan } from '@/lib/billing';
 
 export function PaywallModal({
   kind,
+  notice,
   busy,
   error,
   onClose,
@@ -14,6 +15,7 @@ export function PaywallModal({
   onSignIn,
 }: {
   kind: Kind;
+  notice?: string | null;
   busy: boolean;
   error: string | null;
   onClose: () => void;
@@ -26,6 +28,7 @@ export function PaywallModal({
       title={kind === 'pdf' ? 'Scarica il PDF' : 'Download PDF'}
       subtitle={kind === 'pdf' ? 'Il tuo file è pronto' : 'Estrai il documento dalla busta P7M'}
     >
+      {notice && <p className="mt-5 rounded-lg bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-800">{notice}</p>}
       <div className="mt-6 space-y-3">
         <button disabled={busy} onClick={() => onChoose('single')} className="flex w-full items-center justify-between rounded-2xl border border-[#e6e8ec] p-4 text-left hover:border-[#1f087a]">
           <span>

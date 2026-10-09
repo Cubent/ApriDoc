@@ -78,6 +78,7 @@ export function usePaywall({
   const [showPay, setShowPay] = useState(false);
   const [payBusy, setPayBusy] = useState(false);
   const [payError, setPayError] = useState<string | null>(null);
+  const [cancelled, setCancelled] = useState(false);
   const [needsAccount, setNeedsAccount] = useState<Plan | null>(null);
   const [offerAccount, setOfferAccount] = useState(false);
   const [payerEmail, setPayerEmail] = useState<string | undefined>();
@@ -86,6 +87,13 @@ export function usePaywall({
   const restoreRef = useRef(onRestore);
   restoreRef.current = onRestore;
   const account = useAccount();
+
+  // Browser back button from Stripe can restore this page as it was, with the spinner still on.
+  useEffect(() => {
+    const onShow = (e: PageTransitionEvent) => e.persisted && setPayBusy(false);
+    window.addEventListener('pageshow', onShow);
+    return () => window.removeEventListener('pageshow', onShow);
+  }, []);
 
   // Remembered subscription: unlock straight away, then let the server confirm below.
   useEffect(() => {
@@ -103,7 +111,8 @@ export function usePaywall({
   // Back from Stripe or from a sign-up redirect: bring the file back from the browser and carry on.
   useEffect(() => {
     const q = new URLSearchParams(location.search);
-    const back = q.get('checkout') === 'success' || q.has('resume');
+    const wasCancelled = q.get('checkout') === 'cancel';
+    const back = q.get('checkout') === 'success' || q.has('resume') || wasCancelled;
     sessionRef.current = q.get('session_id');
     if (q.has('checkout') || q.has('resume') || q.has('session_id')) history.replaceState(null, '', location.pathname);
     if (!back) {
@@ -111,6 +120,11 @@ export function usePaywall({
       return;
     }
     cameFromStripe.current = q.get('checkout') === 'success';
+    if (wasCancelled) {
+      // Back from Stripe without paying: bring the file back and reopen the plans.
+      setCancelled(true);
+      setShowPay(true);
+    }
     void loadPendingFile().then((f) => f && restoreRef.current(f));
   }, []);
 
@@ -223,9 +237,13 @@ export function usePaywall({
       {showPay && (
         <PaywallModal
           kind={kind}
+          notice={cancelled ? 'Pagamento annullato: non ti è stato addebitato nulla. Puoi sceglierne un altro.' : null}
           busy={payBusy}
           error={payError}
-          onClose={() => setShowPay(false)}
+          onClose={() => {
+            setShowPay(false);
+            setCancelled(false);
+          }}
           onChoose={(plan) => void startCheckout(plan)}
           onSignIn={() => void signIn()}
         />
