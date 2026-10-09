@@ -243,7 +243,7 @@ export default function P7mViewer() {
   };
 
   if (!file) {
-    return <Dropzone accept=".p7m,.p7s,.pem,application/pkcs7-mime" label="Seleziona un file .p7m" onFiles={open} />;
+    return <Dropzone label="Seleziona un file .p7m" onFiles={open} />;
   }
 
   const signers = result?.signers.filter((s) => s.isSigner) ?? [];

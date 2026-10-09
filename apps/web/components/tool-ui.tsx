@@ -11,7 +11,8 @@ export function Dropzone({
   label,
   onFiles,
 }: {
-  accept: string;
+  /** Omit to allow every file (iOS greys out types it doesn't recognise, such as .p7m). */
+  accept?: string;
   multiple?: boolean;
   label: string;
   onFiles: (files: File[]) => void;
