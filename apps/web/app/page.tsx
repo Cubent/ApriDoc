@@ -1,6 +1,6 @@
 import { FileCheck2, Lock, Zap } from 'lucide-react';
 import Link from 'next/link';
-import { HeroTiles } from '@/components/hero-tiles';
+import { HeroTiles, HeroTilesGrid } from '@/components/hero-tiles';
 import { PromoSection } from '@/components/promo-section';
 import { FaqList } from '@/components/faq-list';
 import { ToolGrid } from '@/components/tool-grid';
@@ -89,6 +89,7 @@ export default function Home() {
               <span className="inline-flex items-center gap-2"><FileCheck2 size={16} className="text-[#1f087a]" /> Senza installazioni</span>
             </div>
           </div>
+          <HeroTilesGrid />
         </div>
       </section>
 

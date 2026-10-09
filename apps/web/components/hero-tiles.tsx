@@ -41,28 +41,31 @@ function Tile({ slug, size, tilt, delay }: { slug: string; size: number; tilt: n
   );
 }
 
-export function HeroTiles() {
-  const slugs = Object.keys(LAYOUT);
-  return (
-    <>
-      {/* Large screens: tools float around the headline */}
-      <div className="pointer-events-none absolute inset-0 hidden lg:block">
-        {slugs.map((slug, i) => {
-          const [left, top, size, tilt] = LAYOUT[slug];
-          return (
-            <div key={slug} className="pointer-events-auto absolute" style={{ left: `${left}%`, top }}>
-              <Tile slug={slug} size={size} tilt={tilt} delay={i * 0.35} />
-            </div>
-          );
-        })}
-      </div>
+const SLUGS = Object.keys(LAYOUT);
 
-      {/* Small screens: a simple grid below the headline */}
-      <div className="mx-auto mt-10 grid max-w-md grid-cols-3 gap-5 lg:hidden">
-        {slugs.map((slug, i) => (
-          <Tile key={slug} slug={slug} size={84} tilt={i % 2 ? 4 : -4} delay={0} />
-        ))}
-      </div>
-    </>
+/** Large screens: tools float around the headline. */
+export function HeroTiles() {
+  return (
+    <div className="pointer-events-none absolute inset-0 hidden lg:block">
+      {SLUGS.map((slug, i) => {
+        const [left, top, size, tilt] = LAYOUT[slug];
+        return (
+          <div key={slug} className="pointer-events-auto absolute" style={{ left: `${left}%`, top }}>
+            <Tile slug={slug} size={size} tilt={tilt} delay={i * 0.35} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Small screens: tiles spread behind the text, which sits on the layer above. */
+export function HeroTilesGrid() {
+  return (
+    <div className="pointer-events-none absolute inset-0 z-0 grid grid-cols-3 grid-rows-3 place-items-center px-2 py-4 lg:hidden">
+      {SLUGS.map((slug, i) => (
+        <Tile key={slug} slug={slug} size={84} tilt={i % 2 ? 4 : -4} delay={0} />
+      ))}
+    </div>
   );
 }
