@@ -1,5 +1,6 @@
 import { FileCheck2, Lock, Zap } from 'lucide-react';
 import Link from 'next/link';
+import { HeroTiles } from '@/components/hero-tiles';
 import { PromoSection } from '@/components/promo-section';
 import { FaqList } from '@/components/faq-list';
 import { ToolGrid } from '@/components/tool-grid';
@@ -65,52 +66,28 @@ export default function Home() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-white to-[#f4f5f7]">
-        <div className="pointer-events-none absolute -left-40 -top-40 size-[520px] rounded-full bg-[#1f087a]/10 blur-3xl" />
-        <div className="pointer-events-none absolute -right-40 top-10 size-[520px] rounded-full bg-[#e5574a]/10 blur-3xl" />
-        <div className="relative mx-auto max-w-[1100px] px-5 pb-20 pt-20 text-center md:pt-28">
-          <p className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-[#d9d3f2] bg-[#f4f5f7] px-4 py-1.5 text-sm font-semibold text-[#1f087a]">
-            <Lock size={15} /> I tuoi file restano nel browser
-          </p>
-          <h1 className="text-5xl font-extrabold leading-[1.05] tracking-tight md:text-7xl">
-            Apri file <span className="text-[#1f087a]">P7M</span> e lavora sui PDF,
-            <br className="hidden md:block" /> online e gratis
-          </h1>
-          <p className="mx-auto mt-7 max-w-3xl text-xl leading-relaxed text-[#5b6270] md:text-2xl">
-            Estrai il documento da una firma digitale .p7m, unisci, dividi, ruota e converti PDF
-            in pochi secondi. Senza installazioni, senza registrazione e senza caricare nulla.
-          </p>
-
-          <Link
-            href="/strumenti/apri-file-p7m"
-            className="mx-auto mt-12 block max-w-3xl rounded-3xl border-2 border-[#1f087a] bg-[#f4f5f7] p-8 text-left transition hover:-translate-y-1 md:p-10"
-          >
-            <div className="flex flex-col gap-6 md:flex-row md:items-center">
-              <span className="inline-flex size-20 shrink-0 items-center justify-center rounded-3xl bg-[#1f087a]/10 text-[#1f087a]">
-                <FileCheck2 size={44} />
-              </span>
-              <div className="flex-1">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#1f087a]">
-                  Strumento in evidenza
-                </span>
-                <h2 className="mt-1 text-2xl font-extrabold leading-tight md:text-3xl">
-                  Apri File P7M Online Gratis: Leggi il Documento in 1 Click
-                </h2>
-                <p className="mt-2 text-[#5b6270]">
-                  Trascina il tuo file <strong>.p7m</strong> e ottieni subito il PDF originale,
-                  con i dati del firmatario.
-                </p>
-              </div>
-              <span className="btn-primary whitespace-nowrap !px-7 !py-4 text-lg">
-                Apri un P7M →
-              </span>
+      <section className="relative overflow-hidden bg-white">
+        <div className="relative mx-auto max-w-[1300px] px-5 py-14 lg:h-[700px] lg:py-0">
+          <HeroTiles />
+          <div className="relative z-10 mx-auto flex max-w-[640px] flex-col items-center text-center lg:h-full lg:justify-center">
+            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#d9d3f2] bg-[#f4f5f7] px-3.5 py-1 text-xs font-semibold text-[#1f087a]">
+              <Lock size={14} /> I tuoi file restano nel browser
+            </p>
+            <h1 className="text-4xl font-extrabold leading-[1.06] tracking-tight md:text-6xl">
+              Apri file <span className="text-[#1f087a]">P7M</span> e lavora sui PDF, online
+            </h1>
+            <p className="mt-5 text-base leading-relaxed text-[#5b6270] md:text-lg">
+              Estrai il documento da una firma digitale .p7m, unisci, dividi, ruota e converti PDF in pochi secondi.
+              Senza installazioni e senza caricare nulla.
+            </p>
+            <Link href="/strumenti/apri-file-p7m" className="btn-primary mt-7 !px-7 !py-3.5 text-base">
+              Apri un P7M →
+            </Link>
+            <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-semibold text-[#5b6270]">
+              <span className="inline-flex items-center gap-2"><Zap size={16} className="text-[#1f087a]" /> Risultato immediato</span>
+              <span className="inline-flex items-center gap-2"><Lock size={16} className="text-[#1f087a]" /> Nessun upload</span>
+              <span className="inline-flex items-center gap-2"><FileCheck2 size={16} className="text-[#1f087a]" /> Senza installazioni</span>
             </div>
-          </Link>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm font-semibold text-[#5b6270]">
-            <span className="inline-flex items-center gap-2"><Zap size={16} className="text-[#1f087a]" /> Risultato immediato</span>
-            <span className="inline-flex items-center gap-2"><Lock size={16} className="text-[#1f087a]" /> Nessun upload</span>
-            <span className="inline-flex items-center gap-2"><FileCheck2 size={16} className="text-[#1f087a]" /> 100% gratuito</span>
           </div>
         </div>
       </section>

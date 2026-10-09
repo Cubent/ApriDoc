@@ -2,6 +2,7 @@
 
 import type { ComponentType } from 'react';
 import P7mViewer from './p7m-viewer';
+import { PdfShell } from './pdf-shell';
 import {
   ImagesToPdf,
   MergePdf,
@@ -28,5 +29,11 @@ const RUNNERS: Record<string, ComponentType> = {
 
 export function ToolRunner({ slug }: { slug: string }) {
   const Runner = RUNNERS[slug];
-  return Runner ? <Runner /> : null;
+  if (!Runner) return null;
+  if (slug === 'apri-file-p7m') return <Runner />;
+  return (
+    <PdfShell>
+      <Runner />
+    </PdfShell>
+  );
 }

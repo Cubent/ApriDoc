@@ -93,7 +93,7 @@ export default async function DashboardPage() {
             <>
               <p className="mt-2 text-xl font-extrabold">Nessun abbonamento attivo</p>
               <p className="mt-1 text-sm text-[#5b6270]">
-                Con il piano annuale ({PRICES.yearly.label}) scarichi documenti P7M senza limiti per 12 mesi.
+                Con il piano annuale ({PRICES.yearly.label}) scarichi documenti P7M e risultati degli strumenti PDF senza limiti per 12 mesi.
               </p>
               <Link href="/strumenti/apri-file-p7m" className="btn-primary mt-5 inline-flex">
                 Apri un file P7M

@@ -3,15 +3,17 @@
 import { Crown, Loader2, X } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { PRICES, type Plan } from '@/lib/billing';
+import { PRICES, singlePrice, type Kind, type Plan } from '@/lib/billing';
 
 export function PaywallModal({
+  kind,
   busy,
   error,
   onClose,
   onChoose,
   onSignIn,
 }: {
+  kind: Kind;
   busy: boolean;
   error: string | null;
   onClose: () => void;
@@ -19,14 +21,18 @@ export function PaywallModal({
   onSignIn: () => void;
 }) {
   return (
-    <Shell onClose={onClose}>
+    <Shell
+      onClose={onClose}
+      title={kind === 'pdf' ? 'Scarica il PDF' : 'Download PDF'}
+      subtitle={kind === 'pdf' ? 'Il tuo file è pronto' : 'Estrai il documento dalla busta P7M'}
+    >
       <div className="mt-6 space-y-3">
         <button disabled={busy} onClick={() => onChoose('single')} className="flex w-full items-center justify-between rounded-2xl border border-[#e6e8ec] p-4 text-left hover:border-[#1f087a]">
           <span>
             <span className="block text-xs font-bold uppercase tracking-wider text-[#8a91a0]">Singolo</span>
-            <span className="block font-semibold">Esporta questo documento</span>
+            <span className="block font-semibold">{kind === 'pdf' ? 'Scarica questo file' : 'Esporta questo documento'}</span>
           </span>
-          <span className="text-xl font-extrabold">{PRICES.single.label}</span>
+          <span className="text-xl font-extrabold">{singlePrice(kind).label}</span>
         </button>
         <button disabled={busy} onClick={() => onChoose('yearly')} className="flex w-full items-center justify-between rounded-2xl border-2 border-[#1f087a] bg-[#f6f4ff] p-4 text-left">
           <span>

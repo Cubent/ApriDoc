@@ -1,12 +1,11 @@
 'use client';
 
 import JSZip from 'jszip';
-import { PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
+import { EncryptedPDFError, PDFDocument, StandardFonts, degrees, rgb } from 'pdf-lib';
 import { useState } from 'react';
-import { baseName, downloadBlob, parsePages, readBytes } from '@/lib/files';
+import { baseName, parsePages, readBytes } from '@/lib/files';
 import {
   ActionButton,
-  DoneBox,
   Dropzone,
   ErrorBox,
   FileRow,
@@ -20,8 +19,11 @@ const PDF = 'application/pdf';
 async function loadPdf(file: File) {
   try {
     return await PDFDocument.load(await readBytes(file), { ignoreEncryption: false });
-  } catch {
-    throw new Error('Impossibile leggere il PDF: il file è danneggiato o protetto da password.');
+  } catch (e) {
+    if (e instanceof EncryptedPDFError) {
+      throw new Error(`“${file.name}” è protetto da password: rimuovi la protezione e riprova.`);
+    }
+    throw new Error(`Impossibile leggere “${file.name}”: il file non è un PDF valido o è danneggiato.`);
   }
 }
 
@@ -78,7 +80,7 @@ export function MergePdf() {
         const copied = await out.copyPages(src, src.getPageIndices());
         copied.forEach((p) => out.addPage(p));
       }
-      downloadBlob(await out.save(), 'unito.pdf', PDF);
+      job.deliver(await out.save(), 'unito.pdf', PDF);
       return `Creato unito.pdf con ${out.getPageCount()} pagine.`;
     });
 
@@ -101,7 +103,6 @@ export function MergePdf() {
             ))}
           </div>
           <ErrorBox message={job.error} />
-          <DoneBox message={job.done} />
           <ActionButton busy={job.busy} disabled={files.length < 2} onClick={run}>
             Unisci {files.length} PDF
           </ActionButton>
@@ -128,7 +129,7 @@ export function SplitPdf() {
         if (!idx) throw new Error(`Intervallo non valido. Usa ad esempio 1-3, 5 (il PDF ha ${s.pages} pagine).`);
         const out = await PDFDocument.create();
         (await out.copyPages(src, idx)).forEach((p) => out.addPage(p));
-        downloadBlob(await out.save(), `${name}-estratto.pdf`, PDF);
+        s.job.deliver(await out.save(), `${name}-estratto.pdf`, PDF);
         return `Estratte ${idx.length} pagine.`;
       }
       const zip = new JSZip();
@@ -138,7 +139,7 @@ export function SplitPdf() {
         out.addPage(p);
         zip.file(`${name}-pagina-${i + 1}.pdf`, await out.save());
       }
-      downloadBlob(await zip.generateAsync({ type: 'blob' }), `${name}-pagine.zip`, 'application/zip');
+      s.job.deliver(await zip.generateAsync({ type: 'blob' }), `${name}-pagine.zip`, 'application/zip');
       return `Creato un ZIP con ${s.pages} file PDF.`;
     });
 
@@ -152,7 +153,7 @@ export function SplitPdf() {
               <button
                 key={v}
                 onClick={() => setMode(v)}
-                className={`flex-1 rounded-xl border px-4 py-3 font-semibold ${mode === v ? 'border-[#1f087a] bg-[#1f087a]/10 text-[#1f087a]' : 'border-[#e6e8ec]'}`}
+                className={`flex-1 rounded-xl border px-4 py-3 font-semibold ${mode === v ? 'border-[var(--brand)] bg-[color-mix(in_srgb,var(--brand)_10%,transparent)] text-[var(--brand)]' : 'border-[#e6e8ec]'}`}
               >
                 {l}
               </button>
@@ -163,7 +164,6 @@ export function SplitPdf() {
               <input className="field" value={range} onChange={(e) => setRange(e.target.value)} placeholder="es. 1-3, 5, 8-" />
             </Label>
           )}
-          <DoneBox message={s.job.done} />
           <ActionButton busy={s.job.busy} onClick={run}>Dividi PDF</ActionButton>
         </Panel>
       )}
@@ -187,7 +187,7 @@ export function RotatePdf() {
         const page = doc.getPage(i);
         page.setRotation(degrees((page.getRotation().angle + angle) % 360));
       }
-      downloadBlob(await doc.save(), `${baseName(s.file!.name)}-ruotato.pdf`, PDF);
+      s.job.deliver(await doc.save(), `${baseName(s.file!.name)}-ruotato.pdf`, PDF);
       return `Ruotate ${idx.length} pagine.`;
     });
 
@@ -206,7 +206,6 @@ export function RotatePdf() {
           <Label text="Pagine (lascia vuoto per tutte)">
             <input className="field" value={range} onChange={(e) => setRange(e.target.value)} placeholder="es. 2, 4-6" />
           </Label>
-          <DoneBox message={s.job.done} />
           <ActionButton busy={s.job.busy} onClick={run}>Ruota PDF</ActionButton>
         </Panel>
       )}
@@ -227,7 +226,7 @@ export function OrganizePdf() {
       if (!idx) throw new Error(`Ordine non valido. Usa ad esempio 3,1,2,5-7 (il PDF ha ${s.pages} pagine).`);
       const out = await PDFDocument.create();
       (await out.copyPages(src, idx)).forEach((p) => out.addPage(p));
-      downloadBlob(await out.save(), `${baseName(s.file!.name)}-organizzato.pdf`, PDF);
+      s.job.deliver(await out.save(), `${baseName(s.file!.name)}-organizzato.pdf`, PDF);
       return `Nuovo PDF con ${idx.length} pagine.`;
     });
 
@@ -247,7 +246,6 @@ export function OrganizePdf() {
           <p className="text-sm text-[#5b6270]">
             Indica le pagine nell’ordine desiderato: quelle che non scrivi vengono eliminate, quelle ripetute vengono duplicate.
           </p>
-          <DoneBox message={s.job.done} />
           <ActionButton busy={s.job.busy} onClick={run}>Organizza PDF</ActionButton>
         </Panel>
       )}
@@ -298,7 +296,7 @@ export function ImagesToPdf() {
           p.drawImage(img, { x: (W - w) / 2, y: (H - h) / 2, width: w, height: h });
         }
       }
-      downloadBlob(await out.save(), 'immagini.pdf', PDF);
+      job.deliver(await out.save(), 'immagini.pdf', PDF);
       return `Creato immagini.pdf con ${files.length} pagine.`;
     });
 
@@ -329,7 +327,6 @@ export function ImagesToPdf() {
             </Label>
           </div>
           <ErrorBox message={job.error} />
-          <DoneBox message={job.done} />
           <ActionButton busy={job.busy} onClick={run}>Converti in PDF</ActionButton>
         </Panel>
       )}
@@ -360,7 +357,7 @@ export function PageNumbers() {
         const y = v === 'top' ? height - 36 : 28;
         page.drawText(text, { x, y, size, font, color: rgb(0.15, 0.15, 0.15) });
       });
-      downloadBlob(await doc.save(), `${baseName(s.file!.name)}-numerato.pdf`, PDF);
+      s.job.deliver(await doc.save(), `${baseName(s.file!.name)}-numerato.pdf`, PDF);
       return 'Numeri di pagina aggiunti.';
     });
 
@@ -392,7 +389,6 @@ export function PageNumbers() {
               <input type="number" min={0} className="field" value={start} onChange={(e) => setStart(Number(e.target.value) || 0)} />
             </Label>
           </div>
-          <DoneBox message={s.job.done} />
           <ActionButton busy={s.job.busy} onClick={run}>Aggiungi numeri di pagina</ActionButton>
         </Panel>
       )}
@@ -428,7 +424,7 @@ export function Watermark() {
         const y = height / 2 - (w / 2) * Math.sin(rad) - (size / 3) * Math.cos(rad);
         page.drawText(text, { x, y, size, font, color: rgb(0.5, 0.5, 0.5), opacity, rotate: degrees(angle) });
       }
-      downloadBlob(await doc.save(), `${baseName(s.file!.name)}-filigrana.pdf`, PDF);
+      s.job.deliver(await doc.save(), `${baseName(s.file!.name)}-filigrana.pdf`, PDF);
       return 'Filigrana applicata a tutte le pagine.';
     });
 
@@ -451,7 +447,6 @@ export function Watermark() {
               <input type="range" min={0} max={90} value={angle} onChange={(e) => setAngle(Number(e.target.value))} className="w-full" />
             </Label>
           </div>
-          <DoneBox message={s.job.done} />
           <ActionButton busy={s.job.busy} onClick={run}>Applica filigrana</ActionButton>
         </Panel>
       )}
@@ -489,9 +484,9 @@ export function PdfToJpg() {
       }
       if (doc.numPages === 1) {
         const only = Object.values(zip.files)[0];
-        downloadBlob(await only.async('blob'), only.name, 'image/jpeg');
+        job.deliver(await only.async('blob'), only.name, 'image/jpeg');
       } else {
-        downloadBlob(await zip.generateAsync({ type: 'blob' }), `${name}-jpg.zip`, 'application/zip');
+        job.deliver(await zip.generateAsync({ type: 'blob' }), `${name}-jpg.zip`, 'application/zip');
       }
       return `Convertite ${doc.numPages} pagine in JPG.`;
     });
@@ -520,7 +515,6 @@ export function PdfToJpg() {
               </Label>
             </div>
             <ErrorBox message={job.error} />
-            <DoneBox message={job.done} />
             <ActionButton busy={job.busy} onClick={run}>Converti in JPG</ActionButton>
           </Panel>
         </>

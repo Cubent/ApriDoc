@@ -2,7 +2,8 @@
 
 import { Download, Loader2, UploadCloud, X } from 'lucide-react';
 import { useRef, useState, type ReactNode } from 'react';
-import { formatSize } from '@/lib/files';
+import { downloadBlob, formatSize } from '@/lib/files';
+import { usePdfShell } from './pdf-shell';
 
 export function Dropzone({
   accept,
@@ -33,10 +34,10 @@ export function Dropzone({
         if (files.length) onFiles(multiple ? files : files.slice(0, 1));
       }}
       className={`flex cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed min-h-[320px] px-6 py-20 text-center transition ${
-        over ? 'border-[#1f087a] bg-[#1f087a]/5' : 'border-[#c9ced6] bg-[#f4f5f7] hover:border-[#1f087a]'
+        over ? 'border-[var(--brand)] bg-[color-mix(in_srgb,var(--brand)_6%,transparent)]' : 'border-[#c9ced6] bg-[#f4f5f7] hover:border-[var(--brand)]'
       }`}
     >
-      <UploadCloud size={56} className="text-[#1f087a]" />
+      <UploadCloud size={56} className="text-[var(--brand)]" />
       <p className="mt-4 text-xl font-bold">{label}</p>
       <p className="mt-1 text-sm text-[#5b6270]">oppure trascinalo qui — il file non lascia il tuo browser</p>
       <span className="btn-primary mt-6 !px-8 !py-3.5 text-lg">Seleziona file</span>
@@ -122,32 +123,25 @@ export function ErrorBox({ message }: { message: string | null }) {
   );
 }
 
-/** Runs an async job, tracking busy / error state. */
+/** Runs an async job, tracking busy / error state. Output goes to the surrounding PdfShell. */
 export function useJob() {
+  const shell = usePdfShell();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState<string | null>(null);
   const run = async (fn: () => Promise<string | void>) => {
     setBusy(true);
     setError(null);
-    setDone(null);
+    shell?.begin();
     try {
       const msg = await fn();
-      if (msg) setDone(msg);
+      if (msg) shell?.setMessage(msg);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Operazione non riuscita.');
     } finally {
       setBusy(false);
     }
   };
-  return { busy, error, done, run, setError };
-}
-
-export function DoneBox({ message }: { message: string | null }) {
-  if (!message) return null;
-  return (
-    <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800">
-      ✓ {message}
-    </p>
-  );
+  const deliver = (data: BlobPart | Uint8Array, name: string, type: string) =>
+    shell ? shell.deliver(data as BlobPart, name, type) : downloadBlob(data, name, type);
+  return { busy, error, run, setError, deliver };
 }

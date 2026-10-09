@@ -69,3 +69,29 @@ body {
 body[data-has-result] .tool-title {
   display: none;
 }
+
+/* PDF tools use a red accent; the P7M tool keeps the brand purple. */
+.theme-pdf {
+  --brand: #e5574a;
+  --brand-dark: #c94438;
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.hero-float {
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-float {
+    animation: none;
+  }
+}

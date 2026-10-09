@@ -71,10 +71,15 @@ export default async function ToolPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <header className="tool-title mb-8 text-center">
         <h1 className="text-3xl font-extrabold leading-tight md:text-5xl">{tool.name}</h1>
+        {tool.slug !== 'apri-file-p7m' && (
+          <p className="mx-auto mt-3 max-w-xl text-lg text-[#5b6270]">{tool.description}</p>
+        )}
       </header>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
-      <ToolRunner slug={tool.slug} />
+      <div className={tool.slug === 'apri-file-p7m' ? undefined : 'theme-pdf'}>
+        <ToolRunner slug={tool.slug} />
+      </div>
 
       {content.cards && (
         <section className="mt-10 grid gap-4 md:grid-cols-3">

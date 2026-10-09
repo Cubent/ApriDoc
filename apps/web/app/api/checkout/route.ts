@@ -1,13 +1,14 @@
 import { auth, currentUser } from '@clerk/nextjs/server';
 import Stripe from 'stripe';
-import { PRICES, type Plan } from '@/lib/billing';
+import { PRICES, singlePrice, type Kind, type Plan } from '@/lib/billing';
 
 export async function POST(req: Request) {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) return Response.json({ error: 'Pagamenti non configurati.' }, { status: 503 });
 
-  const { plan, doc, returnPath } = (await req.json().catch(() => ({}))) as {
+  const { plan, kind = 'p7m', doc, returnPath } = (await req.json().catch(() => ({}))) as {
     plan?: Plan;
+    kind?: Kind;
     doc?: string;
     returnPath?: string;
   };
@@ -22,7 +23,7 @@ export async function POST(req: Request) {
   const origin = new URL(req.url).origin;
   const user = userId ? await currentUser() : null;
   const email = user?.primaryEmailAddress?.emailAddress;
-  const metadata: Record<string, string> = { plan, ...(userId ? { clerkUserId: userId } : {}), ...(doc ? { doc } : {}) };
+  const metadata: Record<string, string> = { plan, kind, ...(userId ? { clerkUserId: userId } : {}), ...(doc ? { doc } : {}) };
 
   let session: Stripe.Checkout.Session;
   try {
@@ -35,13 +36,19 @@ export async function POST(req: Request) {
         quantity: 1,
         price_data: {
           currency: 'eur',
-          unit_amount: PRICES[plan].cents,
+          unit_amount: plan === 'yearly' ? PRICES.yearly.cents : singlePrice(kind).cents,
           product_data: {
-            name: plan === 'yearly' ? 'ApriDoc Annuale — Export illimitati' : 'ApriDoc — Export singolo documento',
+            name: plan === 'yearly'
+                ? 'ApriDoc Annuale — Download illimitati'
+                : kind === 'pdf'
+                  ? 'ApriDoc — Download singolo PDF'
+                  : 'ApriDoc — Export singolo documento',
             description:
               plan === 'yearly'
-                ? 'Estrai e scarica documenti dai file P7M senza limiti per 12 mesi. Si rinnova ogni anno, annulla quando vuoi.'
-                : 'Estrai e scarica il documento contenuto in questo file P7M. Pagamento una tantum.',
+                ? 'Scarica documenti dai file P7M e i risultati degli strumenti PDF senza limiti per 12 mesi. Si rinnova ogni anno, annulla quando vuoi.'
+                : kind === 'pdf'
+                  ? 'Scarica il PDF elaborato con ApriDoc. Pagamento una tantum.'
+                  : 'Estrai e scarica il documento contenuto in questo file P7M. Pagamento una tantum.',
           },
           ...(plan === 'yearly' ? { recurring: { interval: 'year' as const } } : {}),
         },

@@ -43,12 +43,16 @@ export function ToolIcon({
   name,
   color,
   size = 56,
+  bare = false,
 }: {
   name: string;
   color: string;
   size?: number;
+  /** Just the glyph, without the tinted square behind it. */
+  bare?: boolean;
 }) {
   const Icon = ICONS[name] ?? FileText;
+  if (bare) return <Icon size={size} strokeWidth={1.8} color={color} />;
   return (
     <span
       className="inline-flex shrink-0 items-center justify-center rounded-2xl"
