@@ -17,6 +17,7 @@ export function Footer() {
           <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-white">Strumenti</h3>
           <ul className="space-y-2 text-sm">
             <li><Link href="/strumenti/apri-file-p7m" className="hover:text-white">Aprire file P7M</Link></li>
+            <li><Link href="/strumenti/convertire-p7m-in-pdf" className="hover:text-white">Da P7M a PDF</Link></li>
             <li><Link href="/strumenti/unisci-pdf" className="hover:text-white">Unisci PDF</Link></li>
             <li><Link href="/strumenti/dividere-pdf" className="hover:text-white">Dividere PDF</Link></li>
             <li><Link href="/strumenti/jpg-in-pdf" className="hover:text-white">JPG in PDF</Link></li>
@@ -26,6 +27,7 @@ export function Footer() {
         <div>
           <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-white">Informazioni</h3>
           <ul className="space-y-2 text-sm">
+            <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
             <li><Link href="/#faq" className="hover:text-white">Domande frequenti</Link></li>
             <li><Link href="/#strumenti" className="hover:text-white">Tutti gli strumenti</Link></li>
             <li><Link href="/privacy-policy" className="hover:text-white">Informativa sulla Privacy</Link></li>

@@ -36,14 +36,6 @@ const countryName = (code?: string) => {
   }
 };
 
-const KIND_LABEL: Record<P7mResult['kind'], string> = {
-  pdf: 'PDF',
-  image: 'Immagine',
-  xml: 'XML',
-  text: 'Testo',
-  other: 'Documento',
-};
-
 type Check = { tone: 'ok' | 'warn' | 'bad'; title: string; text: string };
 
 function checkSigner(s: P7mSigner, signedAt?: Date): Check[] {
@@ -226,7 +218,7 @@ function TextEditor({ name, text, locked = false }: { name: string; text: string
   );
 }
 
-export default function P7mViewer() {
+export default function P7mViewer({ mode = 'open' }: { mode?: 'open' | 'pdf' }) {
   const [file, setFile] = useState<File | null>(null);
   const [result, setResult] = useState<P7mResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -301,20 +293,70 @@ export default function P7mViewer() {
     onRestore: (f) => void open([f]),
   });
 
-  const convert = async () => {
+  // What the user asked for before being sent off to pay, so it happens as soon as they are back.
+  const ACTION_KEY = 'apridoc:after-pay';
+  type Action = 'download' | 'convert' | 'pdf';
+  const remember = (action: Action) => {
+    try {
+      sessionStorage.setItem(ACTION_KEY, JSON.stringify({ action, opts: convertOpts, at: Date.now() }));
+    } catch {
+      /* storage unavailable */
+    }
+  };
+
+  const runDownload = () => result && downloadBlob(result.bytes as BlobPart, result.fileName, result.mime);
+
+  const runConvert = async (opts: Omit<ConvertOptions, 'loadFont'>) => {
     if (!result) return;
-    if (!unlocked) return openPay();
     setConverting(true);
     setError(null);
     try {
-      const pdf = await convertToPdf(result, convertOpts);
-      downloadBlob(pdf, `${baseName(result.fileName)}${convertOpts.pdfa ? '-pdfa' : ''}.pdf`, 'application/pdf');
+      const pdf = await convertToPdf(result, opts);
+      downloadBlob(pdf, `${baseName(result.fileName)}${opts.pdfa ? '-pdfa' : ''}.pdf`, 'application/pdf');
     } catch {
       setError('Impossibile convertire questo documento in PDF.');
     } finally {
       setConverting(false);
     }
   };
+
+  /** The PDF page: a PDF inside the envelope is handed over as is, anything convertible becomes a PDF. */
+  const runPdf = async (opts: Omit<ConvertOptions, 'loadFont'>) => {
+    if (!result) return;
+    if (result.kind === 'pdf') {
+      downloadBlob(result.bytes as BlobPart, `${baseName(result.fileName)}.pdf`, 'application/pdf');
+    } else if (canConvertToPdf(result)) {
+      await runConvert(opts);
+    } else {
+      runDownload();
+    }
+  };
+
+  const ask = (action: Action, run: () => void) => () => {
+    if (unlocked) return run();
+    remember(action);
+    openPay();
+  };
+  const download = ask('download', () => void runDownload());
+  const convert = ask('convert', () => void runConvert(convertOpts));
+  const downloadPdf = ask('pdf', () => void runPdf(convertOpts));
+
+  // Back from paying with the document unlocked: do what was asked, no extra click.
+  useEffect(() => {
+    if (!unlocked || !result) return;
+    let saved: { action?: Action; opts?: Omit<ConvertOptions, 'loadFont'>; at?: number } | null = null;
+    try {
+      saved = JSON.parse(sessionStorage.getItem(ACTION_KEY) ?? 'null');
+      sessionStorage.removeItem(ACTION_KEY);
+    } catch {
+      return;
+    }
+    if (!saved?.at || Date.now() - saved.at > 30 * 60_000) return;
+    if (saved.action === 'download') void runDownload();
+    if (saved.action === 'convert') void runConvert(saved.opts ?? convertOpts);
+    if (saved.action === 'pdf') void runPdf(saved.opts ?? convertOpts);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [unlocked, result]);
 
   const reset = () => {
     setFile(null);
@@ -355,10 +397,10 @@ export default function P7mViewer() {
               <CheckCircle2 size={36} />
             </span>
             <div className="min-w-0 flex-1">
-              <p className="text-xs font-bold uppercase tracking-widest text-emerald-300">Pronto da scaricare</p>
-              <p className="mt-1 truncate text-2xl font-extrabold">{result.fileName}</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-emerald-300">{mode === 'pdf' ? 'Pronto da scaricare in PDF' : 'Pronto da scaricare'}</p>
+              <p className="mt-1 truncate text-2xl font-extrabold">{file.name}</p>
               <div className="mt-3 flex flex-wrap gap-2 text-xs font-bold">
-                <span className="rounded-full bg-white/15 px-3 py-1">{KIND_LABEL[result.kind]}</span>
+                <span className="rounded-full bg-white/15 px-3 py-1">P7M</span>
                 <span className="rounded-full bg-white/15 px-3 py-1">{formatSize(result.bytes.length)}</span>
                 {result.digestAlgorithm && (
                   <span className="rounded-full bg-white/15 px-3 py-1">{result.digestAlgorithm}</span>
@@ -371,12 +413,22 @@ export default function P7mViewer() {
             <div className="flex shrink-0 flex-col gap-3">
               <div className="flex flex-wrap gap-3">
               <button
-                className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-extrabold text-[#1f087a] hover:bg-[#f0edff]"
-                onClick={() =>
-                  unlocked ? downloadBlob(result.bytes as BlobPart, result.fileName, result.mime) : openPay()
-                }
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-extrabold text-[#1f087a] hover:bg-[#f0edff] disabled:opacity-60"
+                onClick={mode === 'pdf' ? downloadPdf : download}
+                disabled={converting}
               >
-                {unlocked ? <Download size={18} /> : <Crown size={18} className="text-amber-500" />} Scarica
+                {converting ? (
+                  <Loader2 size={18} className="animate-spin" />
+                ) : unlocked ? (
+                  <Download size={18} />
+                ) : (
+                  <Crown size={18} className="text-amber-500" />
+                )}{' '}
+                {mode === 'pdf'
+                  ? result.kind === 'pdf' || canConvertToPdf(result)
+                    ? 'Scarica PDF'
+                    : 'Scarica file'
+                  : 'Scarica'}
               </button>
               <button
                 onClick={reset}
@@ -385,7 +437,7 @@ export default function P7mViewer() {
                 <RotateCcw size={16} /> Nuovo file
               </button>
               </div>
-              {canConvertToPdf(result) && (
+              {mode === 'open' && canConvertToPdf(result) && (
                 <button
                   onClick={convert}
                   disabled={converting}
@@ -410,7 +462,7 @@ export default function P7mViewer() {
                     aria-expanded={showOptions}
                     className="flex w-full items-center justify-between rounded-xl bg-white/10 px-4 py-3 text-sm font-bold hover:bg-white/15"
                   >
-                    Altre opzioni
+                    {mode === 'pdf' ? 'Opzioni PDF' : 'Altre opzioni'}
                     <ChevronDown size={18} className={`transition-transform duration-200 ${showOptions ? 'rotate-180' : ''}`} />
                   </button>
                   <div
