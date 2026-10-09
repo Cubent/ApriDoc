@@ -155,27 +155,26 @@ function TextEditor({ name, text }: { name: string; text: string }) {
     }
   };
   return (
-    <div className="flex h-full min-h-[560px] flex-col bg-[#14112e] text-[#e7e4ff]">
-      <div className="flex items-center gap-3 border-b border-white/10 bg-[#0e0b24] px-4 py-2.5">
-        <span className="flex gap-1.5">
-          <i className="size-3 rounded-full bg-[#ff5f57]" />
-          <i className="size-3 rounded-full bg-[#febc2e]" />
-          <i className="size-3 rounded-full bg-[#28c840]" />
-        </span>
-        <span className="min-w-0 flex-1 truncate text-center text-xs font-semibold text-white/70">{name}</span>
-        <button onClick={copy} className="flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-bold text-white/80 hover:bg-white/10">
+    <div className="flex h-full min-h-[560px] flex-col bg-white text-[#1f2430]">
+      <div className="flex items-center gap-3 border-b border-[#e6e8ec] bg-[#f7f8fa] px-4 py-2.5">
+        <FileText size={16} className="shrink-0 text-[#8a91a0]" />
+        <span className="min-w-0 flex-1 truncate text-sm font-semibold text-[#3d4452]">{name}</span>
+        <button
+          onClick={copy}
+          className="flex items-center gap-1.5 rounded-md border border-[#e6e8ec] bg-white px-2.5 py-1 text-xs font-bold text-[#3d4452] hover:bg-[#f2f3f6]"
+        >
           {copied ? <Check size={14} /> : <Copy size={14} />} {copied ? 'Copiato' : 'Copia'}
         </button>
       </div>
-      <div className="max-h-[70vh] flex-1 overflow-auto py-4 font-mono text-[13px] leading-6">
+      <div className="max-h-[70vh] flex-1 overflow-auto py-3 font-mono text-[13px] leading-6">
         {lines.map((line, i) => (
-          <div key={i} className="flex hover:bg-white/5">
-            <span className="w-14 shrink-0 select-none pr-4 text-right text-white/30">{i + 1}</span>
-            <span className="min-w-0 flex-1 whitespace-pre-wrap break-words pr-6">{line || ' '}</span>
+          <div key={i} className="flex hover:bg-[#f7f8fa]">
+            <span className="w-14 shrink-0 select-none border-r border-[#eef0f3] pr-3 text-right text-[#a3a9b5]">{i + 1}</span>
+            <span className="min-w-0 flex-1 whitespace-pre-wrap break-words px-4">{line || ' '}</span>
           </div>
         ))}
       </div>
-      <div className="flex justify-between border-t border-white/10 bg-[#0e0b24] px-4 py-1.5 text-[11px] font-semibold text-white/50">
+      <div className="flex justify-between border-t border-[#e6e8ec] bg-[#f7f8fa] px-4 py-1.5 text-[11px] font-semibold text-[#8a91a0]">
         <span>{lines.length} righe</span>
         <span>UTF-8 · sola lettura</span>
       </div>
