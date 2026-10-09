@@ -19,7 +19,7 @@ export function ToolGrid() {
             className={`rounded-full border px-5 py-2.5 text-[15px] font-semibold transition ${
               cat === c.id
                 ? 'border-[#1f2430] bg-[#1f2430] text-white'
-                : 'border-[#e6e8ec] bg-white hover:bg-[#fafafa]'
+                : 'border-[#e6e8ec] bg-[#f4f5f7] hover:bg-[#fafafa]'
             }`}
           >
             {c.label}
@@ -49,7 +49,7 @@ export function ToolGrid() {
             </>
           );
           const cls =
-            'block min-h-[230px] rounded-2xl border border-[#e6e8ec] bg-white p-6 transition';
+            'block min-h-[230px] rounded-2xl border border-[#e6e8ec] bg-[#f4f5f7] p-6 transition';
           return t.ready ? (
             <Link
               key={t.slug}

@@ -1,7 +1,10 @@
+import { ClerkProvider } from '@clerk/nextjs';
+import { itIT } from '@clerk/localizations';
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
+import { BILLING_ENABLED } from '@/lib/billing';
 import { SITE } from '@/lib/tools';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
@@ -42,7 +45,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: '#1f087a' };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return (
+  const page = (
     <html lang="it" className={font.variable}>
       <body>
         <Header />
@@ -51,4 +54,5 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </body>
     </html>
   );
+  return BILLING_ENABLED ? <ClerkProvider localization={itIT} appearance={{ elements: { modalBackdrop: { alignItems: 'center' } } }}>{page}</ClerkProvider> : page;
 }

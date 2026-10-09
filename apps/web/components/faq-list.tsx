@@ -14,7 +14,7 @@ export function FaqList({ items }: { items: Faq[] }) {
         return (
           <div
             key={f.q}
-            className={`overflow-hidden rounded-2xl border bg-white transition ${
+            className={`overflow-hidden rounded-2xl border bg-[#f4f5f7] transition ${
               isOpen ? 'border-[#1f087a]/40' : 'border-[#e6e8ec]'
             }`}
           >

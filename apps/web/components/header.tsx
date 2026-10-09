@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { HeaderAccount } from './header-account';
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
@@ -34,9 +35,9 @@ export function Header() {
             Tutti gli strumenti
           </Link>
         </nav>
-        <Link href="/#strumenti" className="btn-primary !rounded-lg !px-5 !py-2 text-sm">
-          Inizia ora
-        </Link>
+        <div className="flex items-center gap-4">
+          <HeaderAccount />
+        </div>
       </div>
     </header>
   );

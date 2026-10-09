@@ -69,7 +69,7 @@ export default function Home() {
         <div className="pointer-events-none absolute -left-40 -top-40 size-[520px] rounded-full bg-[#1f087a]/10 blur-3xl" />
         <div className="pointer-events-none absolute -right-40 top-10 size-[520px] rounded-full bg-[#e5574a]/10 blur-3xl" />
         <div className="relative mx-auto max-w-[1100px] px-5 pb-20 pt-20 text-center md:pt-28">
-          <p className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-[#d9d3f2] bg-white px-4 py-1.5 text-sm font-semibold text-[#1f087a]">
+          <p className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-[#d9d3f2] bg-[#f4f5f7] px-4 py-1.5 text-sm font-semibold text-[#1f087a]">
             <Lock size={15} /> I tuoi file restano nel browser
           </p>
           <h1 className="text-5xl font-extrabold leading-[1.05] tracking-tight md:text-7xl">
@@ -83,7 +83,7 @@ export default function Home() {
 
           <Link
             href="/strumenti/apri-file-p7m"
-            className="mx-auto mt-12 block max-w-3xl rounded-3xl border-2 border-[#1f087a] bg-white p-8 text-left transition hover:-translate-y-1 md:p-10"
+            className="mx-auto mt-12 block max-w-3xl rounded-3xl border-2 border-[#1f087a] bg-[#f4f5f7] p-8 text-left transition hover:-translate-y-1 md:p-10"
           >
             <div className="flex flex-col gap-6 md:flex-row md:items-center">
               <span className="inline-flex size-20 shrink-0 items-center justify-center rounded-3xl bg-[#1f087a]/10 text-[#1f087a]">

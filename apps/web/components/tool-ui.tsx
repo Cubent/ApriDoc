@@ -33,7 +33,7 @@ export function Dropzone({
         if (files.length) onFiles(multiple ? files : files.slice(0, 1));
       }}
       className={`flex cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed min-h-[320px] px-6 py-20 text-center transition ${
-        over ? 'border-[#1f087a] bg-[#1f087a]/5' : 'border-[#c9ced6] bg-white hover:border-[#1f087a]'
+        over ? 'border-[#1f087a] bg-[#1f087a]/5' : 'border-[#c9ced6] bg-[#f4f5f7] hover:border-[#1f087a]'
       }`}
     >
       <UploadCloud size={56} className="text-[#1f087a]" />
@@ -66,7 +66,7 @@ export function FileRow({
   children?: ReactNode;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-[#e6e8ec] bg-white px-4 py-3">
+    <div className="flex items-center gap-3 rounded-xl border border-[#e6e8ec] bg-[#f4f5f7] px-4 py-3">
       <div className="min-w-0 flex-1">
         <p className="truncate font-semibold">{file.name}</p>
         <p className="text-xs text-[#5b6270]">{formatSize(file.size)}</p>
@@ -82,7 +82,7 @@ export function FileRow({
 }
 
 export function Panel({ children }: { children: ReactNode }) {
-  return <div className="space-y-5 rounded-3xl border border-[#e6e8ec] bg-white p-6 md:p-8">{children}</div>;
+  return <div className="space-y-5 rounded-3xl border border-[#e6e8ec] bg-[#f4f5f7] p-6 md:p-8">{children}</div>;
 }
 
 export function Label({ text, children }: { text: string; children: ReactNode }) {

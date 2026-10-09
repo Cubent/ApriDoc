@@ -15,7 +15,7 @@ function Illustration() {
       <div className="absolute bottom-0 right-4 h-[78%] w-[78%] rounded-[2rem] bg-[#1f087a]" />
 
       {/* document */}
-      <div className="absolute left-[14%] top-6 w-[66%] rounded-2xl border border-[#e6e8ec] bg-white p-5">
+      <div className="absolute left-[14%] top-6 w-[66%] rounded-2xl border border-[#e6e8ec] bg-[#f4f5f7] p-5">
         <div className="h-1.5 w-12 rounded bg-[#1f087a]" />
         <p className="mt-3 text-sm font-extrabold leading-tight">
           Contratto di servizio
@@ -40,7 +40,7 @@ function Illustration() {
       </div>
 
       {/* P7M badge */}
-      <div className="absolute -left-1 bottom-24 flex items-center gap-2 rounded-2xl border border-[#e6e8ec] bg-white px-4 py-3">
+      <div className="absolute -left-1 bottom-24 flex items-center gap-2 rounded-2xl border border-[#e6e8ec] bg-[#f4f5f7] px-4 py-3">
         <span className="flex size-9 items-center justify-center rounded-xl bg-[#1f087a]/10 text-[#1f087a]">
           <FileText size={18} />
         </span>

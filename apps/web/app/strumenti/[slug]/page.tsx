@@ -69,7 +69,7 @@ export default async function ToolPage({ params }: Props) {
   return (
     <div className="mx-auto max-w-[900px] px-5 py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <header className="mb-8 text-center">
+      <header className="tool-title mb-8 text-center">
         <h1 className="text-3xl font-extrabold leading-tight md:text-5xl">{tool.name}</h1>
       </header>
 
@@ -79,7 +79,7 @@ export default async function ToolPage({ params }: Props) {
       {content.cards && (
         <section className="mt-10 grid gap-4 md:grid-cols-3">
           {content.cards.map((c) => (
-            <div key={c.title} className="rounded-2xl border border-[#e6e8ec] bg-white p-6">
+            <div key={c.title} className="rounded-2xl border border-[#e6e8ec] bg-[#f4f5f7] p-6">
               <h2 className="text-lg font-extrabold text-[#1f087a]">{c.title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-[#5b6270]">{c.text}</p>
             </div>
@@ -106,7 +106,7 @@ export default async function ToolPage({ params }: Props) {
             <Link
               key={t.slug}
               href={`/strumenti/${t.slug}`}
-              className="flex items-center gap-3 rounded-xl border border-[#e6e8ec] bg-white p-4 font-semibold"
+              className="flex items-center gap-3 rounded-xl border border-[#e6e8ec] bg-[#f4f5f7] p-4 font-semibold"
             >
               <ToolIcon name={t.icon} color={t.color} size={40} />
               {t.short}
