@@ -2,7 +2,6 @@
 
 import { Check, Crown, Download } from 'lucide-react';
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react';
-import { PRICES, singlePrice } from '@/lib/billing';
 import { downloadBlob, formatSize } from '@/lib/files';
 import { usePaywall } from './use-paywall';
 
@@ -81,12 +80,6 @@ export function PdfShell({ children }: { children: ReactNode }) {
           >
             {unlocked ? <Download size={18} /> : <Crown size={18} />} Scarica
           </button>
-          {!unlocked && (
-            <p className="w-full text-xs text-[#5b6270]">
-              Download premium: {singlePrice('pdf').label} per questo file, oppure {PRICES.yearly.label}/anno per
-              download illimitati.
-            </p>
-          )}
         </div>
       )}
 
