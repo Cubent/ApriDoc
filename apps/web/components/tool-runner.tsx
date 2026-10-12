@@ -17,14 +17,14 @@ import {
 // Rendered on the server too, so the upload box is visible immediately.
 const RUNNERS: Record<string, ComponentType> = {
   'apri-file-p7m': P7mViewer,
-  'unisci-pdf': MergePdf,
-  'dividere-pdf': SplitPdf,
-  'ruotare-pdf': RotatePdf,
-  'organizza-pdf': OrganizePdf,
-  'jpg-in-pdf': ImagesToPdf,
-  'pdf-in-jpg': PdfToJpg,
-  'numero-di-pagine': PageNumbers,
-  'filigrana-pdf': Watermark,
+  'unisci-pdf-online': MergePdf,
+  'dividi-pdf-online': SplitPdf,
+  'ruota-pdf-online': RotatePdf,
+  'organizza-pdf-online': OrganizePdf,
+  'convertire-jpg-in-pdf': ImagesToPdf,
+  'convertire-pdf-in-jpg': PdfToJpg,
+  'numerare-pagine-pdf': PageNumbers,
+  'aggiungere-filigrana-pdf': Watermark,
 };
 
 export function ToolRunner({ slug }: { slug: string }) {

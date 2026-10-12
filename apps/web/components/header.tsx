@@ -16,9 +16,9 @@ export function Logo({ light = false }: { light?: boolean }) {
 
 const NAV = [
   ['Apri P7M', '/strumenti/apri-file-p7m'],
-  ['Unisci PDF', '/strumenti/unisci-pdf'],
-  ['Dividere PDF', '/strumenti/dividere-pdf'],
-  ['JPG in PDF', '/strumenti/jpg-in-pdf'],
+  ['Unisci PDF', '/strumenti/unisci-pdf-online'],
+  ['Dividere PDF', '/strumenti/dividi-pdf-online'],
+  ['JPG in PDF', '/strumenti/convertire-jpg-in-pdf'],
 ] as const;
 
 export function Header() {

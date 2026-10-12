@@ -18,10 +18,10 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             <li><Link href="/strumenti/apri-file-p7m" className="hover:text-white">Aprire file P7M</Link></li>
             <li><Link href="/strumenti/convertire-p7m-in-pdf" className="hover:text-white">Da P7M a PDF</Link></li>
-            <li><Link href="/strumenti/unisci-pdf" className="hover:text-white">Unisci PDF</Link></li>
-            <li><Link href="/strumenti/dividere-pdf" className="hover:text-white">Dividere PDF</Link></li>
-            <li><Link href="/strumenti/jpg-in-pdf" className="hover:text-white">JPG in PDF</Link></li>
-            <li><Link href="/strumenti/pdf-in-jpg" className="hover:text-white">PDF in JPG</Link></li>
+            <li><Link href="/strumenti/unisci-pdf-online" className="hover:text-white">Unisci PDF</Link></li>
+            <li><Link href="/strumenti/dividi-pdf-online" className="hover:text-white">Dividere PDF</Link></li>
+            <li><Link href="/strumenti/convertire-jpg-in-pdf" className="hover:text-white">JPG in PDF</Link></li>
+            <li><Link href="/strumenti/convertire-pdf-in-jpg" className="hover:text-white">PDF in JPG</Link></li>
           </ul>
         </div>
         <div>
