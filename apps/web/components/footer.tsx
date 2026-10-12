@@ -22,6 +22,10 @@ export function Footer() {
             <li><Link href="/strumenti/dividi-pdf-online" className="hover:text-white">Dividere PDF</Link></li>
             <li><Link href="/strumenti/convertire-jpg-in-pdf" className="hover:text-white">JPG in PDF</Link></li>
             <li><Link href="/strumenti/convertire-pdf-in-jpg" className="hover:text-white">PDF in JPG</Link></li>
+            <li><Link href="/strumenti/ruota-pdf-online" className="hover:text-white">Ruotare PDF</Link></li>
+            <li><Link href="/strumenti/organizza-pdf-online" className="hover:text-white">Organizza PDF</Link></li>
+            <li><Link href="/strumenti/numerare-pagine-pdf" className="hover:text-white">Numerare pagine PDF</Link></li>
+            <li><Link href="/strumenti/aggiungere-filigrana-pdf" className="hover:text-white">Filigrana PDF</Link></li>
           </ul>
         </div>
         <div>

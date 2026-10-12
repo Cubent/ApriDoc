@@ -65,7 +65,7 @@ export default async function ToolPage({ params }: Props) {
     })),
   };
 
-  const related = TOOLS.filter((t) => t.ready && t.slug !== tool.slug).slice(0, 6);
+  const related = TOOLS.filter((t) => t.ready && t.slug !== tool.slug).slice(0, 8);
 
   return (
     <div className="mx-auto max-w-[900px] px-5 py-12">
