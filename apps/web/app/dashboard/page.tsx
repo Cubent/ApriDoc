@@ -150,8 +150,8 @@ export default async function DashboardPage() {
         <p className="text-xs font-bold uppercase tracking-wider text-[#8a91a0]">Strumenti</p>
         <div className="mt-3 flex flex-wrap gap-3">
           <Link href="/strumenti/apri-file-p7m" className="btn-ghost">Apri file P7M</Link>
-          <Link href="/strumenti/unisci-pdf" className="btn-ghost">Unisci PDF</Link>
-          <Link href="/strumenti/dividere-pdf" className="btn-ghost">Dividere PDF</Link>
+          <Link href="/strumenti/unisci-pdf-online" className="btn-ghost">Unisci PDF</Link>
+          <Link href="/strumenti/dividi-pdf-online" className="btn-ghost">Dividere PDF</Link>
           <Link href="/#strumenti" className="btn-ghost">Tutti gli strumenti</Link>
         </div>
       </section>

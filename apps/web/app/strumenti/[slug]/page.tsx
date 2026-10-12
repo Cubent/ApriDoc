@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FaqList } from '@/components/faq-list';
 import { ToolIcon } from '@/components/tool-icon';
+import { ToolInfoSection } from '@/components/tool-info';
 import { ToolRunner } from '@/components/tool-runner';
 import { getContent } from '@/lib/tool-content';
 import { AGGREGATE_RATING, SITE, TOOLS, getTool } from '@/lib/tools';
@@ -42,7 +43,7 @@ export default async function ToolPage({ params }: Props) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: tool.seoTitle.replace(/ \| ApriDoc.com$/, ''),
+    name: tool.seoTitle.replace(/ \| ApriDoc(\.com)?$/, ''),
     description: tool.seoDescription,
     url: `${SITE.url}/strumenti/${tool.slug}`,
     applicationCategory: 'UtilitiesApplication',
@@ -92,11 +93,15 @@ export default async function ToolPage({ params }: Props) {
         </section>
       )}
 
-      <section className="tool-extra mt-10 space-y-4 text-lg leading-relaxed text-[#3d4452]">
-        {content.intro.map((p) => (
-          <p key={p}>{p}</p>
-        ))}
-      </section>
+      {content.info ? (
+        <ToolInfoSection info={content.info} />
+      ) : (
+        <section className="tool-extra mt-10 space-y-4 text-lg leading-relaxed text-[#3d4452]">
+          {content.intro.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+        </section>
+      )}
 
       <section className="tool-extra mt-14">
         <h2 className="mb-2 text-center text-3xl font-extrabold">Domande frequenti</h2>
