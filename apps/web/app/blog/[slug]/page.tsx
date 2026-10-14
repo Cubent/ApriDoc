@@ -8,6 +8,9 @@ import { formatDate, getPost, POSTS } from '@/lib/blog';
 import type { Faq } from '@/lib/tool-content';
 import { SITE } from '@/lib/tools';
 import * as fileP7m from '@/content/posts/file-p7m-cosa-sono';
+import * as comeAprire from '@/content/posts/come-aprire-file-p7m';
+import * as p7mViewer from '@/content/posts/p7m-viewer-online';
+import * as p7mMac from '@/content/posts/aprire-file-p7m-su-mac';
 
 type PostModule = {
   Content: ComponentType;
@@ -18,6 +21,9 @@ type PostModule = {
 
 const MODULES: Record<string, PostModule> = {
   'file-p7m-cosa-sono': fileP7m,
+  'come-aprire-file-p7m': comeAprire,
+  'p7m-viewer-online': p7mViewer,
+  'aprire-file-p7m-su-mac': p7mMac,
 };
 
 type Props = { params: Promise<{ slug: string }> };
