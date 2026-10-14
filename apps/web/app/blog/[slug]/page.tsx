@@ -142,6 +142,24 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
           </header>
 
+          <Link
+            href="/strumenti/apri-file-p7m"
+            className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-[#1f087a] p-5 text-white transition hover:bg-[#2a0d9c]"
+          >
+            <span className="flex items-center gap-3">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-white/15">
+                <FileCheck2 size={22} />
+              </span>
+              <span>
+                <span className="block font-extrabold leading-snug">Hai un file .p7m da aprire?</span>
+                <span className="block text-sm text-white/75">Leggi il documento e il firmatario in pochi secondi, nel browser.</span>
+              </span>
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 font-extrabold text-[#1f087a]">
+              Apri file P7M <ArrowRight size={18} />
+            </span>
+          </Link>
+
           <section aria-label="In breve" className="mt-8 rounded-2xl border border-[#e6e8ec] bg-[#f4f5f7] p-6">
             <h2 className="text-sm font-extrabold uppercase tracking-widest text-[#8a91a0]">In breve</h2>
             <ul className="mt-3 space-y-2 text-[15px] leading-7 text-[#2e3441]">
