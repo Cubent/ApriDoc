@@ -11,6 +11,13 @@ import * as fileP7m from '@/content/posts/file-p7m-cosa-sono';
 import * as comeAprire from '@/content/posts/come-aprire-file-p7m';
 import * as p7mViewer from '@/content/posts/p7m-viewer-online';
 import * as p7mMac from '@/content/posts/aprire-file-p7m-su-mac';
+import * as comeConvertire from '@/content/posts/come-convertire-p7m-in-pdf';
+import * as fatturaP7m from '@/content/posts/fattura-elettronica-xml-p7m';
+import * as fileP7mPec from '@/content/posts/file-p7m-pec';
+import * as p7mWindows from '@/content/posts/aprire-file-p7m-su-windows';
+import * as p7mMobile from '@/content/posts/aprire-file-p7m-da-iphone-android';
+import * as differenzaFormati from '@/content/posts/differenza-p7m-p7s-pades';
+import * as p7mNonSiApre from '@/content/posts/p7m-non-si-apre';
 
 type PostModule = {
   Content: ComponentType;
@@ -24,6 +31,13 @@ const MODULES: Record<string, PostModule> = {
   'come-aprire-file-p7m': comeAprire,
   'p7m-viewer-online': p7mViewer,
   'aprire-file-p7m-su-mac': p7mMac,
+  'come-convertire-p7m-in-pdf': comeConvertire,
+  'fattura-elettronica-xml-p7m': fatturaP7m,
+  'file-p7m-pec': fileP7mPec,
+  'aprire-file-p7m-su-windows': p7mWindows,
+  'aprire-file-p7m-da-iphone-android': p7mMobile,
+  'differenza-p7m-p7s-pades': differenzaFormati,
+  'p7m-non-si-apre': p7mNonSiApre,
 };
 
 type Props = { params: Promise<{ slug: string }> };
