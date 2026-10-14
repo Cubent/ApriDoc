@@ -23,6 +23,116 @@ export const POSTS: PostMeta[] = [
     readingMinutes: 9,
     keywords: ['file p7m', 'cos’è un file p7m', 'p7m cosa sono', 'firma digitale cades', 'aprire file p7m', 'differenza p7m p7s'],
   },
+  {
+    slug: 'come-aprire-file-p7m',
+    title: 'Come aprire un file P7M: guida passo passo',
+    description:
+      'Come aprire un file .p7m in 3 passaggi, senza installare programmi: estrai il documento dalla busta di firma, scaricalo e scopri cosa fare se non si apre.',
+    category: 'Guide P7M',
+    published: '2026-10-14',
+    updated: '2026-10-14',
+    readingMinutes: 6,
+    keywords: ['aprire file p7m', 'come aprire file p7m', 'file p7m come aprire', 'aprire p7m online', 'estrarre pdf da p7m', 'p7m non si apre'],
+  },
+  {
+    slug: 'p7m-viewer-online',
+    title: 'P7M viewer online: come leggere un file firmato senza software',
+    description:
+      'Cos’è un P7M viewer, cosa mostra, come scegliere uno strumento affidabile e perché conviene elaborare il file nel browser. Online, senza installare nulla.',
+    category: 'Guide P7M',
+    published: '2026-10-14',
+    updated: '2026-10-14',
+    readingMinutes: 5,
+    keywords: ['p7m viewer', 'p7m viewer online', 'leggere file p7m', 'visualizzare p7m', 'aprire p7m senza software', 'lettore p7m'],
+  },
+  {
+    slug: 'aprire-file-p7m-su-mac',
+    title: 'Come aprire un file P7M su Mac',
+    description:
+      'Tre modi per aprire un file .p7m su macOS: dal browser, dal Terminale con openssl o con un software di firma. Passaggi chiari e problemi frequenti.',
+    category: 'Guide P7M',
+    published: '2026-10-14',
+    updated: '2026-10-14',
+    readingMinutes: 6,
+    keywords: ['p7m mac', 'aprire p7m su mac', 'aprire file p7m mac', 'p7m macos', 'estrarre p7m mac', 'leggere p7m su mac'],
+  },
+  {
+    slug: 'come-convertire-p7m-in-pdf',
+    title: 'Come convertire un P7M in PDF',
+    description:
+      'Come convertire un file P7M in PDF: quando basta estrarre il documento, quando serve convertirlo, cosa cambia con PDF/A e perché conservare il P7M originale.',
+    category: 'Guide P7M',
+    published: '2026-10-14',
+    updated: '2026-10-14',
+    readingMinutes: 6,
+    keywords: ['convertire p7m in pdf', 'da p7m a pdf', 'p7m in pdf', 'trasformare p7m in pdf', 'p7m in pdf/a', 'estrarre pdf da p7m'],
+  },
+  {
+    slug: 'fattura-elettronica-xml-p7m',
+    title: 'Fattura elettronica XML.P7M: come aprirla e leggerla',
+    description:
+      'Come aprire e leggere una fattura elettronica XML.P7M: cos’è, perché è firmata, come estrarre l’XML, se si può avere in PDF e cosa conservare.',
+    category: 'Fatture elettroniche',
+    published: '2026-10-14',
+    updated: '2026-10-14',
+    readingMinutes: 7,
+    keywords: ['fattura p7m', 'fattura elettronica p7m', 'xml.p7m', 'aprire fattura xml p7m', 'leggere fattura elettronica p7m', 'fattura xml p7m come aprirla'],
+  },
+  {
+    slug: 'file-p7m-pec',
+    title: 'File P7M ricevuto via PEC: come aprirlo',
+    description:
+      'Hai ricevuto un allegato .p7m via PEC? Ecco perché arriva così, come aprirlo in pochi secondi e quali altri file della PEC puoi ignorare.',
+    category: 'Guide P7M',
+    published: '2026-10-14',
+    updated: '2026-10-14',
+    readingMinutes: 6,
+    keywords: ['p7m pec', 'allegato p7m pec', 'aprire p7m pec', 'file p7m posta certificata', 'p7m ricevuto via pec', 'pec p7m come aprire'],
+  },
+  {
+    slug: 'aprire-file-p7m-su-windows',
+    title: 'Come aprire un file P7M su Windows (senza Dike)',
+    description:
+      'Tre modi per aprire un file .p7m su Windows 10 e 11: dal browser, con un software di firma o con OpenSSL. Passaggi chiari e problemi frequenti.',
+    category: 'Guide P7M',
+    published: '2026-10-14',
+    updated: '2026-10-14',
+    readingMinutes: 6,
+    keywords: ['p7m windows', 'aprire p7m su windows', 'aprire file p7m windows 10', 'p7m senza dike', 'estrarre p7m windows', 'leggere p7m su pc'],
+  },
+  {
+    slug: 'aprire-file-p7m-da-iphone-android',
+    title: 'Come aprire un P7M da iPhone e Android',
+    description:
+      'Come aprire un file P7M dal telefono, da iPhone e da Android, senza app: salva l’allegato, aprilo dal browser e leggi il documento in pochi secondi.',
+    category: 'Guide P7M',
+    published: '2026-10-14',
+    updated: '2026-10-14',
+    readingMinutes: 5,
+    keywords: ['p7m iphone', 'p7m android', 'aprire p7m da cellulare', 'aprire p7m da telefono', 'p7m smartphone', 'leggere p7m da iphone'],
+  },
+  {
+    slug: 'differenza-p7m-p7s-pades',
+    title: 'Differenza tra P7M, P7S e PDF firmato (PAdES)',
+    description:
+      'Qual è la differenza tra P7M, P7S e PAdES? Dove si trova la firma, come si apre ciascun formato e come capire quale hai ricevuto.',
+    category: 'Firma digitale',
+    published: '2026-10-14',
+    updated: '2026-10-14',
+    readingMinutes: 6,
+    keywords: ['differenza p7m p7s', 'p7m p7s pades', 'differenza cades pades', 'p7m o pades', 'firma staccata p7s', 'pdf firmato pades'],
+  },
+  {
+    slug: 'p7m-non-si-apre',
+    title: 'Il P7M non si apre: 7 cause e soluzioni',
+    description:
+      'Il file .p7m non si apre? Ecco le 7 cause più comuni, dal programma sbagliato alla firma staccata o annidata, con la soluzione per ciascuna.',
+    category: 'Guide P7M',
+    published: '2026-10-14',
+    updated: '2026-10-14',
+    readingMinutes: 5,
+    keywords: ['p7m non si apre', 'file p7m non si apre', 'p7m errore', 'p7m danneggiato', 'impossibile aprire p7m', 'p7m non funziona'],
+  },
 ];
 
 export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);

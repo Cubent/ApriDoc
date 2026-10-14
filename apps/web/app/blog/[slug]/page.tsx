@@ -8,6 +8,16 @@ import { formatDate, getPost, POSTS } from '@/lib/blog';
 import type { Faq } from '@/lib/tool-content';
 import { SITE } from '@/lib/tools';
 import * as fileP7m from '@/content/posts/file-p7m-cosa-sono';
+import * as comeAprire from '@/content/posts/come-aprire-file-p7m';
+import * as p7mViewer from '@/content/posts/p7m-viewer-online';
+import * as p7mMac from '@/content/posts/aprire-file-p7m-su-mac';
+import * as comeConvertire from '@/content/posts/come-convertire-p7m-in-pdf';
+import * as fatturaP7m from '@/content/posts/fattura-elettronica-xml-p7m';
+import * as fileP7mPec from '@/content/posts/file-p7m-pec';
+import * as p7mWindows from '@/content/posts/aprire-file-p7m-su-windows';
+import * as p7mMobile from '@/content/posts/aprire-file-p7m-da-iphone-android';
+import * as differenzaFormati from '@/content/posts/differenza-p7m-p7s-pades';
+import * as p7mNonSiApre from '@/content/posts/p7m-non-si-apre';
 
 type PostModule = {
   Content: ComponentType;
@@ -18,6 +28,16 @@ type PostModule = {
 
 const MODULES: Record<string, PostModule> = {
   'file-p7m-cosa-sono': fileP7m,
+  'come-aprire-file-p7m': comeAprire,
+  'p7m-viewer-online': p7mViewer,
+  'aprire-file-p7m-su-mac': p7mMac,
+  'come-convertire-p7m-in-pdf': comeConvertire,
+  'fattura-elettronica-xml-p7m': fatturaP7m,
+  'file-p7m-pec': fileP7mPec,
+  'aprire-file-p7m-su-windows': p7mWindows,
+  'aprire-file-p7m-da-iphone-android': p7mMobile,
+  'differenza-p7m-p7s-pades': differenzaFormati,
+  'p7m-non-si-apre': p7mNonSiApre,
 };
 
 type Props = { params: Promise<{ slug: string }> };
@@ -141,6 +161,24 @@ export default async function BlogPostPage({ params }: Props) {
               <span className="inline-flex items-center gap-1"><Clock size={14} /> {post.readingMinutes} min di lettura</span>
             </div>
           </header>
+
+          <Link
+            href="/strumenti/apri-file-p7m"
+            className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-[#1f087a] p-5 text-white transition hover:bg-[#2a0d9c]"
+          >
+            <span className="flex items-center gap-3">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-white/15">
+                <FileCheck2 size={22} />
+              </span>
+              <span>
+                <span className="block font-extrabold leading-snug">Hai un file .p7m da aprire?</span>
+                <span className="block text-sm text-white/75">Leggi il documento e il firmatario in pochi secondi, nel browser.</span>
+              </span>
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 font-extrabold text-[#1f087a]">
+              Apri file P7M <ArrowRight size={18} />
+            </span>
+          </Link>
 
           <section aria-label="In breve" className="mt-8 rounded-2xl border border-[#e6e8ec] bg-[#f4f5f7] p-6">
             <h2 className="text-sm font-extrabold uppercase tracking-widest text-[#8a91a0]">In breve</h2>
