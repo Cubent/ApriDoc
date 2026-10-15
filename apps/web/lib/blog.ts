@@ -133,6 +133,61 @@ export const POSTS: PostMeta[] = [
     readingMinutes: 5,
     keywords: ['p7m non si apre', 'file p7m non si apre', 'p7m errore', 'p7m danneggiato', 'impossibile aprire p7m', 'p7m non funziona'],
   },
+  {
+    slug: 'file-p7m-p7m-doppia-firma',
+    title: 'File .p7m.p7m: cosa significa la doppia firma e come aprirlo',
+    description:
+      'Un file con due estensioni .p7m è firmato due volte: cosa significa, come aprirlo livello per livello e come leggere l’elenco dei firmatari.',
+    category: 'Firma digitale',
+    published: '2026-10-15',
+    updated: '2026-10-15',
+    readingMinutes: 5,
+    keywords: ['p7m.p7m', 'file p7m p7m', 'doppia firma p7m', 'firma multipla p7m', 'p7m annidato', 'aprire p7m doppia estensione'],
+  },
+  {
+    slug: 'firma-digitale-scaduta-p7m',
+    title: 'Firma digitale scaduta: il documento P7M è ancora valido?',
+    description:
+      'Il certificato di firma è scaduto: il documento firmato è ancora valido? Cosa conta, il ruolo della marca temporale e come controllare, in modo chiaro.',
+    category: 'Firma digitale',
+    published: '2026-10-15',
+    updated: '2026-10-15',
+    readingMinutes: 6,
+    keywords: ['firma digitale scaduta', 'certificato firma scaduto', 'p7m firma scaduta', 'marca temporale firma digitale', 'documento firmato certificato scaduto', 'validità firma digitale'],
+  },
+  {
+    slug: 'alternative-a-dike-aprire-p7m',
+    title: 'Alternative a DiKe: come aprire un P7M gratis, senza installare nulla',
+    description:
+      'Non vuoi installare DiKe? Ecco le alternative gratuite per aprire un file P7M: strumenti nel browser, servizi di verifica, software e app, con un confronto.',
+    category: 'Guide P7M',
+    published: '2026-10-15',
+    updated: '2026-10-15',
+    readingMinutes: 5,
+    keywords: ['alternative a dike', 'aprire p7m senza dike', 'dike alternativa', 'aprire p7m gratis', 'p7m senza installare programmi', 'programmi per aprire p7m'],
+  },
+  {
+    slug: 'verificare-firma-p7m',
+    title: 'Come verificare la firma di un file P7M (e perché aprirlo non basta)',
+    description:
+      'Aprire un P7M non significa verificarne la firma. Cosa controlla una verifica, come farla con strumenti qualificati e come leggere l’esito.',
+    category: 'Firma digitale',
+    published: '2026-10-15',
+    updated: '2026-10-15',
+    readingMinutes: 6,
+    keywords: ['verificare firma p7m', 'verifica firma digitale p7m', 'verificare firma digitale online', 'controllare firma p7m', 'p7m firma valida', 'verifica p7m'],
+  },
+  {
+    slug: 'estrarre-pdf-da-p7m',
+    title: 'Come estrarre un PDF da un file P7M',
+    description:
+      'Come estrarre il PDF da un file .p7m in 3 passaggi: il documento resta identico all’originale, ma senza firma. Cosa conservare e problemi frequenti.',
+    category: 'Guide P7M',
+    published: '2026-10-15',
+    updated: '2026-10-15',
+    readingMinutes: 5,
+    keywords: ['estrarre pdf da p7m', 'estrarre pdf da file p7m', 'p7m in pdf', 'scaricare pdf da p7m', 'pdf.p7m come aprire', 'recuperare pdf da p7m'],
+  },
 ];
 
 export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);
