@@ -18,7 +18,7 @@ import * as p7mWindows from '@/content/posts/aprire-file-p7m-su-windows';
 import * as p7mMobile from '@/content/posts/aprire-file-p7m-da-iphone-android';
 import * as differenzaFormati from '@/content/posts/differenza-p7m-p7s-pades';
 import * as p7mNonSiApre from '@/content/posts/p7m-non-si-apre';
-import * as p7mDoppia from '@/content/posts/p7m-doppia-firma';
+import * as p7mDoppia from '@/content/posts/doppia-firma-digitale-p7m';
 import * as firmaScaduta from '@/content/posts/firma-digitale-scaduta-p7m';
 import * as alternativeDike from '@/content/posts/alternative-a-dike-aprire-p7m';
 import * as verificareFirma from '@/content/posts/verificare-firma-p7m';
@@ -43,7 +43,7 @@ const MODULES: Record<string, PostModule> = {
   'aprire-file-p7m-da-iphone-android': p7mMobile,
   'differenza-p7m-p7s-pades': differenzaFormati,
   'p7m-non-si-apre': p7mNonSiApre,
-  'p7m-doppia-firma': p7mDoppia,
+  'doppia-firma-digitale-p7m': p7mDoppia,
   'firma-digitale-scaduta-p7m': firmaScaduta,
   'alternative-a-dike-aprire-p7m': alternativeDike,
   'verificare-firma-p7m': verificareFirma,

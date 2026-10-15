@@ -134,8 +134,8 @@ export const POSTS: PostMeta[] = [
     keywords: ['p7m non si apre', 'file p7m non si apre', 'p7m errore', 'p7m danneggiato', 'impossibile aprire p7m', 'p7m non funziona'],
   },
   {
-    slug: 'p7m-doppia-firma',
-    title: 'Doppia firma P7M (.p7m.p7m): cosa significa e come aprire il file',
+    slug: 'doppia-firma-digitale-p7m',
+    title: 'Doppia firma digitale: come aprire un file firmato due volte',
     description:
       'Un file con due estensioni .p7m è firmato due volte: cosa significa, come aprirlo livello per livello e come leggere l’elenco dei firmatari.',
     category: 'Firma digitale',

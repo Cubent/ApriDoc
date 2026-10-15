@@ -82,7 +82,7 @@ export function Content() {
         </li>
         <li>
           Se il nome ha <strong>due .p7m</strong> (<code>.pdf.p7m.p7m</code>) il documento è firmato due volte: leggi{' '}
-          <Link href="/blog/p7m-doppia-firma">come aprirlo</Link>.
+          <Link href="/blog/doppia-firma-digitale-p7m">come aprirlo</Link>.
         </li>
         <li>
           Se hai solo un <strong>.p7s</strong>, non c’è nulla da estrarre: il documento è in un altro file.
