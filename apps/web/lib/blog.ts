@@ -188,6 +188,72 @@ export const POSTS: PostMeta[] = [
     readingMinutes: 5,
     keywords: ['estrarre pdf da p7m', 'estrarre pdf da file p7m', 'p7m in pdf', 'scaricare pdf da p7m', 'pdf.p7m come aprire', 'recuperare pdf da p7m'],
   },
+  {
+    slug: 'aprire-file-p7m-su-linux',
+    title: 'Come aprire un file P7M su Linux',
+    description:
+      'Come aprire un file .p7m su Linux: dal browser o da terminale con OpenSSL, anche per molti file. Passaggi chiari, differenze tra i metodi e problemi frequenti.',
+    category: 'Guide P7M',
+    published: '2026-10-16',
+    updated: '2026-10-16',
+    readingMinutes: 5,
+    keywords: ['p7m linux', 'aprire p7m su linux', 'estrarre p7m linux', 'openssl p7m', 'aprire file p7m ubuntu', 'leggere p7m da terminale'],
+  },
+  {
+    slug: 'aprire-docx-xlsx-p7m',
+    title: 'Word ed Excel firmati: come aprire un file DOCX o XLSX in formato P7M',
+    description:
+      'Come aprire un Word o un Excel firmato in formato P7M: estrai il documento dalla busta, aprilo con Office e scopri cosa succede se lo modifichi.',
+    category: 'Guide P7M',
+    published: '2026-10-16',
+    updated: '2026-10-16',
+    readingMinutes: 5,
+    keywords: ['docx p7m', 'xlsx p7m', 'aprire word p7m', 'aprire excel p7m', 'file word firmato digitalmente', 'aprire documento word firmato p7m'],
+  },
+  {
+    slug: 'convertire-p7m-in-word',
+    title: 'Convertire P7M in Word: si può fare? Guida pratica',
+    description:
+      'Un P7M non si converte in Word: si estrae il documento. Cosa fare se dentro c’è un Word, un PDF o un XML, e come ottenere un file modificabile.',
+    category: 'Guide P7M',
+    published: '2026-10-16',
+    updated: '2026-10-16',
+    readingMinutes: 5,
+    keywords: ['p7m in word', 'convertire p7m in word', 'da p7m a word', 'p7m in docx', 'trasformare p7m in word', 'modificare file p7m'],
+  },
+  {
+    slug: 'perche-file-p7m-pesa-di-piu',
+    title: 'Perché un file P7M pesa più del documento originale',
+    description:
+      'Perché il file P7M è più grande del PDF originale: cosa aggiunge la busta di firma, l’effetto della codifica Base64 e come gestire il peso degli allegati.',
+    category: 'Guide P7M',
+    published: '2026-10-16',
+    updated: '2026-10-16',
+    readingMinutes: 4,
+    keywords: ['peso file p7m', 'file p7m più grande', 'p7m dimensione', 'perché p7m è più pesante', 'ridurre peso p7m', 'p7m base64'],
+  },
+  {
+    slug: 'aprire-p7m-online-e-sicuro',
+    title: 'Aprire un P7M online è sicuro? Cosa controllare prima di caricarlo',
+    description:
+      'Aprire un file P7M online è sicuro? Differenza tra elaborazione nel browser e su server, prova offline e checklist per proteggere documenti riservati.',
+    category: 'Firma digitale',
+    published: '2026-10-16',
+    updated: '2026-10-16',
+    readingMinutes: 5,
+    keywords: ['aprire p7m online sicuro', 'p7m privacy', 'p7m viewer sicuro', 'caricare file firmato online', 'aprire p7m senza caricare', 'p7m online privacy'],
+  },
+  {
+    slug: 'glossario-firma-digitale-p7m',
+    title: 'Glossario della firma digitale: P7M, CAdES, PAdES, hash e certificato',
+    description:
+      'Glossario con le definizioni dei termini della firma digitale: P7M, P7S, CAdES, PAdES, XAdES, hash, certificato, marca temporale, eIDAS e altro.',
+    category: 'Firma digitale',
+    published: '2026-10-16',
+    updated: '2026-10-16',
+    readingMinutes: 6,
+    keywords: ['glossario firma digitale', 'cos’è cades', 'cos’è pades', 'cos’è un hash', 'marca temporale cos’è', 'firma elettronica qualificata cos’è'],
+  },
 ];
 
 export const getPost = (slug: string) => POSTS.find((p) => p.slug === slug);

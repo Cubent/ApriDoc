@@ -23,6 +23,12 @@ import * as firmaScaduta from '@/content/posts/firma-digitale-scaduta-p7m';
 import * as alternativeDike from '@/content/posts/alternative-a-dike-aprire-p7m';
 import * as verificareFirma from '@/content/posts/verificare-firma-p7m';
 import * as estrarrePdf from '@/content/posts/estrarre-pdf-da-p7m';
+import * as p7mLinux from '@/content/posts/aprire-file-p7m-su-linux';
+import * as docxXlsx from '@/content/posts/aprire-docx-xlsx-p7m';
+import * as p7mWord from '@/content/posts/convertire-p7m-in-word';
+import * as pesoP7m from '@/content/posts/perche-file-p7m-pesa-di-piu';
+import * as p7mSicuro from '@/content/posts/aprire-p7m-online-e-sicuro';
+import * as glossario from '@/content/posts/glossario-firma-digitale-p7m';
 
 type PostModule = {
   Content: ComponentType;
@@ -48,6 +54,12 @@ const MODULES: Record<string, PostModule> = {
   'alternative-a-dike-aprire-p7m': alternativeDike,
   'verificare-firma-p7m': verificareFirma,
   'estrarre-pdf-da-p7m': estrarrePdf,
+  'aprire-file-p7m-su-linux': p7mLinux,
+  'aprire-docx-xlsx-p7m': docxXlsx,
+  'convertire-p7m-in-word': p7mWord,
+  'perche-file-p7m-pesa-di-piu': pesoP7m,
+  'aprire-p7m-online-e-sicuro': p7mSicuro,
+  'glossario-firma-digitale-p7m': glossario,
 };
 
 type Props = { params: Promise<{ slug: string }> };
