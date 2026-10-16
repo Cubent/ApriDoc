@@ -135,7 +135,7 @@ export const POSTS: PostMeta[] = [
   },
   {
     slug: 'doppia-firma-digitale-p7m',
-    title: 'Doppia firma digitale: come aprire un file firmato due volte',
+    title: 'Doppia firma P7M: come aprire un file firmato due volte',
     description:
       'Un file con due estensioni .p7m è firmato due volte: cosa significa, come aprirlo livello per livello e come leggere l’elenco dei firmatari.',
     category: 'Firma digitale',
