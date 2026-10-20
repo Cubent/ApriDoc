@@ -70,8 +70,9 @@ export function Content() {
         seleziona solo le pagine che servono e lascia le altre come sono.
       </p>
       <Callout>
-        <strong>Quale angolo scegliere?</strong> Pagina girata a destra: 270°. Girata a sinistra: 90°. Capovolta: 180°.
-        Se sbagli, ripeti l’operazione.
+        <strong>Non sai quale angolo scegliere?</strong> Per una pagina capovolta usa 180°. Per una pagina di lato prova
+        90°: se si gira dalla parte sbagliata, ripeti l’operazione con 270°. Il file originale non cambia, quindi puoi
+        riprovare.
       </Callout>
 
       <h2 id="scansioni">Scansioni storte o capovolte</h2>

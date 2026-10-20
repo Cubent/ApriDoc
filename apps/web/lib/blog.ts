@@ -1,3 +1,96 @@
+export type Cta = {
+  href: string;
+  /** Headline of the banner and of the closing box. */
+  title: string;
+  /** Short text for the banner and the sidebar card. */
+  text: string;
+  /** Longer text for the closing box. */
+  longText: string;
+  /** Label of the main button. */
+  button: string;
+  /** Title of the sidebar card. */
+  label: string;
+  /** Link text of the sidebar card. */
+  more: string;
+};
+
+export const CTA_P7M: Cta = {
+  href: '/strumenti/apri-file-p7m',
+  title: 'Hai un file .p7m da aprire?',
+  text: 'Leggi il documento e il firmatario in pochi secondi, nel browser.',
+  longText:
+    'Trascinalo nello strumento: vedi il documento e chi lo ha firmato, direttamente nel browser, senza caricare nulla.',
+  button: 'Apri file P7M',
+  label: 'Apri file P7M',
+  more: 'Apri il file',
+};
+
+export const CTA_PDF_JPG: Cta = {
+  href: '/strumenti/convertire-pdf-in-jpg',
+  title: 'Devi convertire un PDF in JPG?',
+  text: 'Ogni pagina diventa un’immagine, direttamente nel browser.',
+  longText:
+    'Carica il PDF, scegli la risoluzione e scarica le immagini: il file non viene caricato su nessun server.',
+  button: 'PDF in JPG',
+  label: 'PDF in JPG',
+  more: 'Converti ora',
+};
+
+export const CTA_JPG_PDF: Cta = {
+  href: '/strumenti/convertire-jpg-in-pdf',
+  title: 'Hai delle foto da trasformare in PDF?',
+  text: 'Unisci una o più immagini in un unico documento, nel browser.',
+  longText:
+    'Carica le immagini, scegli formato pagina e margini e scarica il PDF: nessun upload, nessuna registrazione.',
+  button: 'JPG in PDF',
+  label: 'JPG in PDF',
+  more: 'Crea il PDF',
+};
+
+export const CTA_MERGE: Cta = {
+  href: '/strumenti/unisci-pdf-online',
+  title: 'Devi unire più PDF?',
+  text: 'Combina i file in un unico documento, nell’ordine che vuoi.',
+  longText:
+    'Aggiungi i PDF, scegli l’ordine e scarica il file unico: tutto nel browser, senza caricare nulla.',
+  button: 'Unisci PDF',
+  label: 'Unisci PDF',
+  more: 'Unisci ora',
+};
+
+export const CTA_ROTATE: Cta = {
+  href: '/strumenti/ruota-pdf-online',
+  title: 'Hai pagine storte da girare?',
+  text: 'Ruota tutte le pagine o solo alcune e salva la rotazione nel file.',
+  longText:
+    'Scegli 90°, 180° o 270° e scarica il PDF corretto: elaborazione nel browser, senza upload.',
+  button: 'Ruota PDF',
+  label: 'Ruota PDF',
+  more: 'Ruota ora',
+};
+
+export const CTA_ORGANIZE: Cta = {
+  href: '/strumenti/organizza-pdf-online',
+  title: 'Devi riordinare o eliminare pagine?',
+  text: 'Scrivi l’ordine che vuoi e scarica il nuovo PDF.',
+  longText:
+    'Riordina, elimina o duplica le pagine in un minuto: il file non lascia il tuo dispositivo.',
+  button: 'Organizza PDF',
+  label: 'Organizza PDF',
+  more: 'Inizia ora',
+};
+
+export const CTA_SPLIT: Cta = {
+  href: '/strumenti/dividi-pdf-online',
+  title: 'Ti serve solo qualche pagina?',
+  text: 'Estrai le pagine che ti servono o separa ogni pagina in un file.',
+  longText:
+    'Indica le pagine (per esempio 1-3, 5, 8) e scarica il risultato: tutto nel browser, senza upload.',
+  button: 'Dividi PDF',
+  label: 'Dividi PDF',
+  more: 'Estrai le pagine',
+};
+
 export type PostMeta = {
   slug: string;
   title: string;
@@ -9,6 +102,8 @@ export type PostMeta = {
   updated: string;
   readingMinutes: number;
   keywords: string[];
+  /** Call to action shown on the page; defaults to the P7M tool. */
+  cta?: Cta;
 };
 
 export const POSTS: PostMeta[] = [
@@ -187,6 +282,123 @@ export const POSTS: PostMeta[] = [
     updated: '2026-10-15',
     readingMinutes: 5,
     keywords: ['estrarre pdf da p7m', 'estrarre pdf da file p7m', 'p7m in pdf', 'scaricare pdf da p7m', 'pdf.p7m come aprire', 'recuperare pdf da p7m'],
+  },
+  {
+    slug: 'file-p7m-valore-legale',
+    title: 'Il file P7M ha valore legale?',
+    description:
+      'Un file P7M ha valore legale se contiene una firma digitale qualificata valida. Cosa dice la legge, cosa conta davvero e cosa conservare.',
+    category: 'Firma digitale',
+    published: '2026-10-20',
+    updated: '2026-10-20',
+    readingMinutes: 4,
+    keywords: ['p7m valore legale', 'file p7m ha valore legale', 'firma digitale valore legale', 'p7m valido', 'p7m firma qualificata', 'validità file p7m'],
+  },
+  {
+    slug: 'aprire-p7m-online-e-sicuro',
+    title: 'È sicuro aprire un P7M online?',
+    description:
+      'Prima di caricare un file firmato su un sito, scopri dove viene elaborato. Come riconoscere uno strumento che lavora nel browser e una checklist di sicurezza.',
+    category: 'Guide P7M',
+    published: '2026-10-20',
+    updated: '2026-10-20',
+    readingMinutes: 4,
+    keywords: ['p7m online sicuro', 'aprire p7m online', 'p7m privacy', 'aprire p7m senza upload', 'p7m viewer sicuro', 'file p7m caricato su server'],
+  },
+  {
+    slug: 'p7m-o-pdf-quale-formato',
+    title: 'P7M o PDF: quale formato scegliere?',
+    description:
+      'Differenza tra P7M (CAdES) e PDF firmato (PAdES): come si aprono, quando usare l’uno o l’altro e cosa succede quando passi da un formato all’altro.',
+    category: 'Firma digitale',
+    published: '2026-10-20',
+    updated: '2026-10-20',
+    readingMinutes: 4,
+    keywords: ['p7m o pdf', 'p7m vs pdf', 'pdf firmato o p7m', 'differenza p7m pdf', 'cades o pades', 'quale formato firma digitale'],
+  },
+  {
+    slug: 'come-convertire-pdf-in-jpg',
+    title: 'Come convertire un PDF in JPG',
+    description:
+      'Come convertire un PDF in JPG in 3 passaggi, gratis e senza installare nulla: ogni pagina diventa un’immagine, scaricabile in un archivio ZIP.',
+    category: 'Guide PDF',
+    published: '2026-10-20',
+    updated: '2026-10-20',
+    readingMinutes: 4,
+    keywords: ['convertire pdf in jpg', 'pdf in jpg', 'pdf in jpg gratis', 'pdf in immagine', 'trasformare pdf in jpg', 'pdf to jpg'],
+    cta: CTA_PDF_JPG,
+  },
+  {
+    slug: 'pdf-in-jpg-qualita-dpi',
+    title: 'PDF in JPG: quale risoluzione scegliere?',
+    description:
+      'Quanti DPI servono per convertire un PDF in immagine? Una guida semplice per scegliere la risoluzione giusta per schermo, chat e stampa.',
+    category: 'Guide PDF',
+    published: '2026-10-20',
+    updated: '2026-10-20',
+    readingMinutes: 4,
+    keywords: ['pdf in jpg qualità', 'pdf in jpg alta risoluzione', 'dpi pdf in jpg', 'risoluzione immagine pdf', 'pdf in jpg sfocato', 'pdf in jpg per stampa'],
+    cta: CTA_PDF_JPG,
+  },
+  {
+    slug: 'salvare-pagina-pdf-come-immagine',
+    title: 'Come salvare una pagina di un PDF come immagine',
+    description:
+      'Ti serve una sola pagina di un PDF come immagine? Estraila e convertila in JPG in due passaggi, senza programmi e senza caricare il file.',
+    category: 'Guide PDF',
+    published: '2026-10-20',
+    updated: '2026-10-20',
+    readingMinutes: 3,
+    keywords: ['salvare pagina pdf come immagine', 'pagina pdf in jpg', 'estrarre pagina da pdf', 'pdf una pagina in jpg', 'screenshot pagina pdf', 'estrarre immagini da pdf'],
+    cta: CTA_SPLIT,
+  },
+  {
+    slug: 'come-trasformare-foto-in-pdf',
+    title: 'Come trasformare foto e immagini in PDF',
+    description:
+      'Come trasformare una o più foto JPG e PNG in un unico PDF: formato pagina A4 o su misura, margini e consigli per fotografare bene i documenti.',
+    category: 'Guide PDF',
+    published: '2026-10-20',
+    updated: '2026-10-20',
+    readingMinutes: 4,
+    keywords: ['foto in pdf', 'jpg in pdf', 'trasformare foto in pdf', 'immagine in pdf', 'png in pdf', 'unire foto in un pdf'],
+    cta: CTA_JPG_PDF,
+  },
+  {
+    slug: 'come-unire-pdf',
+    title: 'Come unire più PDF in un unico file',
+    description:
+      'Come unire più PDF in un solo documento in 3 passaggi, scegliendo l’ordine. Cosa fare prima di unire e perché i PDF firmati vanno trattati con cura.',
+    category: 'Guide PDF',
+    published: '2026-10-20',
+    updated: '2026-10-20',
+    readingMinutes: 4,
+    keywords: ['unire pdf', 'unire pdf gratis', 'unire più pdf in uno', 'combinare pdf', 'unire pdf online', 'merge pdf'],
+    cta: CTA_MERGE,
+  },
+  {
+    slug: 'ruotare-pdf-in-modo-permanente',
+    title: 'Come ruotare un PDF e salvare la rotazione',
+    description:
+      'Perché la rotazione di un PDF non resta e come salvarla nel file: ruota tutte le pagine o solo alcune di 90°, 180° o 270°, nel browser.',
+    category: 'Guide PDF',
+    published: '2026-10-20',
+    updated: '2026-10-20',
+    readingMinutes: 3,
+    keywords: ['ruotare pdf', 'ruotare pdf in modo permanente', 'girare pagina pdf', 'ruotare una pagina pdf', 'salvare pdf ruotato', 'pdf capovolto'],
+    cta: CTA_ROTATE,
+  },
+  {
+    slug: 'eliminare-pagine-da-pdf',
+    title: 'Come eliminare o riordinare le pagine di un PDF',
+    description:
+      'Elimina, sposta o duplica le pagine di un PDF scrivendo il nuovo ordine, per esempio 3,1,2,5-7. Esempi pratici, senza programmi e senza upload.',
+    category: 'Guide PDF',
+    published: '2026-10-20',
+    updated: '2026-10-20',
+    readingMinutes: 3,
+    keywords: ['eliminare pagine pdf', 'cancellare pagina pdf', 'riordinare pagine pdf', 'spostare pagine pdf', 'togliere pagina da pdf', 'duplicare pagina pdf'],
+    cta: CTA_ORGANIZE,
   },
 ];
 
