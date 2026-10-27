@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { ComponentType } from 'react';
 import { FaqList } from '@/components/faq-list';
-import { formatDate, getPost, POSTS } from '@/lib/blog';
+import { CTA_P7M, formatDate, getPost, POSTS } from '@/lib/blog';
 import type { Faq } from '@/lib/tool-content';
 import { SITE } from '@/lib/tools';
 import * as fileP7m from '@/content/posts/file-p7m-cosa-sono';
@@ -23,6 +23,16 @@ import * as firmaScaduta from '@/content/posts/firma-digitale-scaduta-p7m';
 import * as alternativeDike from '@/content/posts/alternative-a-dike-aprire-p7m';
 import * as verificareFirma from '@/content/posts/verificare-firma-p7m';
 import * as estrarrePdf from '@/content/posts/estrarre-pdf-da-p7m';
+import * as valoreLegale from '@/content/posts/file-p7m-valore-legale';
+import * as p7mSicuro from '@/content/posts/aprire-p7m-online-e-sicuro';
+import * as p7mOPdf from '@/content/posts/p7m-o-pdf-quale-formato';
+import * as pdfInJpg from '@/content/posts/come-convertire-pdf-in-jpg';
+import * as pdfInJpgDpi from '@/content/posts/pdf-in-jpg-qualita-dpi';
+import * as paginaImmagine from '@/content/posts/salvare-pagina-pdf-come-immagine';
+import * as fotoInPdf from '@/content/posts/come-trasformare-foto-in-pdf';
+import * as unirePdf from '@/content/posts/come-unire-pdf';
+import * as ruotarePdf from '@/content/posts/ruotare-pdf-in-modo-permanente';
+import * as eliminarePagine from '@/content/posts/eliminare-pagine-da-pdf';
 
 type PostModule = {
   Content: ComponentType;
@@ -48,6 +58,16 @@ const MODULES: Record<string, PostModule> = {
   'alternative-a-dike-aprire-p7m': alternativeDike,
   'verificare-firma-p7m': verificareFirma,
   'estrarre-pdf-da-p7m': estrarrePdf,
+  'file-p7m-valore-legale': valoreLegale,
+  'aprire-p7m-online-e-sicuro': p7mSicuro,
+  'p7m-o-pdf-quale-formato': p7mOPdf,
+  'come-convertire-pdf-in-jpg': pdfInJpg,
+  'pdf-in-jpg-qualita-dpi': pdfInJpgDpi,
+  'salvare-pagina-pdf-come-immagine': paginaImmagine,
+  'come-trasformare-foto-in-pdf': fotoInPdf,
+  'come-unire-pdf': unirePdf,
+  'ruotare-pdf-in-modo-permanente': ruotarePdf,
+  'eliminare-pagine-da-pdf': eliminarePagine,
 };
 
 type Props = { params: Promise<{ slug: string }> };
@@ -102,6 +122,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post || !mod) notFound();
 
   const { Content, toc, summary, faq } = mod;
+  const cta = post.cta ?? CTA_P7M;
   const url = `${SITE.url}/blog/${post.slug}`;
 
   const jsonLd = [
@@ -173,7 +194,7 @@ export default async function BlogPostPage({ params }: Props) {
           </header>
 
           <Link
-            href="/strumenti/apri-file-p7m"
+            href={cta.href}
             className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-[#1f087a] p-5 text-white transition hover:bg-[#2a0d9c]"
           >
             <span className="flex items-center gap-3">
@@ -181,12 +202,12 @@ export default async function BlogPostPage({ params }: Props) {
                 <FileCheck2 size={22} />
               </span>
               <span>
-                <span className="block font-extrabold leading-snug">Hai un file .p7m da aprire?</span>
-                <span className="block text-sm text-white/75">Leggi il documento e il firmatario in pochi secondi, nel browser.</span>
+                <span className="block font-extrabold leading-snug">{cta.title}</span>
+                <span className="block text-sm text-white/75">{cta.text}</span>
               </span>
             </span>
             <span className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 font-extrabold text-[#1f087a]">
-              Apri file P7M <ArrowRight size={18} />
+              {cta.button} <ArrowRight size={18} />
             </span>
           </Link>
 
@@ -217,16 +238,13 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
 
           <aside className="mt-14 rounded-3xl bg-[#1f087a] p-8 text-white">
-            <h2 className="text-2xl font-extrabold">Hai un file .p7m da aprire?</h2>
-            <p className="mt-2 max-w-xl text-white/80">
-              Trascinalo nello strumento: vedi il documento e chi lo ha firmato, direttamente nel browser, senza
-              caricare nulla.
-            </p>
+            <h2 className="text-2xl font-extrabold">{cta.title}</h2>
+            <p className="mt-2 max-w-xl text-white/80">{cta.longText}</p>
             <Link
-              href="/strumenti/apri-file-p7m"
+              href={cta.href}
               className="mt-5 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-extrabold text-[#1f087a] hover:bg-[#f0edff]"
             >
-              Apri un file P7M <ArrowRight size={18} />
+              {cta.button} <ArrowRight size={18} />
             </Link>
           </aside>
 
@@ -252,18 +270,16 @@ export default async function BlogPostPage({ params }: Props) {
             </nav>
 
             <Link
-              href="/strumenti/apri-file-p7m"
+              href={cta.href}
               className="group mt-8 block rounded-2xl bg-[#1f087a] p-5 text-white transition hover:bg-[#2a0d9c]"
             >
               <span className="flex size-11 items-center justify-center rounded-xl bg-white/15 text-white">
                 <FileCheck2 size={22} />
               </span>
-              <p className="mt-4 font-extrabold leading-snug">Apri file P7M</p>
-              <p className="mt-1 text-sm leading-6 text-white/75">
-                Trascina il tuo .p7m e vedi documento e firmatario, direttamente nel browser.
-              </p>
+              <p className="mt-4 font-extrabold leading-snug">{cta.label}</p>
+              <p className="mt-1 text-sm leading-6 text-white/75">{cta.text}</p>
               <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-white">
-                Apri il file <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
+                {cta.more} <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
             </Link>
           </div>
